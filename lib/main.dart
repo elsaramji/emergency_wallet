@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'core/di/injection.dart';
+import 'core/localization/l10n/app_localizations.dart';
+import 'core/router/app_router.dart';
+import 'core/theme/app_theme.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
+  runApp(const EmergencyCashApp());
+}
+
+class EmergencyCashApp extends StatelessWidget {
+  const EmergencyCashApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp.router(
+          title: 'Emergency Cash',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.lightTheme,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          routerConfig: AppRouter.router,
+        );
+      },
+    );
+  }
+}
