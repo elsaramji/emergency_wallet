@@ -3,7 +3,7 @@
 *.log
 *.pyc
 *.swp
-.rules
+/.rules
 .DS_Store
 .atom/
 .build/
@@ -20,7 +20,7 @@ migrate_working_dir/
 .idea/
 
 # Docs
-docs/
+/docs/
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
