@@ -72,7 +72,7 @@ Existing apps (like Mint or MoneyFellows) either lack multi-wallet tracking, don
 
 **Acceptance Criteria:**
 
-* Registration requires: Name, Phone Number, Password  
+* Registration requires: Name, Email , Password , Google Social Authentication
 * Onboarding step asks: "Do you have a stable monthly salary? Yes / No"  
 * If YES → user enters salary amount → Emergency Wallet is activated  
 * If NO → Emergency Wallet is hidden/locked with explanation message
@@ -211,4 +211,3 @@ Existing apps (like Mint or MoneyFellows) either lack multi-wallet tracking, don
 * **Location:** Device GPS — request permission on first transaction log  
 * **Notifications:** Firebase Cloud Messaging (FCM)  
 * **No external financial API integrations in MVP**
-

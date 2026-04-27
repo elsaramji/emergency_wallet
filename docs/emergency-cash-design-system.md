@@ -161,10 +161,11 @@ Emergency Cash App
 ```
 App Launch
   → Splash (1.5s)
+  → Sign in With email and password 
+  → Sign in with social Authentication [Google]
   → Registration Screen
-      [Name] [Phone] [Password] → [Continue]
-  → OTP Screen (6-digit code)
-      → OTP Verified
+      [Name] [Email] [Password] → [Continue]
+  → Check Your email to Verified
   → Salary Question Screen
       "Do you receive a stable monthly salary?"
       [YES ✓]  [NO ✗]
