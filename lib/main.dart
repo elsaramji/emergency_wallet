@@ -8,6 +8,7 @@ import 'core/theme/app_theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupLocator();
+  await ScreenUtil.ensureScreenSize();
   runApp(const EmergencyCashApp());
 }
 
@@ -17,7 +18,7 @@ class EmergencyCashApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(375, 812),
+      designSize: const Size(390, 844),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
