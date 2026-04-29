@@ -98,11 +98,389 @@ abstract class AppLocalizations {
     Locale('en'),
   ];
 
-  /// The name of the application
+  /// No description provided for @appName.
   ///
   /// In en, this message translates to:
   /// **'Emergency Cash'**
   String get appName;
+
+  /// No description provided for @onboardingTitle1.
+  ///
+  /// In en, this message translates to:
+  /// **'Track Your Money'**
+  String get onboardingTitle1;
+
+  /// No description provided for @onboardingDescription1.
+  ///
+  /// In en, this message translates to:
+  /// **'View all your Cash, Visa, and Smart Wallet balances in one place.'**
+  String get onboardingDescription1;
+
+  /// No description provided for @onboardingTitle2.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Auto-Save'**
+  String get onboardingTitle2;
+
+  /// No description provided for @onboardingDescription2.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically save 20% of your salary to an Emergency Wallet when you get paid.'**
+  String get onboardingDescription2;
+
+  /// No description provided for @onboardingTitle3.
+  ///
+  /// In en, this message translates to:
+  /// **'Financial Resilience'**
+  String get onboardingTitle3;
+
+  /// No description provided for @onboardingDescription3.
+  ///
+  /// In en, this message translates to:
+  /// **'Build a strong financial safety net for unexpected life events.'**
+  String get onboardingDescription3;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @getStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get getStarted;
+
+  /// No description provided for @loginWelcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back'**
+  String get loginWelcome;
+
+  /// No description provided for @loginSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to access your financial overview.'**
+  String get loginSubtitle;
+
+  /// No description provided for @emailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get emailLabel;
+
+  /// No description provided for @emailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email address'**
+  String get emailHint;
+
+  /// No description provided for @passwordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get passwordLabel;
+
+  /// No description provided for @passwordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get passwordHint;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get forgotPassword;
+
+  /// No description provided for @forgotPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get forgotPasswordTitle;
+
+  /// No description provided for @forgotPasswordSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email to receive a password reset link.'**
+  String get forgotPasswordSubtitle;
+
+  /// No description provided for @resetPasswordButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Reset Link'**
+  String get resetPasswordButton;
+
+  /// No description provided for @checkEmailMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your email to change password'**
+  String get checkEmailMessage;
+
+  /// No description provided for @loginButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Log In'**
+  String get loginButton;
+
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'OR'**
+  String get or;
+
+  /// No description provided for @continueWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get continueWithGoogle;
+
+  /// No description provided for @donTHaveAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get donTHaveAnAccount;
+
+  /// No description provided for @registerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account'**
+  String get registerTitle;
+
+  /// No description provided for @registerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Join the smarter way to manage your money.'**
+  String get registerSubtitle;
+
+  /// No description provided for @registerNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get registerNameLabel;
+
+  /// No description provided for @registerNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your full name'**
+  String get registerNameHint;
+
+  /// No description provided for @registerPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Password'**
+  String get registerPasswordLabel;
+
+  /// No description provided for @registerPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a secure password'**
+  String get registerPasswordHint;
+
+  /// No description provided for @registerButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account'**
+  String get registerButton;
+
+  /// No description provided for @alreadyHaveAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get alreadyHaveAnAccount;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get signIn;
+
+  /// No description provided for @homeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Cash'**
+  String get homeTitle;
+
+  /// No description provided for @homeTotalBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Balance'**
+  String get homeTotalBalance;
+
+  /// No description provided for @homeCash.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash'**
+  String get homeCash;
+
+  /// No description provided for @homeVisa.
+  ///
+  /// In en, this message translates to:
+  /// **'Visa'**
+  String get homeVisa;
+
+  /// No description provided for @homeSmartWallet.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Wallet'**
+  String get homeSmartWallet;
+
+  /// No description provided for @homeEmergency.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Wallet'**
+  String get homeEmergency;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTitle;
+
+  /// No description provided for @settingsTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get settingsTheme;
+
+  /// No description provided for @settingsLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get settingsLanguage;
+
+  /// No description provided for @settingsLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get settingsLogout;
+
+  /// No description provided for @errorInvalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address'**
+  String get errorInvalidEmail;
+
+  /// No description provided for @errorInvalidPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get errorInvalidPassword;
+
+  /// No description provided for @errorInvalidName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your full name'**
+  String get errorInvalidName;
+
+  /// No description provided for @errorSomethingWentWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get errorSomethingWentWrong;
+
+  /// No description provided for @successLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Login successful!'**
+  String get successLogin;
+
+  /// No description provided for @successRegister.
+  ///
+  /// In en, this message translates to:
+  /// **'Account created successfully!'**
+  String get successRegister;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// No description provided for @income.
+  ///
+  /// In en, this message translates to:
+  /// **'Income'**
+  String get income;
+
+  /// No description provided for @expense.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense'**
+  String get expense;
+
+  /// No description provided for @salary.
+  ///
+  /// In en, this message translates to:
+  /// **'Salary'**
+  String get salary;
+
+  /// No description provided for @isSalary.
+  ///
+  /// In en, this message translates to:
+  /// **'This is my salary'**
+  String get isSalary;
+
+  /// No description provided for @autoSaveNote.
+  ///
+  /// In en, this message translates to:
+  /// **'20% will be saved automatically'**
+  String get autoSaveNote;
 }
 
 class _AppLocalizationsDelegate
