@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/router/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/utils/app_images.dart';
 import '../states/auth_state.dart';
 import '../states/login_cubit.dart';
 import '../widgets/custom_text_field.dart';
@@ -120,7 +120,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     Align(
                       alignment: AlignmentDirectional.centerEnd,
                       child: TextButton(
-                        onPressed: () => context.pushNamed(AppRoutes.forgotPassword),
+                        onPressed: () =>
+                            context.pushNamed(AppRoutes.forgotPassword),
                         child: Text(
                           context.local.forgotPassword,
                           style: AppTextStyles.labelMedium.copyWith(
@@ -163,7 +164,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     SizedBox(height: 24.h),
                     SocialAuthButton(
                       text: context.local.continueWithGoogle,
-                      icon: Icons.g_mobiledata,
+                      icon: AppImages.google,
                       onPressed: state is AuthLoading
                           ? () {}
                           : () => context.read<LoginCubit>().loginWithGoogle(),

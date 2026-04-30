@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/router/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../../core/extensions/context_extensions.dart';
 import '../widgets/onboarding_slide.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -18,25 +19,25 @@ class _OnboardingViewState extends State<OnboardingView> {
   int _currentIndex = 0;
 
   List<Map<String, dynamic>> _getSlides(BuildContext context) => [
-        {
-          'icon': Icons.account_balance_wallet_outlined,
-          'color': AppColors.walletCash,
-          'title': context.local.onboardingTitle1,
-          'description': context.local.onboardingDescription1,
-        },
-        {
-          'icon': Icons.shield_outlined,
-          'color': AppColors.walletEmergency,
-          'title': context.local.onboardingTitle2,
-          'description': context.local.onboardingDescription2,
-        },
-        {
-          'icon': Icons.trending_up,
-          'color': AppColors.primary,
-          'title': context.local.onboardingTitle3,
-          'description': context.local.onboardingDescription3,
-        },
-      ];
+    {
+      'icon': Icons.account_balance_wallet_outlined,
+      'color': AppColors.walletCash,
+      'title': context.local.onboardingTitle1,
+      'description': context.local.onboardingDescription1,
+    },
+    {
+      'icon': Icons.shield_outlined,
+      'color': AppColors.walletEmergency,
+      'title': context.local.onboardingTitle2,
+      'description': context.local.onboardingDescription2,
+    },
+    {
+      'icon': Icons.trending_up,
+      'color': AppColors.primary,
+      'title': context.local.onboardingTitle3,
+      'description': context.local.onboardingDescription3,
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
