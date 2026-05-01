@@ -88,13 +88,18 @@ These are not optional. They are non-negotiable requirements for the Egyptian/ME
 Emergency Cash App
 │
 ├── ONBOARDING FLOW (First Launch Only)
-│   ├── 01. Splash / Brand Screen
-│   ├── 02. Registration (Name + Phone + Password)
-│   ├── 03. OTP Verification
-│   ├── 04. Salary Profile Question ("Do you have a stable salary?")
-│   │   ├── YES → 05a. Enter Salary Amount → Emergency Wallet Activated
-│   │   └── NO  → 05b. Confirmation Screen → Emergency Wallet Locked
-│   └── 06. Initial Wallet Balance Setup (Cash / Visa / Smart Wallet)
+│   ├── 01. Onboarding Slides (Value Prop)
+│   │   ├── Slide 1: Track Your Money
+│   │   ├── Slide 2: Emergency Auto-Save
+│   │   └── Slide 3: Financial Resilience
+│   ├── 02. Registration (Name + Email + Password + Google Auth)
+│   ├── 03. Login / Forgot Password Flow
+│   ├── 04. Primary Employment Status Question (Employee, Freelancer, Student)
+│   ├── 05. Salary Profile Question ("Do you have a stable salary?")
+│   │   ├── YES → 06a. Enter Monthly Salary Amount
+│   │   │       └── 06b. Emergency Wallet Activation (Activate Now / Maybe Later)
+│   │   └── NO  → 06c. Confirmation Screen → Emergency Wallet Disabled
+│   └── 07. Initial Wallet Balance Setup (Cash / Visa / Smart Wallet)
 │
 ├── MAIN APP (Post-Onboarding)
 │   │
@@ -161,18 +166,26 @@ Emergency Cash App
 ```
 App Launch
   → Splash (1.5s)
-  → Sign in With email and password 
-  → Sign in with social Authentication [Google]
-  → Registration Screen
-      [Name] [Email] [Password] → [Continue]
-  → Check Your email to Verified
+  → Onboarding Slides
+      → Slide 1: Track Your Money
+      → Slide 2: Emergency Auto-Save
+      → Slide 3: Financial Resilience
+  → Sign in / Register Screen
+      → Continue with Google (Social Auth)
+      → OR Registration: [Name] [Email] [Password] → [Create Account]
+  → Verification Screen (Email / Phone)
+  → Employment Status Screen
+      "What is your primary employment status?"
+      [Employee] [Freelancer] [Student]
   → Salary Question Screen
       "Do you receive a stable monthly salary?"
       [YES ✓]  [NO ✗]
       → (YES) Enter Salary Amount Screen
           [Amount Input in EGP]
-          → [Activate Emergency Wallet]
-          → Success Animation: "Emergency Wallet Ready 🔒"
+          → Emergency Wallet Activation Screen
+              [Shield Icon] "Activate Emergency Wallet"
+              [Activate Now]  [Maybe Later]
+              → Success Animation: "Emergency Wallet Ready 🔒"
   → Wallet Setup Screen
       "Set your current balances"
       [Cash Balance] [Visa Balance] [Smart Wallet Balance]
@@ -309,9 +322,11 @@ Example: WalletCard.Emergency.Locked
 |---|---|---|
 | `InputField.Amount` | Money entry | Numeric keyboard, auto-format with commas, no negative values |
 | `InputField.Notes` | Free text entry | Max 100 characters, character counter shown at 80+ chars |
-| `InputField.Phone` | Registration | Tel keyboard, Egyptian number format: `01X XXXX XXXX` |
-| `InputField.Password` | Registration | Masked, show/hide toggle, min 8 characters |
-| `InputField.SalaryAmount` | Onboarding | Numeric only, EGP suffix always visible |
+| `InputField.Name` | Registration | Title case, alphabetic characters only |
+| `InputField.Email` | Auth / Profile | Email keyboard, pattern validation `*@*.*` |
+| `InputField.Password` | Auth | Masked, show/hide toggle, min 6 characters |
+| `InputField.PasswordReset` | Forgot Password | Email entry flow + reset link confirmation |
+| `InputField.SalaryAmount` | Profile | Numeric only, EGP suffix always visible |
 
 #### States
 
@@ -496,11 +511,32 @@ RTL Layout:
 
 #### States
 
-| State | Visual |
-|---|---|
-| `Default` | Standard layout |
-| `Pressed` | `ink-50` background highlight |
 | `Emergency` | Left/right accent bar in `emergency` color |
+| `Pressed` | `ink-50` background highlight |
+
+---
+
+### 3.8 Spending Categories
+
+**Purpose:** Group expenses to help users understand their spending patterns.
+
+#### MVP Category Set
+
+| Category | Icon | Identity Color | Use Case |
+|---|---|---|---|
+| **Basics** | 🏠 | `primary` | Rent, basic utilities |
+| **Food & Breakfast** | 🥐 | `warning` | Daily meals, breakfast |
+| **Supermarket** | 🛒 | `success` | Grocery shopping |
+| **Transportation** | 🚌 | `ink-700` | Commute, Uber, fuel |
+| **Entertainment** | 🎬 | `walletSmart` | Movies, outings, hobbies |
+| **Health** | 💊 | `danger` | Pharmacy, doctor, gym |
+| **Bills** | 📄 | `walletVisa` | Mobile bill, internet, electricity |
+| **Other** | 📦 | `ink-300` | Miscellaneous |
+
+#### Visual Rules
+- Each category must have a unique icon and a dedicated sub-color for easy scanning.
+- Icons should be simple (solid style FontAwesome icons).
+- Category selection occurs via a Bottom Sheet with a grid layout (3 columns).
 
 ---
 

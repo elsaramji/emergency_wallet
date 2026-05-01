@@ -63,19 +63,26 @@ Existing apps (like Mint or MoneyFellows) either lack multi-wallet tracking, don
 
 ### **Feature 1: User Registration & Financial Profile Setup**
 
-**Description:** During onboarding, the system collects the minimum required data to configure the user's financial behavior — specifically whether they have a **stable salary**, which determines Emergency Wallet eligibility.  
+**Description:** During onboarding, the system introduces the app's core value propositions through slides and then collects the minimum required data to configure the user's financial behavior — specifically whether they have a **stable salary**, which determines Emergency Wallet eligibility.
+**Onboarding Slides:**
+* **Slide 1: Track Your Money** - View all your Cash, Visa, and Smart Wallet balances in one place.
+* **Slide 2: Emergency Auto-Save** - Automatically save 20% of your salary to an Emergency Wallet when you get paid.
+* **Slide 3: Financial Resilience** - Build a strong financial safety net for unexpected life events.
 **User Stories:**
 
 * *As a new user, I want to register quickly with minimal steps, so that I can start using the app without friction.*  
 * *As a new user, I want to declare whether I have a stable monthly salary, so that the app can decide if I qualify for the Emergency Wallet feature.*  
 * *As a salaried user, I want to input my monthly salary amount, so that the system can automatically calculate my emergency savings target (20%).*
+* *As a user, I want to input my current balances in my different wallets (Cash, Visa, Smart Wallet) during setup, so that my total balance is accurate from day one.*
 
 **Acceptance Criteria:**
 
-* Registration requires: Name, Email , Password , Google Social Authentication
-* Onboarding step asks: "Do you have a stable monthly salary? Yes / No"  
-* If YES → user enters salary amount → Emergency Wallet is activated  
-* If NO → Emergency Wallet is hidden/locked with explanation message
+* Registration requires: Name, Email , Password , Google Social Authentication, Forgot Password flow
+* Onboarding step asks: "What is your primary employment status?" (Employee, Freelancer, Student)
+* Onboarding step asks: "Do you have a stable monthly salary? Yes / No"
+* If YES → Ask for Monthly Salary Amount → Emergency Wallet activation screen (Activate Now / Maybe Later)
+* If NO → Emergency Wallet is disabled with explanation
+* Final Onboarding Step (All Users): "Set up your starting balances" (Cash, Visa, Smart Wallet)
 
 ---
 

@@ -298,3 +298,36 @@ All Cubits/Blocs should follow a standard state pattern to ensure UI consistency
 - The rules in this file must be reflected in `analysis_options.yaml`.
 - Always prefer `const` constructors to improve performance.
 - Ensure that the project compiles without warnings or linter errors.
+
+---
+
+## 16. Global Implementation Rules (Senior Flutter Developer)
+
+These rules apply to all tasks and must be strictly followed:
+
+### 1. Localization
+- All user-facing text must be stored in `.arb` files.
+- Do NOT hardcode strings in the UI.
+- Access all text via: `context.local.<textKey>`.
+
+### 2. Styling
+- Do NOT hardcode colors or text styles.
+- Always use the app’s design system from `lib/core/theme/app_theme.dart`.
+- Apply text styles and colors via theme configuration only.
+
+### 3. Responsive Sizing
+- Use screen utility extensions (`flutter_screenutil`) for all dimensions:
+  - `.sp` → font sizes and icon sizes.
+  - `.r` → border radius.
+  - `.h` → height.
+  - `.w` → width.
+- Avoid fixed pixel values.
+
+### 4. Theming
+- All colors, typography, and UI styles must come from `ThemeData`.
+- Do not implement custom styles inline.
+
+### 5. Output Requirements
+- Ensure clean, scalable, and maintainable code.
+- Follow consistent naming conventions.
+- Add brief comments where necessary to explain decisions.
