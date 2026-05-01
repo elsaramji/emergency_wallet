@@ -203,4 +203,82 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get autoSaveNote => '20% will be saved automatically';
+
+  @override
+  String get welcomeTitleEmployment =>
+      'What is your primary employment status?';
+
+  @override
+  String get welcomeSubTitleEmployment =>
+      'This helps us personalize your wallet experience.';
+
+  @override
+  String get employmentEmployee => 'Employee';
+
+  @override
+  String get employmentEmployeeDesc => 'I receive a stable monthly salary';
+
+  @override
+  String get employmentFreelancer => 'Freelancer';
+
+  @override
+  String get employmentFreelancerDesc => 'My income varies each month';
+
+  @override
+  String get employmentStudent => 'Student';
+
+  @override
+  String get employmentStudentDesc => 'I rely on allowance or part-time work';
+
+  @override
+  String get welcomeTitleSalary => 'Do you have a stable monthly salary?';
+
+  @override
+  String get welcomeSubTitleSalary =>
+      'This allows us to set up automated saving rules tailored for you.';
+
+  @override
+  String get salaryYes => 'Yes, I do';
+
+  @override
+  String get salaryNo => 'No, my income varies';
+
+  @override
+  String get welcomeTitleActivation => 'Activate Emergency Wallet';
+
+  @override
+  String get welcomeSubTitleActivation =>
+      'Since you have a stable salary, we can automatically save 20% of your income to a locked Emergency Wallet.';
+
+  @override
+  String get emergencyWalletLabel => 'Emergency Wallet';
+
+  @override
+  String get emergencyWalletAutoSaveDesc => 'Auto-saves 20% of your salary';
+
+  @override
+  String get btnActivateNow => 'Activate Now';
+
+  @override
+  String get btnMaybeLater => 'Maybe Later';
+
+  @override
+  String get welcomeTitleNoSalary => 'Let\'s Track Your Cash Flow';
+
+  @override
+  String get welcomeSubTitleNoSalary =>
+      'Emergency Cash is here to help you manage your daily inflows and outflows efficiently.';
+
+  @override
+  String get noSalaryInfo =>
+      'Since your income varies, the automated Emergency Wallet is disabled. You can activate it later from Profile Settings when you have a stable salary.';
+
+  @override
+  String get btnGoToDashboard => 'Go to Dashboard';
+
+  @override
+  String get btnContinue => 'Continue';
+
+  @override
+  String get btnBack => 'Back';
 }

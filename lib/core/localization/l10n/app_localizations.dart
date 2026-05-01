@@ -481,6 +481,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'20% will be saved automatically'**
   String get autoSaveNote;
+
+  /// No description provided for @welcomeTitleEmployment.
+  ///
+  /// In en, this message translates to:
+  /// **'What is your primary employment status?'**
+  String get welcomeTitleEmployment;
+
+  /// No description provided for @welcomeSubTitleEmployment.
+  ///
+  /// In en, this message translates to:
+  /// **'This helps us personalize your wallet experience.'**
+  String get welcomeSubTitleEmployment;
+
+  /// No description provided for @employmentEmployee.
+  ///
+  /// In en, this message translates to:
+  /// **'Employee'**
+  String get employmentEmployee;
+
+  /// No description provided for @employmentEmployeeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'I receive a stable monthly salary'**
+  String get employmentEmployeeDesc;
+
+  /// No description provided for @employmentFreelancer.
+  ///
+  /// In en, this message translates to:
+  /// **'Freelancer'**
+  String get employmentFreelancer;
+
+  /// No description provided for @employmentFreelancerDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'My income varies each month'**
+  String get employmentFreelancerDesc;
+
+  /// No description provided for @employmentStudent.
+  ///
+  /// In en, this message translates to:
+  /// **'Student'**
+  String get employmentStudent;
+
+  /// No description provided for @employmentStudentDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'I rely on allowance or part-time work'**
+  String get employmentStudentDesc;
+
+  /// No description provided for @welcomeTitleSalary.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you have a stable monthly salary?'**
+  String get welcomeTitleSalary;
+
+  /// No description provided for @welcomeSubTitleSalary.
+  ///
+  /// In en, this message translates to:
+  /// **'This allows us to set up automated saving rules tailored for you.'**
+  String get welcomeSubTitleSalary;
+
+  /// No description provided for @salaryYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, I do'**
+  String get salaryYes;
+
+  /// No description provided for @salaryNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No, my income varies'**
+  String get salaryNo;
+
+  /// No description provided for @welcomeTitleActivation.
+  ///
+  /// In en, this message translates to:
+  /// **'Activate Emergency Wallet'**
+  String get welcomeTitleActivation;
+
+  /// No description provided for @welcomeSubTitleActivation.
+  ///
+  /// In en, this message translates to:
+  /// **'Since you have a stable salary, we can automatically save 20% of your income to a locked Emergency Wallet.'**
+  String get welcomeSubTitleActivation;
+
+  /// No description provided for @emergencyWalletLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Wallet'**
+  String get emergencyWalletLabel;
+
+  /// No description provided for @emergencyWalletAutoSaveDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-saves 20% of your salary'**
+  String get emergencyWalletAutoSaveDesc;
+
+  /// No description provided for @btnActivateNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Activate Now'**
+  String get btnActivateNow;
+
+  /// No description provided for @btnMaybeLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Maybe Later'**
+  String get btnMaybeLater;
+
+  /// No description provided for @welcomeTitleNoSalary.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s Track Your Cash Flow'**
+  String get welcomeTitleNoSalary;
+
+  /// No description provided for @welcomeSubTitleNoSalary.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Cash is here to help you manage your daily inflows and outflows efficiently.'**
+  String get welcomeSubTitleNoSalary;
+
+  /// No description provided for @noSalaryInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Since your income varies, the automated Emergency Wallet is disabled. You can activate it later from Profile Settings when you have a stable salary.'**
+  String get noSalaryInfo;
+
+  /// No description provided for @btnGoToDashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Dashboard'**
+  String get btnGoToDashboard;
+
+  /// No description provided for @btnContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get btnContinue;
+
+  /// No description provided for @btnBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get btnBack;
 }
 
 class _AppLocalizationsDelegate
