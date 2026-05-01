@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/router/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/font_aws5_icons.dart';
 import '../widgets/onboarding_slide.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -20,19 +21,19 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   List<Map<String, dynamic>> _getSlides(BuildContext context) => [
     {
-      'icon': Icons.account_balance_wallet_outlined,
+      'icon': AwsIcons.wallet,
       'color': AppColors.walletCash,
       'title': context.local.onboardingTitle1,
       'description': context.local.onboardingDescription1,
     },
     {
-      'icon': Icons.shield_outlined,
+      'icon': AwsIcons.shield_alt,
       'color': AppColors.walletEmergency,
       'title': context.local.onboardingTitle2,
       'description': context.local.onboardingDescription2,
     },
     {
-      'icon': Icons.trending_up,
+      'icon': AwsIcons.chart_line,
       'color': AppColors.primary,
       'title': context.local.onboardingTitle3,
       'description': context.local.onboardingDescription3,

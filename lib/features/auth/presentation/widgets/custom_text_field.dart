@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/utils/font_aws5_icons.dart';
 
 class CustomTextField extends StatefulWidget {
   final String label;
@@ -56,7 +57,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             suffixIcon: widget.isPassword
                 ? IconButton(
                     icon: Icon(
-                      _obscureText ? Icons.visibility_off : Icons.visibility,
+                      _obscureText ? AwsIcons.eye_slash : AwsIcons.eye,
                       color: AppColors.ink500,
                     ),
                     onPressed: () {

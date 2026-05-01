@@ -90,6 +90,9 @@ flutter:
           weight: 600
         - asset: assets/fonts/Cairo-Bold.ttf
           weight: 700
+    - family: FontAwesome5
+      fonts:
+        - asset: assets/fonts/font_aws5.ttf
 
   #
   # For details regarding fonts from package dependencies,

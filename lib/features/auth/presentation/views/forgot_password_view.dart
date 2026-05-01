@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/utils/font_aws5_icons.dart';
 import '../states/auth_state.dart';
 import '../states/forgot_password_cubit.dart';
 import '../widgets/custom_text_field.dart';
@@ -52,7 +53,7 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.ink900),
+          icon: const Icon(AwsIcons.arrow_left, color: AppColors.ink900),
           onPressed: () => context.pop(),
         ),
       ),
@@ -65,9 +66,9 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
               );
               context.pop();
             } else if (state is AuthFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.message)));
             }
           },
           builder: (context, state) {
@@ -85,7 +86,9 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
                     SizedBox(height: 8.h),
                     Text(
                       context.local.forgotPasswordSubtitle,
-                      style: AppTextStyles.bodyMedium.copyWith(color: AppColors.ink500),
+                      style: AppTextStyles.bodyMedium.copyWith(
+                        color: AppColors.ink500,
+                      ),
                     ),
                     SizedBox(height: 40.h),
                     CustomTextField(
@@ -107,7 +110,9 @@ class _ForgotPasswordViewBodyState extends State<ForgotPasswordViewBody> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: state is AuthLoading ? null : _onResetPassword,
+                        onPressed: state is AuthLoading
+                            ? null
+                            : _onResetPassword,
                         child: state is AuthLoading
                             ? SizedBox(
                                 height: 24.r,

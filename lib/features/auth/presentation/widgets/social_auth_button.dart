@@ -1,5 +1,7 @@
+import 'package:emergency_wallet/core/utils/font_aws5_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 
@@ -28,11 +30,7 @@ class SocialAuthButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              icon,
-              width: 24.w,
-              height: 24.h,
-            ),
+            Icon(AwsIcons.google, color: AppColors.ink900, size: 24.sp),
             SizedBox(width: 12.w),
             Text(
               text,
