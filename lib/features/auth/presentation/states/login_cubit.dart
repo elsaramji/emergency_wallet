@@ -26,6 +26,7 @@ class LoginCubit extends Cubit<AuthState> {
     try {
       // Mock network delay
       await Future.delayed(const Duration(seconds: 2));
+      
       emit(const AuthSuccess());
     } catch (e) {
       emit(const AuthFailure('Failed to login with Google.'));

@@ -5,6 +5,7 @@ import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/auth/presentation/views/login_view.dart';
 import '../../features/auth/presentation/views/register_view.dart';
 import '../../features/auth/presentation/views/forgot_password_view.dart';
+import '../../features/welcome/presentation/views/welcome_questions_view.dart';
 
 class AppRouter {
   AppRouter._();
@@ -38,6 +39,11 @@ class AppRouter {
         path: AppRoutes.forgotPassword,
         name: AppRoutes.forgotPassword,
         builder: (context, state) => const ForgotPasswordView(),
+      ),
+      GoRoute(
+        path: AppRoutes.welcome,
+        name: AppRoutes.welcome,
+        builder: (context, state) => const WelcomeQuestionsView(),
       ),
     ],
   );

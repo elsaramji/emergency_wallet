@@ -203,4 +203,81 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get autoSaveNote => 'سيتم ادخار ٢٠٪ تلقائياً';
+
+  @override
+  String get welcomeTitleEmployment => 'ما هو وضعك الوظيفي الأساسي؟';
+
+  @override
+  String get welcomeSubTitleEmployment =>
+      'هذا يساعدنا في تخصيص تجربتك في التطبيق.';
+
+  @override
+  String get employmentEmployee => 'موظف';
+
+  @override
+  String get employmentEmployeeDesc => 'أستلم راتب شهري ثابت';
+
+  @override
+  String get employmentFreelancer => 'عمل حر (Freelancer)';
+
+  @override
+  String get employmentFreelancerDesc => 'دخلي يتغير كل شهر';
+
+  @override
+  String get employmentStudent => 'طالب';
+
+  @override
+  String get employmentStudentDesc => 'أعتمد على مصروف أو عمل جزئي';
+
+  @override
+  String get welcomeTitleSalary => 'هل لديك راتب شهري ثابت؟';
+
+  @override
+  String get welcomeSubTitleSalary =>
+      'هذا يسمح لنا بإعداد قواعد ادخار تلقائية مخصصة لك.';
+
+  @override
+  String get salaryYes => 'نعم، لدي';
+
+  @override
+  String get salaryNo => 'لا، دخلي متغير';
+
+  @override
+  String get welcomeTitleActivation => 'تفعيل محفظة الطوارئ';
+
+  @override
+  String get welcomeSubTitleActivation =>
+      'بما أن لديك راتب ثابت، يمكننا تلقائياً ادخار ٢٠٪ من دخلك في محفظة طوارئ مغلقة.';
+
+  @override
+  String get emergencyWalletLabel => 'محفظة الطوارئ';
+
+  @override
+  String get emergencyWalletAutoSaveDesc => 'ادخار ٢٠٪ من راتبك تلقائياً';
+
+  @override
+  String get btnActivateNow => 'تفعيل الآن';
+
+  @override
+  String get btnMaybeLater => 'ربما لاحقاً';
+
+  @override
+  String get welcomeTitleNoSalary => 'لنبدأ في تتبع حركة أموالك';
+
+  @override
+  String get welcomeSubTitleNoSalary =>
+      'إيمرجنسي كاش هنا لمساعدتك في إدارة دخلك ومصروفاتك اليومية بكفاءة.';
+
+  @override
+  String get noSalaryInfo =>
+      'بما أن دخلك متغير، تم تعطيل محفظة الطوارئ التلقائية. يمكنك تفعيلها لاحقاً من إعدادات الملف الشخصي عندما يتوفر لديك راتب ثابت.';
+
+  @override
+  String get btnGoToDashboard => 'اذهب للرئيسية';
+
+  @override
+  String get btnContinue => 'متابعة';
+
+  @override
+  String get btnBack => 'رجوع';
 }

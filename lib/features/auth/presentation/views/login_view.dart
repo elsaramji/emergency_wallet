@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/router/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -167,7 +168,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       icon: AppImages.google,
                       onPressed: state is AuthLoading
                           ? () {}
-                          : () => context.read<LoginCubit>().loginWithGoogle(),
+                          : () async{
+                              await context.read<LoginCubit>().loginWithGoogle();
+                              context.pushReplacementNamed(AppRoutes.welcome);
+                            },
                     ),
                     SizedBox(height: 32.h),
                     Row(
