@@ -281,4 +281,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get btnBack => 'Back';
+
+  @override
+  String get welcomeTitleSalaryAmount => 'What is your monthly salary?';
+
+  @override
+  String get welcomeSubTitleSalaryAmount =>
+      'We\'ll use this to calculate your savings target.';
+
+  @override
+  String get salaryAmountLabel => 'Salary Amount';
+
+  @override
+  String get salaryAmountHint => 'e.g. 5000';
+
+  @override
+  String get currencyEGP => 'EGP';
+
+  @override
+  String get welcomeTitleSuccess => 'Emergency Wallet Ready 🔒';
+
+  @override
+  String get welcomeSubTitleSuccess =>
+      'Your safety net is now active and protected.';
+
+  @override
+  String get welcomeTitleBalances => 'Set up your starting balances';
+
+  @override
+  String get welcomeSubTitleBalances =>
+      'This helps us calculate your total available liquidity.';
+
+  @override
+  String get cashBalanceLabel => 'Cash Balance';
+
+  @override
+  String get visaBalanceLabel => 'Visa Balance';
+
+  @override
+  String get smartWalletBalanceLabel => 'Smart Wallet Balance';
+
+  @override
+  String get startTracking => 'Start Tracking';
 }

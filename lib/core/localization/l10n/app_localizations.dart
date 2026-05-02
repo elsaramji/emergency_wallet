@@ -625,6 +625,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Back'**
   String get btnBack;
+
+  /// No description provided for @welcomeTitleSalaryAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'What is your monthly salary?'**
+  String get welcomeTitleSalaryAmount;
+
+  /// No description provided for @welcomeSubTitleSalaryAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll use this to calculate your savings target.'**
+  String get welcomeSubTitleSalaryAmount;
+
+  /// No description provided for @salaryAmountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Salary Amount'**
+  String get salaryAmountLabel;
+
+  /// No description provided for @salaryAmountHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. 5000'**
+  String get salaryAmountHint;
+
+  /// No description provided for @currencyEGP.
+  ///
+  /// In en, this message translates to:
+  /// **'EGP'**
+  String get currencyEGP;
+
+  /// No description provided for @welcomeTitleSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Wallet Ready 🔒'**
+  String get welcomeTitleSuccess;
+
+  /// No description provided for @welcomeSubTitleSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Your safety net is now active and protected.'**
+  String get welcomeSubTitleSuccess;
+
+  /// No description provided for @welcomeTitleBalances.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up your starting balances'**
+  String get welcomeTitleBalances;
+
+  /// No description provided for @welcomeSubTitleBalances.
+  ///
+  /// In en, this message translates to:
+  /// **'This helps us calculate your total available liquidity.'**
+  String get welcomeSubTitleBalances;
+
+  /// No description provided for @cashBalanceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash Balance'**
+  String get cashBalanceLabel;
+
+  /// No description provided for @visaBalanceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Visa Balance'**
+  String get visaBalanceLabel;
+
+  /// No description provided for @smartWalletBalanceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Wallet Balance'**
+  String get smartWalletBalanceLabel;
+
+  /// No description provided for @startTracking.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Tracking'**
+  String get startTracking;
 }
 
 class _AppLocalizationsDelegate

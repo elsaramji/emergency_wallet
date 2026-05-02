@@ -104,7 +104,7 @@ class ActivationStep extends StatelessWidget {
               child: OutlinedButton(
                 onPressed: () {
                   context.read<WelcomeCubit>().declineEmergencyWallet();
-                  context.go(AppRoutes.home);
+                  context.read<WelcomeCubit>().nextStep();
                 },
                 style: context.theme.outlinedButtonTheme.style?.copyWith(
                   minimumSize: WidgetStateProperty.all(Size.fromHeight(56.h)),
@@ -120,7 +120,7 @@ class ActivationStep extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   context.read<WelcomeCubit>().activateEmergencyWallet();
-                  context.go(AppRoutes.home);
+                  context.read<WelcomeCubit>().nextStep();
                 },
                 style: context.theme.elevatedButtonTheme.style?.copyWith(
                   minimumSize: WidgetStateProperty.all(Size.fromHeight(56.h)),
@@ -207,7 +207,7 @@ class ActivationStep extends StatelessWidget {
               flex: 2,
               child: ElevatedButton(
                 onPressed: () {
-                  context.go(AppRoutes.home);
+                  context.read<WelcomeCubit>().nextStep();
                 },
                 style: context.theme.elevatedButtonTheme.style?.copyWith(
                   minimumSize: WidgetStateProperty.all(Size.fromHeight(56.h)),
