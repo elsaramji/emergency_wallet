@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/utils/font_aws5_icons.dart';
 import '../manager/welcome_cubit.dart';
@@ -18,9 +19,7 @@ class WalletBalanceStep extends StatelessWidget {
           children: [
             Text(
               context.local.welcomeTitleBalances,
-              style: context.textTheme.displaySmall?.copyWith(
-                fontSize: 24.sp,
-              ),
+              style: context.textTheme.displaySmall?.copyWith(fontSize: 24.sp),
               textAlign: TextAlign.start,
             ),
             SizedBox(height: 8.h),
@@ -42,7 +41,9 @@ class WalletBalanceStep extends StatelessWidget {
                     icon: AwsIcons.money_bill,
                     color: context.colorScheme.primary,
                     initialValue: state.cashBalance?.toString() ?? '',
-                    onChanged: (value) => context.read<WelcomeCubit>().setCashBalance(double.tryParse(value) ?? 0),
+                    onChanged: (value) => context
+                        .read<WelcomeCubit>()
+                        .setCashBalance(double.tryParse(value) ?? 0),
                   ),
                   SizedBox(height: 16.h),
                   _BalanceInput(
@@ -50,7 +51,9 @@ class WalletBalanceStep extends StatelessWidget {
                     icon: AwsIcons.credit_card,
                     color: Colors.blue,
                     initialValue: state.visaBalance?.toString() ?? '',
-                    onChanged: (value) => context.read<WelcomeCubit>().setVisaBalance(double.tryParse(value) ?? 0),
+                    onChanged: (value) => context
+                        .read<WelcomeCubit>()
+                        .setVisaBalance(double.tryParse(value) ?? 0),
                   ),
                   SizedBox(height: 16.h),
                   _BalanceInput(
@@ -58,7 +61,9 @@ class WalletBalanceStep extends StatelessWidget {
                     icon: AwsIcons.mobile,
                     color: Colors.purple,
                     initialValue: state.smartWalletBalance?.toString() ?? '',
-                    onChanged: (value) => context.read<WelcomeCubit>().setSmartWalletBalance(double.tryParse(value) ?? 0),
+                    onChanged: (value) => context
+                        .read<WelcomeCubit>()
+                        .setSmartWalletBalance(double.tryParse(value) ?? 0),
                   ),
                 ],
               ),
@@ -69,9 +74,7 @@ class WalletBalanceStep extends StatelessWidget {
               style: context.theme.elevatedButtonTheme.style?.copyWith(
                 minimumSize: WidgetStateProperty.all(Size.fromHeight(56.h)),
               ),
-              child: Text(
-                context.local.startTracking,
-              ),
+              child: Text(context.local.startTracking),
             ),
             SizedBox(height: 24.h),
           ],
@@ -99,11 +102,13 @@ class _BalanceInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+      padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 16.h),
       decoration: BoxDecoration(
         color: context.theme.cardColor,
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: context.theme.dividerColor.withOpacity(0.05)),
+        border: Border.all(
+          color: context.theme.dividerColor.withValues(alpha: 0.05),
+        ),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.02),
@@ -115,12 +120,14 @@ class _BalanceInput extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            padding: EdgeInsets.all(10.r),
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
+              color: color.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12.r),
             ),
-            child: Icon(icon, color: color, size: 20.sp),
+            child: Center(
+              child: Icon(icon, color: color, size: 24.sp),
+            ),
           ),
           SizedBox(width: 16.w),
           Expanded(
