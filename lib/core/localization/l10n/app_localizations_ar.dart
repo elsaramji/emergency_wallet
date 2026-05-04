@@ -280,4 +280,46 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get btnBack => 'رجوع';
+
+  @override
+  String get welcomeTitleSalaryAmount => 'ما هو راتبك الشهري؟';
+
+  @override
+  String get welcomeSubTitleSalaryAmount =>
+      'سنستخدم هذا لحساب هدف الادخار الخاص بك.';
+
+  @override
+  String get salaryAmountLabel => 'قيمة الراتب';
+
+  @override
+  String get salaryAmountHint => 'مثال: ٥٠٠٠';
+
+  @override
+  String get currencyEGP => 'ج.م';
+
+  @override
+  String get welcomeTitleSuccess => 'محفظة الطوارئ جاهزة 🔒';
+
+  @override
+  String get welcomeSubTitleSuccess =>
+      'شبكة الأمان الخاصة بك الآن نشطة ومحمية.';
+
+  @override
+  String get welcomeTitleBalances => 'قم بإعداد أرصدتك الحالية';
+
+  @override
+  String get welcomeSubTitleBalances =>
+      'هذا يساعدنا في حساب إجمالي المبالغ المتاحة لديك.';
+
+  @override
+  String get cashBalanceLabel => 'رصيد الكاش';
+
+  @override
+  String get visaBalanceLabel => 'رصيد الفيزا';
+
+  @override
+  String get smartWalletBalanceLabel => 'رصيد المحفظة الذكية';
+
+  @override
+  String get startTracking => 'ابدأ التتبع';
 }
