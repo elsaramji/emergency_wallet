@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Cash - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { font-family: 'Cairo', 'Inter', sans-serif; }
+        .total-balance, .wallet-amount, .section-title, .btn { font-family: 'Cairo', 'Outfit', sans-serif; }
+
+        /* Dashboard Specific Styles */
+        .dashboard-header {
+            margin-bottom: 24px;
+            padding-top: 0;
+        }
+
+        /* App Bar Styles */
+        .app-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0 20px 0;
+            margin-top: 8px;
+        }
+
+        .user-greeting {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .greeting-text {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        .user-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-heading);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .visibility-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: white;
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .visibility-btn:hover {
+            border-color: var(--color-primary-light);
+            color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        .visibility-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .value-hidden .amount-text {
+            /* Masking handled by JavaScript */
+        }
+
+        .balance-label {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .total-balance {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--color-heading);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .currency {
+            font-size: 20px;
+            font-weight: 500;
+            margin-left: 4px;
+            color: var(--color-text-muted);
+        }
+
+        /* Wallet Cards Grid */
+        .wallets-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .wallet-card {
+            height: 150px;
+            border-radius: var(--radius-xl);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .wallet-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .wallet-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .wallet-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 12px;
+        }
+
+        .wallet-amount {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Wallet Specific Colors */
+        .wallet-cash { background: linear-gradient(135deg, #00C48C 0%, #00916A 100%); }
+        .wallet-visa { background: linear-gradient(135deg, #533afd 0%, #3824cc 100%); }
+        .wallet-smart { background: linear-gradient(135deg, #9B5CFF 0%, #7c3aed 100%); }
+        .wallet-emergency { 
+            background: linear-gradient(135deg, #FF6B35 0%, #cc4a1a 100%);
+        }
+
+        .wallet-emergency .wallet-name { margin-top: 12px; }
+
+        /* Transactions Section */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .view-all {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .transaction-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .transaction-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .transaction-item:hover {
+            background: #fcfcff;
+            transform: translateX(4px);
+        }
+
+        .category-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 20px;
+        }
+
+        .trans-info {
+            flex: 1;
+        }
+
+        .trans-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin-bottom: 2px;
+        }
+
+        .trans-meta {
+            font-size: 12px;
+            color: var(--color-text-muted);
+        }
+
+        .trans-amount {
+            font-size: 16px;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .amount-negative { color: var(--color-heading); }
+        .amount-positive { color: var(--color-success); }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 84px;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 20px 20px 20px;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.03);
+            border-top: 1px solid var(--color-border);
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+
+        .nav-item.active {
+            color: var(--color-primary);
+        }
+
+        .nav-item svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .nav-label {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* Floating Action Button */
+        .fab-container {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 110;
+        }
+
+        .fab {
+            width: 56px;
+            height: 56px;
+            border-radius: 20px;
+            background: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: var(--shadow-primary);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+        }
+
+        .fab:hover {
+            transform: scale(1.1) rotate(90deg);
+            background: var(--color-primary-dark);
+        }
+
+        /* Quick Action Buttons */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .btn-action {
+            height: 52px;
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-cash-in {
+            background-color: var(--color-success-light);
+            color: var(--color-success-dark);
+        }
+
+        .btn-cash-in:hover {
+            background-color: var(--color-success);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-cash-out {
+            background-color: var(--color-primary-light);
+            color: var(--color-primary-dark);
+        }
+
+        .btn-cash-out:hover {
+            background-color: var(--color-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-action svg {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="iphone-mockup">
+        <div class="glass-bg">
+            <div class="glass-blob blob-1"></div>
+            <div class="glass-blob blob-2"></div>
+        </div>
+        
+        <div class="status-bar">
+            <span>9:41</span>
+            <div class="status-icons">
+                <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><path d="M11.6667 0H14.5833C15.3888 0 16.0417 0.652876 16.0417 1.45833V8.75C16.0417 9.55546 15.3888 10.2083 14.5833 10.2083H11.6667C10.8612 10.2083 10.2083 9.55546 10.2083 8.75V1.45833C10.2083 0.652876 10.8612 0 11.6667 0Z"/><path d="M5.83333 2.91667H8.75C9.55546 2.91667 10.2083 3.56954 10.2083 4.375V8.75C10.2083 9.55546 9.55546 10.2083 8.75 10.2083H5.83333C5.02788 10.2083 4.375 9.55546 4.375 8.75V4.375C4.375 3.56954 5.02788 2.91667 5.83333 2.91667Z"/><path d="M0 5.83333H2.91667C3.72212 5.83333 4.375 6.48621 4.375 7.29167V8.75C4.375 9.55546 3.72212 10.2083 2.91667 10.2083H0C0 9.40284 0 8.75 0 8.75V5.83333Z"/></svg>
+                <span style="margin-left:5px"></span>
+                <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="1" y="1" width="21" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M24 4V8C24 8.55228 23.5523 9 23 9H22V3H23C23.5523 3 24 3.44772 24 4Z" fill="currentColor"/><rect x="3" y="3" width="14" height="6" rx="1.5" fill="currentColor"/></svg>
+            </div>
+        </div>
+        
+        <div class="screen-content">
+            <div class="app-bar fade-up">
+                <div class="user-greeting">
+                    <span class="greeting-text">Welcome back,</span>
+                    <span class="user-name">Mr. Mahmoud</span>
+                </div>
+                <button class="visibility-btn" id="toggleVisibility" title="Toggle Visibility">
+                    <svg id="eyeOpenIcon" style="display:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg id="eyeClosedIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </button>
+            </div>
+
+            <div class="dashboard-header fade-up">
+                <p class="balance-label">Total Balance</p>
+                <h1 class="total-balance"><span class="amount-text" data-value="12,450">••••</span><span class="currency">EGP</span></h1>
+            </div>
+            
+            <div class="wallets-grid fade-up delay-1">
+                <div class="wallet-card wallet-cash">
+                    <div class="wallet-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+                    </div>
+                    <div>
+                        <div class="wallet-name">Cash Wallet</div>
+                        <div class="wallet-amount amount-text" data-value="4,200">••••</div>
+                    </div>
+                </div>
+                
+                <div class="wallet-card wallet-visa">
+                    <div class="wallet-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                    </div>
+                    <div>
+                        <div class="wallet-name">Visa Wallet</div>
+                        <div class="wallet-amount amount-text" data-value="6,800">••••</div>
+                    </div>
+                </div>
+                
+                <div class="wallet-card wallet-smart">
+                    <div class="wallet-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <div>
+                        <div class="wallet-name">Smart Wallet</div>
+                        <div class="wallet-amount amount-text" data-value="1,450">••••</div>
+                    </div>
+                </div>
+                
+                <div class="wallet-card wallet-emergency">
+                    <div class="wallet-icon" style="background: rgba(0,0,0,0.15);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <div>
+                        <div class="wallet-name">Emergency Fund</div>
+                        <div class="wallet-amount amount-text" data-value="3,500">••••</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-actions fade-up delay-2">
+                <button class="btn-action btn-cash-in">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                    Cash In
+                </button>
+                <button class="btn-action btn-cash-out">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+                    Cash Out
+                </button>
+            </div>
+            
+            <div class="section-header fade-up delay-3">
+                <h2 class="section-title">Recent Activity</h2>
+                <a href="#" class="view-all">View All</a>
+            </div>
+            
+            <div class="transaction-list fade-up delay-3" style="padding-bottom: 100px;">
+                <div class="transaction-item">
+                    <div class="category-icon" style="background: #FFF0EB; color: #FF6B35;">🍔</div>
+                    <div class="trans-info">
+                        <div class="trans-title">McDonald's</div>
+                        <div class="trans-meta">Food & Dining • Today, 2:45 PM</div>
+                    </div>
+                    <div class="trans-amount amount-negative amount-text" data-value="-245.00">••••</div>
+                </div>
+                
+                <div class="transaction-item">
+                    <div class="category-icon" style="background: #E0FAF3; color: #00C48C;">💰</div>
+                    <div class="trans-info">
+                        <div class="trans-title">Monthly Salary</div>
+                        <div class="trans-meta">Income • Yesterday</div>
+                    </div>
+                    <div class="trans-amount amount-positive amount-text" data-value="+12,000.00">••••</div>
+                </div>
+                
+                <div class="transaction-item">
+                    <div class="category-icon" style="background: #E8F1FF; color: #533afd;">🚗</div>
+                    <div class="trans-info">
+                        <div class="trans-title">Uber Trip</div>
+                        <div class="trans-meta">Transport • 2 days ago</div>
+                    </div>
+                    <div class="trans-amount amount-negative amount-text" data-value="-82.00">••••</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bottom-nav">
+            <a href="#" class="nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span class="nav-label">Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8m0 0V4m0 8h8m-8 0H4"/></svg>
+                <span class="nav-label">History</span>
+            </a>
+            <div style="width: 56px;"></div> <!-- Spacer for FAB -->
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                <span class="nav-label">Insights</span>
+            </a>
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span class="nav-label">Profile</span>
+            </a>
+        </div>
+        
+        <div class="fab-container">
+            <button class="fab">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('toggleVisibility');
+            const eyeOpen = document.getElementById('eyeOpenIcon');
+            const eyeClosed = document.getElementById('eyeClosedIcon');
+            const amountElements = document.querySelectorAll('.amount-text');
+            
+            let isVisible = false;
+
+            toggleBtn.addEventListener('click', () => {
+                isVisible = !isVisible;
+                
+                if (isVisible) {
+                    amountElements.forEach(el => {
+                        el.textContent = el.getAttribute('data-value');
+                    });
+                    eyeOpen.style.display = 'block';
+                    eyeClosed.style.display = 'none';
+                } else {
+                    amountElements.forEach(el => {
+                        el.textContent = '••••';
+                    });
+                    eyeOpen.style.display = 'none';
+                    eyeClosed.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
