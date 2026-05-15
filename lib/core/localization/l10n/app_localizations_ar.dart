@@ -322,4 +322,103 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get startTracking => 'ابدأ التتبع';
+
+  @override
+  String get dashboardWelcome => 'مرحباً بعودتك،';
+
+  @override
+  String get dashboardUserNamePlaceholder => 'أستاذ محمود';
+
+  @override
+  String get cashIn => 'إيداع';
+
+  @override
+  String get cashOut => 'سحب';
+
+  @override
+  String get recentActivity => 'النشاط الأخير';
+
+  @override
+  String get viewAll => 'عرض الكل';
+
+  @override
+  String get navHome => 'الرئيسية';
+
+  @override
+  String get navHistory => 'السجل';
+
+  @override
+  String get navInsights => 'رؤى';
+
+  @override
+  String get navProfile => 'الملف الشخصي';
+
+  @override
+  String get mockTransTitle1 => 'ماكدونالدز';
+
+  @override
+  String get mockTransMeta1 => 'طعام ومطاعم • اليوم، ٢:٤٥ م';
+
+  @override
+  String get mockTransTitle2 => 'الراتب الشهري';
+
+  @override
+  String get mockTransMeta2 => 'دخل • أمس';
+
+  @override
+  String get mockTransTitle3 => 'رحلة أوبر';
+
+  @override
+  String get mockTransMeta3 => 'مواصلات • منذ يومين';
+
+  @override
+  String get newTransaction => 'عملية جديدة';
+
+  @override
+  String get amountLabel => 'المبلغ';
+
+  @override
+  String get categoryLabel => 'الفئة';
+
+  @override
+  String get noteLabel => 'ملاحظة';
+
+  @override
+  String get addTransaction => 'إضافة العملية';
+
+  @override
+  String get catSalary => 'راتب';
+
+  @override
+  String get catFood => 'طعام';
+
+  @override
+  String get catTransport => 'مواصلات';
+
+  @override
+  String get catShopping => 'تسوق';
+
+  @override
+  String get catHealth => 'صحة';
+
+  @override
+  String get catEntertainment => 'ترفيه';
+
+  @override
+  String get catOthers => 'أخرى';
+
+  @override
+  String get catCredits => 'مديونيات';
+
+  @override
+  String get catDeposit => 'إيداع';
+
+  @override
+  String get catKPIs => 'مكافأت';
+
+  @override
+  String get catFees => 'رسوم';
+
+  @override
+  String get catDebts => 'ديون';
 }

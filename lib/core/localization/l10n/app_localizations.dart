@@ -703,6 +703,204 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Start Tracking'**
   String get startTracking;
+
+  /// No description provided for @dashboardWelcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back,'**
+  String get dashboardWelcome;
+
+  /// No description provided for @dashboardUserNamePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Mr. Mahmoud'**
+  String get dashboardUserNamePlaceholder;
+
+  /// No description provided for @cashIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash In'**
+  String get cashIn;
+
+  /// No description provided for @cashOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash Out'**
+  String get cashOut;
+
+  /// No description provided for @recentActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Activity'**
+  String get recentActivity;
+
+  /// No description provided for @viewAll.
+  ///
+  /// In en, this message translates to:
+  /// **'View All'**
+  String get viewAll;
+
+  /// No description provided for @navHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get navHome;
+
+  /// No description provided for @navHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get navHistory;
+
+  /// No description provided for @navInsights.
+  ///
+  /// In en, this message translates to:
+  /// **'Insights'**
+  String get navInsights;
+
+  /// No description provided for @navProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get navProfile;
+
+  /// No description provided for @mockTransTitle1.
+  ///
+  /// In en, this message translates to:
+  /// **'McDonald\'s'**
+  String get mockTransTitle1;
+
+  /// No description provided for @mockTransMeta1.
+  ///
+  /// In en, this message translates to:
+  /// **'Food & Dining • Today, 2:45 PM'**
+  String get mockTransMeta1;
+
+  /// No description provided for @mockTransTitle2.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Salary'**
+  String get mockTransTitle2;
+
+  /// No description provided for @mockTransMeta2.
+  ///
+  /// In en, this message translates to:
+  /// **'Income • Yesterday'**
+  String get mockTransMeta2;
+
+  /// No description provided for @mockTransTitle3.
+  ///
+  /// In en, this message translates to:
+  /// **'Uber Trip'**
+  String get mockTransTitle3;
+
+  /// No description provided for @mockTransMeta3.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport • 2 days ago'**
+  String get mockTransMeta3;
+
+  /// No description provided for @newTransaction.
+  ///
+  /// In en, this message translates to:
+  /// **'New Transaction'**
+  String get newTransaction;
+
+  /// No description provided for @amountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get amountLabel;
+
+  /// No description provided for @categoryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get categoryLabel;
+
+  /// No description provided for @noteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get noteLabel;
+
+  /// No description provided for @addTransaction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Transaction'**
+  String get addTransaction;
+
+  /// No description provided for @catSalary.
+  ///
+  /// In en, this message translates to:
+  /// **'Salary'**
+  String get catSalary;
+
+  /// No description provided for @catFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Food'**
+  String get catFood;
+
+  /// No description provided for @catTransport.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport'**
+  String get catTransport;
+
+  /// No description provided for @catShopping.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping'**
+  String get catShopping;
+
+  /// No description provided for @catHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Health'**
+  String get catHealth;
+
+  /// No description provided for @catEntertainment.
+  ///
+  /// In en, this message translates to:
+  /// **'Entertainment'**
+  String get catEntertainment;
+
+  /// No description provided for @catOthers.
+  ///
+  /// In en, this message translates to:
+  /// **'Others'**
+  String get catOthers;
+
+  /// No description provided for @catCredits.
+  ///
+  /// In en, this message translates to:
+  /// **'Credits'**
+  String get catCredits;
+
+  /// No description provided for @catDeposit.
+  ///
+  /// In en, this message translates to:
+  /// **'Deposit'**
+  String get catDeposit;
+
+  /// No description provided for @catKPIs.
+  ///
+  /// In en, this message translates to:
+  /// **'KPIs'**
+  String get catKPIs;
+
+  /// No description provided for @catFees.
+  ///
+  /// In en, this message translates to:
+  /// **'Fees'**
+  String get catFees;
+
+  /// No description provided for @catDebts.
+  ///
+  /// In en, this message translates to:
+  /// **'Debts'**
+  String get catDebts;
 }
 
 class _AppLocalizationsDelegate

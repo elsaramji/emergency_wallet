@@ -323,4 +323,103 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get startTracking => 'Start Tracking';
+
+  @override
+  String get dashboardWelcome => 'Welcome back,';
+
+  @override
+  String get dashboardUserNamePlaceholder => 'Mr. Mahmoud';
+
+  @override
+  String get cashIn => 'Cash In';
+
+  @override
+  String get cashOut => 'Cash Out';
+
+  @override
+  String get recentActivity => 'Recent Activity';
+
+  @override
+  String get viewAll => 'View All';
+
+  @override
+  String get navHome => 'Home';
+
+  @override
+  String get navHistory => 'History';
+
+  @override
+  String get navInsights => 'Insights';
+
+  @override
+  String get navProfile => 'Profile';
+
+  @override
+  String get mockTransTitle1 => 'McDonald\'s';
+
+  @override
+  String get mockTransMeta1 => 'Food & Dining • Today, 2:45 PM';
+
+  @override
+  String get mockTransTitle2 => 'Monthly Salary';
+
+  @override
+  String get mockTransMeta2 => 'Income • Yesterday';
+
+  @override
+  String get mockTransTitle3 => 'Uber Trip';
+
+  @override
+  String get mockTransMeta3 => 'Transport • 2 days ago';
+
+  @override
+  String get newTransaction => 'New Transaction';
+
+  @override
+  String get amountLabel => 'Amount';
+
+  @override
+  String get categoryLabel => 'Category';
+
+  @override
+  String get noteLabel => 'Note';
+
+  @override
+  String get addTransaction => 'Add Transaction';
+
+  @override
+  String get catSalary => 'Salary';
+
+  @override
+  String get catFood => 'Food';
+
+  @override
+  String get catTransport => 'Transport';
+
+  @override
+  String get catShopping => 'Shopping';
+
+  @override
+  String get catHealth => 'Health';
+
+  @override
+  String get catEntertainment => 'Entertainment';
+
+  @override
+  String get catOthers => 'Others';
+
+  @override
+  String get catCredits => 'Credits';
+
+  @override
+  String get catDeposit => 'Deposit';
+
+  @override
+  String get catKPIs => 'KPIs';
+
+  @override
+  String get catFees => 'Fees';
+
+  @override
+  String get catDebts => 'Debts';
 }
