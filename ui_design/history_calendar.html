@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Cash - History Calendar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { font-family: 'Cairo', 'Inter', sans-serif; }
+        .section-title, .month-name, .year-selector { font-family: 'Outfit', sans-serif; }
+
+        /* History Calendar Specific Styles */
+        .history-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            padding-top: 10px;
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: white;
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-heading);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            text-decoration: none;
+        }
+
+        .year-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-heading);
+        }
+
+        .year-btn {
+            background: none;
+            border: none;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+        }
+
+        .year-btn:hover {
+            color: var(--color-primary);
+        }
+
+        /* Month Grid */
+        .month-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .month-card {
+            aspect-ratio: 1;
+            background: white;
+            border-radius: var(--radius-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 1.5px solid transparent;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .month-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-primary-light);
+        }
+
+        .month-card.active {
+            border-color: var(--color-primary);
+            background: linear-gradient(180deg, #ffffff 0%, #f9f9ff 100%);
+        }
+
+        .month-card.inactive {
+            opacity: 0.6;
+            background: #f8fafc;
+            cursor: default;
+        }
+
+        .month-card.inactive:hover {
+            transform: none;
+            box-shadow: var(--shadow-sm);
+            border-color: transparent;
+        }
+
+        .month-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-heading);
+        }
+
+        .month-indicator {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            opacity: 0;
+        }
+
+        .active .month-indicator {
+            opacity: 1;
+        }
+
+        .month-ops-count {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        /* Bottom Sheet Mockup */
+        .bottom-sheet {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top-left-radius: 32px;
+            border-top-right-radius: 32px;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+            z-index: 200;
+            padding: 24px;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 70%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bottom-sheet.open {
+            transform: translateY(0);
+        }
+
+        .sheet-handle {
+            width: 40px;
+            height: 4px;
+            background: var(--color-border);
+            border-radius: 2px;
+            margin: 0 auto 20px auto;
+        }
+
+        .sheet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .sheet-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-heading);
+        }
+
+        .sheet-close {
+            color: var(--color-text-muted);
+            cursor: pointer;
+        }
+
+        .transaction-list-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+            padding-bottom: 20px;
+        }
+
+        .trans-item-mini {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: var(--color-background);
+            border-radius: var(--radius-md);
+        }
+
+        .trans-icon-mini {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 16px;
+        }
+
+        .trans-info-mini {
+            flex: 1;
+        }
+
+        .trans-title-mini {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-heading);
+        }
+
+        .trans-amount-mini {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .backdrop {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 150;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .backdrop.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Navigation */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 84px;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 20px 20px 20px;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.03);
+            border-top: 1px solid var(--color-border);
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+
+        .nav-item.active {
+            color: var(--color-primary);
+        }
+
+        .nav-item svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .nav-label {
+            font-size: 11px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="iphone-mockup">
+        <div class="glass-bg">
+            <div class="glass-blob blob-1"></div>
+            <div class="glass-blob blob-2"></div>
+        </div>
+        
+        <div class="status-bar">
+            <span>9:41</span>
+            <div class="status-icons">
+                <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><path d="M11.6667 0H14.5833C15.3888 0 16.0417 0.652876 16.0417 1.45833V8.75C16.0417 9.55546 15.3888 10.2083 14.5833 10.2083H11.6667C10.8612 10.2083 10.2083 9.55546 10.2083 8.75V1.45833C10.2083 0.652876 10.8612 0 11.6667 0Z"/><path d="M5.83333 2.91667H8.75C9.55546 2.91667 10.2083 3.56954 10.2083 4.375V8.75C10.2083 9.55546 9.55546 10.2083 8.75 10.2083H5.83333C5.02788 10.2083 4.375 9.55546 4.375 8.75V4.375C4.375 3.56954 5.02788 2.91667 5.83333 2.91667Z"/><path d="M0 5.83333H2.91667C3.72212 5.83333 4.375 6.48621 4.375 7.29167V8.75C4.375 9.55546 3.72212 10.2083 2.91667 10.2083H0C0 9.40284 0 8.75 0 8.75V5.83333Z"/></svg>
+                <span style="margin-left:5px"></span>
+                <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="1" y="1" width="21" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M24 4V8C24 8.55228 23.5523 9 23 9H22V3H23C23.5523 3 24 3.44772 24 4Z" fill="currentColor"/><rect x="3" y="3" width="14" height="6" rx="1.5" fill="currentColor"/></svg>
+            </div>
+        </div>
+        
+        <div class="screen-content">
+            <div class="history-header fade-up">
+                <a href="dashboard.html" class="back-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </a>
+                <div class="year-selector">
+                    <button class="year-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <span>2026</span>
+                    <button class="year-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                </div>
+                <div style="width: 40px;"></div> <!-- Spacer -->
+            </div>
+
+            <h1 class="title-lg fade-up delay-1">Transaction History</h1>
+            <p class="subtitle fade-up delay-1" style="margin-bottom: 32px;">Select a month to view details</p>
+            
+            <div class="month-grid fade-up delay-2">
+                <div class="month-card inactive">
+                    <span class="month-name">Jan</span>
+                    <span class="month-ops-count">No activity</span>
+                </div>
+                <div class="month-card inactive">
+                    <span class="month-name">Feb</span>
+                    <span class="month-ops-count">No activity</span>
+                </div>
+                <div class="month-card inactive">
+                    <span class="month-name">Mar</span>
+                    <span class="month-ops-count">No activity</span>
+                </div>
+                <div class="month-card active" onclick="openSheet('April')">
+                    <span class="month-name">Apr</span>
+                    <span class="month-ops-count">24 operations</span>
+                    <div class="month-indicator"></div>
+                </div>
+                <div class="month-card active" onclick="openSheet('May')">
+                    <span class="month-name">May</span>
+                    <span class="month-ops-count">12 operations</span>
+                    <div class="month-indicator"></div>
+                </div>
+                <div class="month-card inactive">
+                    <span class="month-name">Jun</span>
+                    <span class="month-ops-count">Upcoming</span>
+                </div>
+                <div class="month-card inactive">
+                    <span class="month-name">Jul</span>
+                    <span class="month-ops-count">Upcoming</span>
+                </div>
+                <div class="month-card inactive">
+                    <span class="month-name">Aug</span>
+                    <span class="month-ops-count">Upcoming</span>
+                </div>
+                <div class="month-card inactive">
+                    <span class="month-name">Sep</span>
+                    <span class="month-ops-count">Upcoming</span>
+                </div>
+                <div class="month-card inactive">
+                    <span class="month-name">Oct</span>
+                    <span class="month-ops-count">Upcoming</span>
+                </div>
+                <div class="month-card inactive">
+                    <span class="month-name">Nov</span>
+                    <span class="month-ops-count">Upcoming</span>
+                </div>
+                <div class="month-card inactive">
+                    <span class="month-name">Dec</span>
+                    <span class="month-ops-count">Upcoming</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="backdrop" id="backdrop" onclick="closeSheet()"></div>
+
+        <div class="bottom-sheet" id="bottomSheet">
+            <div class="sheet-handle"></div>
+            <div class="sheet-header">
+                <h2 class="sheet-title" id="sheetTitle">May 2026</h2>
+                <div class="sheet-close" onclick="closeSheet()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </div>
+            </div>
+            
+            <div class="transaction-list-mini">
+                <div class="trans-item-mini">
+                    <div class="trans-icon-mini" style="background: #FFF0EB; color: #FF6B35;">🍔</div>
+                    <div class="trans-info-mini">
+                        <div class="trans-title-mini">McDonald's</div>
+                        <div style="font-size: 11px; color: var(--color-text-muted);">Today, 2:45 PM</div>
+                    </div>
+                    <div class="trans-amount-mini amount-negative">-245 EGP</div>
+                </div>
+                
+                <div class="trans-item-mini">
+                    <div class="trans-icon-mini" style="background: #E0FAF3; color: #00C48C;">💰</div>
+                    <div class="trans-info-mini">
+                        <div class="trans-title-mini">Monthly Salary</div>
+                        <div style="font-size: 11px; color: var(--color-text-muted);">Yesterday</div>
+                    </div>
+                    <div class="trans-amount-mini amount-positive">+12,000 EGP</div>
+                </div>
+                
+                <div class="trans-item-mini">
+                    <div class="trans-icon-mini" style="background: #E8F1FF; color: #533afd;">🚗</div>
+                    <div class="trans-info-mini">
+                        <div class="trans-title-mini">Uber Trip</div>
+                        <div style="font-size: 11px; color: var(--color-text-muted);">2 days ago</div>
+                    </div>
+                    <div class="trans-amount-mini amount-negative">-82 EGP</div>
+                </div>
+
+                <div class="trans-item-mini">
+                    <div class="trans-icon-mini" style="background: #FFF0EB; color: #FF6B35;">🛒</div>
+                    <div class="trans-info-mini">
+                        <div class="trans-title-mini">Supermarket</div>
+                        <div style="font-size: 11px; color: var(--color-text-muted);">3 days ago</div>
+                    </div>
+                    <div class="trans-amount-mini amount-negative">-1,200 EGP</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bottom-nav">
+            <a href="dashboard.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span class="nav-label">Home</span>
+            </a>
+            <a href="#" class="nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8m0 0V4m0 8h8m-8 0H4"/></svg>
+                <span class="nav-label">History</span>
+            </a>
+            <div style="width: 56px;"></div> <!-- Spacer for FAB -->
+            <a href="insights.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                <span class="nav-label">Insights</span>
+            </a>
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span class="nav-label">Profile</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function openSheet(month) {
+            document.getElementById('sheetTitle').textContent = month + ' 2026';
+            document.getElementById('bottomSheet').classList.add('open');
+            document.getElementById('backdrop').classList.add('visible');
+        }
+
+        function closeSheet() {
+            document.getElementById('bottomSheet').classList.remove('open');
+            document.getElementById('backdrop').classList.remove('visible');
+        }
+    </script>
+</body>
+</html>

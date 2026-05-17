@@ -176,7 +176,44 @@ Existing apps (like Mint or MoneyFellows) either lack multi-wallet tracking, don
 * Full transaction list sorted by date (newest first)  
 * Each entry shows: Type (In/Out), Amount, Wallet, Category (if out), Date/Time, Location (if captured)  
 * Filter options: By Wallet Type / By Date Range  
-* MVP: No charts or analytics (Out of Scope)
+
+---
+
+### **Feature 7: History (Calendar View)**
+
+**Description:** A calendar-based view to easily find and access transaction history by month.  
+**User Stories:**
+
+* *As a user, I want to see a calendar showing all months in the year, so that I can easily navigate my history.*  
+* *As a user, I want active months (months with operations) to be visually distinct from inactive months.*  
+* *As a user, I want to tap on an active month and see a sheet displaying all operations for that month.*
+
+**Acceptance Criteria:**
+
+* Calendar displays months of the year.  
+* Active months indicate collected operations.  
+* Inactive months are disabled or hidden.  
+* Selecting a month opens a bottom sheet or new view with all transactions for that month.
+
+---
+
+### **Feature 8: Insights & Analytics**
+
+**Description:** Visual charts and calculations to help the user understand their cash flow, savings, and spending habits for the current and previous months.  
+**User Stories:**
+
+* *As a user, I want to see a chart for the current month showing cash-in and cash-outs categorized, so I can understand my spending.*  
+* *As a user, I want to see my total saved amount calculated as [Cash In - Cash Out], so I know how much I'm retaining.*  
+* *As a user, I want to see my total spent amount based on [Cash Outs].*  
+* *As a user, I want the ability to navigate to previous months to view past chart info.*  
+* *As a user, I want the system to correctly display my saving amount even if it is negative (minus).*
+
+**Acceptance Criteria:**
+
+* Display categorized charts for cash-in and cash-out.  
+* Show calculated Saving Amount = Cash In - Cash Out (can be negative).  
+* Show calculated Spend Amount = Total Cash Outs.  
+* Include navigation to view historical insights from previous months.
 
 ---
 
@@ -184,7 +221,6 @@ Existing apps (like Mint or MoneyFellows) either lack multi-wallet tracking, don
 
 | Feature | Reason Excluded |
 | ----- | ----- |
-| Charts & Analytics Dashboard | Complexity without proven retention |
 | Budget Planning / Forecasting | Second phase — needs more user data first |
 | Bank/Wallet API Integration (Open Banking) | Regulatory complexity \+ high cost |
 | Shared wallets / Family accounts | Different product scope |

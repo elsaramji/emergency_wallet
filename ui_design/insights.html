@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Cash - Insights</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { font-family: 'Cairo', 'Inter', sans-serif; }
+        .section-title, .stats-value, .month-label { font-family: 'Outfit', sans-serif; }
+
+        /* Insights Specific Styles */
+        .insights-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding-top: 10px;
+        }
+
+        .month-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: white;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .month-label {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--color-heading);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .nav-arrow {
+            color: var(--color-text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-arrow:hover {
+            color: var(--color-primary);
+        }
+
+        /* Summary Cards */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stats-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stats-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-heading);
+        }
+
+        .stats-value.positive { color: var(--color-success); }
+        .stats-value.negative { color: var(--color-emergency); }
+
+        /* Chart Section */
+        .chart-container {
+            background: white;
+            padding: 24px;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .chart-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--color-heading);
+        }
+
+        /* Donut Chart Mockup */
+        .donut-chart {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 24px auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .donut-svg {
+            transform: rotate(-90deg);
+        }
+
+        .donut-segment {
+            fill: none;
+            stroke-width: 12;
+        }
+
+        .donut-center {
+            position: absolute;
+            text-align: center;
+        }
+
+        .center-val {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-heading);
+            display: block;
+        }
+
+        .center-lbl {
+            font-size: 10px;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+        }
+
+        /* Legend */
+        .legend-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+        }
+
+        .legend-text {
+            font-size: 13px;
+            color: var(--color-text-body);
+            font-weight: 500;
+        }
+
+        .legend-percent {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-left: auto;
+        }
+
+        /* Monthly Comparison Bar */
+        .comparison-section {
+            background: white;
+            padding: 24px;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 40px;
+        }
+
+        .bar-group {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bar-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .bar-label-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .bar-bg {
+            height: 8px;
+            background: var(--color-background);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 84px;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 20px 20px 20px;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.03);
+            border-top: 1px solid var(--color-border);
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+
+        .nav-item.active {
+            color: var(--color-primary);
+        }
+
+        .nav-item svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .nav-label {
+            font-size: 11px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="iphone-mockup">
+        <div class="glass-bg">
+            <div class="glass-blob blob-1"></div>
+            <div class="glass-blob blob-2"></div>
+        </div>
+        
+        <div class="status-bar">
+            <span>9:41</span>
+            <div class="status-icons">
+                <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><path d="M11.6667 0H14.5833C15.3888 0 16.0417 0.652876 16.0417 1.45833V8.75C16.0417 9.55546 15.3888 10.2083 14.5833 10.2083H11.6667C10.8612 10.2083 10.2083 9.55546 10.2083 8.75V1.45833C10.2083 0.652876 10.8612 0 11.6667 0Z"/><path d="M5.83333 2.91667H8.75C9.55546 2.91667 10.2083 3.56954 10.2083 4.375V8.75C10.2083 9.55546 9.55546 10.2083 8.75 10.2083H5.83333C5.02788 10.2083 4.375 9.55546 4.375 8.75V4.375C4.375 3.56954 5.02788 2.91667 5.83333 2.91667Z"/><path d="M0 5.83333H2.91667C3.72212 5.83333 4.375 6.48621 4.375 7.29167V8.75C4.375 9.55546 3.72212 10.2083 2.91667 10.2083H0C0 9.40284 0 8.75 0 8.75V5.83333Z"/></svg>
+                <span style="margin-left:5px"></span>
+                <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="1" y="1" width="21" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M24 4V8C24 8.55228 23.5523 9 23 9H22V3H23C23.5523 3 24 3.44772 24 4Z" fill="currentColor"/><rect x="3" y="3" width="14" height="6" rx="1.5" fill="currentColor"/></svg>
+            </div>
+        </div>
+        
+        <div class="screen-content">
+            <div class="insights-header fade-up">
+                <h1 class="title-lg" style="margin-bottom: 0;">Insights</h1>
+                <div class="month-nav">
+                    <div class="nav-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></div>
+                    <span class="month-label">May 2026</span>
+                    <div class="nav-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+                </div>
+            </div>
+
+            <div class="summary-grid fade-up delay-1">
+                <div class="summary-card">
+                    <span class="stats-label">Savings</span>
+                    <span class="stats-value positive">+4,520 EGP</span>
+                </div>
+                <div class="summary-card">
+                    <span class="stats-label">Spent</span>
+                    <span class="stats-value">7,480 EGP</span>
+                </div>
+            </div>
+
+            <div class="chart-container fade-up delay-2">
+                <div class="chart-header">
+                    <h2 class="chart-title">Spending Categories</h2>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-muted);"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                </div>
+
+                <div class="donut-chart">
+                    <svg class="donut-svg" width="160" height="160" viewBox="0 0 100 100">
+                        <!-- Background Circle -->
+                        <circle class="donut-segment" cx="50" cy="50" r="40" stroke="#f1f5f9" />
+                        <!-- Data Segments (Mocked) -->
+                        <circle class="donut-segment" cx="50" cy="50" r="40" stroke="#533afd" stroke-dasharray="70 251.2" />
+                        <circle class="donut-segment" cx="50" cy="50" r="40" stroke="#00C48C" stroke-dasharray="50 251.2" stroke-dashoffset="-70" />
+                        <circle class="donut-segment" cx="50" cy="50" r="40" stroke="#FFB400" stroke-dasharray="40 251.2" stroke-dashoffset="-120" />
+                        <circle class="donut-segment" cx="50" cy="50" r="40" stroke="#FF6B35" stroke-dasharray="30 251.2" stroke-dashoffset="-160" />
+                    </svg>
+                    <div class="donut-center">
+                        <span class="center-val">7.4k</span>
+                        <span class="center-lbl">Total</span>
+                    </div>
+                </div>
+
+                <div class="legend-grid">
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: #533afd;"></div>
+                        <span class="legend-text">Basics</span>
+                        <span class="legend-percent">35%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: #00C48C;"></div>
+                        <span class="legend-text">Food</span>
+                        <span class="legend-percent">25%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: #FFB400;"></div>
+                        <span class="legend-text">Transport</span>
+                        <span class="legend-percent">20%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: #FF6B35;"></div>
+                        <span class="legend-text">Health</span>
+                        <span class="legend-percent">15%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-section fade-up delay-3">
+                <h2 class="chart-title">Income vs Spending</h2>
+                <div class="bar-group">
+                    <div class="bar-item">
+                        <div class="bar-label-row">
+                            <span>Income</span>
+                            <span style="color: var(--color-success);">12,000 EGP</span>
+                        </div>
+                        <div class="bar-bg">
+                            <div class="bar-fill" style="width: 100%; background: var(--color-success);"></div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label-row">
+                            <span>Spending</span>
+                            <span style="color: var(--color-emergency);">7,480 EGP</span>
+                        </div>
+                        <div class="bar-bg">
+                            <div class="bar-fill" style="width: 62%; background: var(--color-emergency);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="height: 100px;"></div>
+        </div>
+        
+        <div class="bottom-nav">
+            <a href="dashboard.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span class="nav-label">Home</span>
+            </a>
+            <a href="history_calendar.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8m0 0V4m0 8h8m-8 0H4"/></svg>
+                <span class="nav-label">History</span>
+            </a>
+            <div style="width: 56px;"></div> <!-- Spacer for FAB -->
+            <a href="#" class="nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                <span class="nav-label">Insights</span>
+            </a>
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span class="nav-label">Profile</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
