@@ -133,5 +133,8 @@
   "catDeposit": "إيداع",
   "catKPIs": "مكافأت",
   "catFees": "رسوم",
-  "catDebts": "ديون"
+  "catDebts": "ديون",
+  "walletLabel": "المحفظة",
+  "emergencyWalletLockedWarning": "السحب من محفظة الطوارئ متاح فقط عندما يكون إجمالي القنوات الأخرى أقل من 50 ج.م.",
+  "simulateLowBalance": "محاكاة رصيد منخفض (< 50 ج.م)"
 }

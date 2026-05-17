@@ -421,4 +421,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get catDebts => 'ديون';
+
+  @override
+  String get walletLabel => 'المحفظة';
+
+  @override
+  String get emergencyWalletLockedWarning =>
+      'السحب من محفظة الطوارئ متاح فقط عندما يكون إجمالي القنوات الأخرى أقل من 50 ج.م.';
+
+  @override
+  String get simulateLowBalance => 'محاكاة رصيد منخفض (< 50 ج.م)';
 }

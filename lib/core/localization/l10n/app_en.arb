@@ -133,5 +133,8 @@
   "catDeposit": "Deposit",
   "catKPIs": "KPIs",
   "catFees": "Fees",
-  "catDebts": "Debts"
+  "catDebts": "Debts",
+  "walletLabel": "Wallet",
+  "emergencyWalletLockedWarning": "Emergency Wallet cash out is only available when other balances are below 50 EGP.",
+  "simulateLowBalance": "Simulate Low Balance (< 50 EGP)"
 }
