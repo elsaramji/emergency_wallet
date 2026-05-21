@@ -432,4 +432,29 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get simulateLowBalance => 'Simulate Low Balance (< 50 EGP)';
+
+  @override
+  String get mockScreenPlaceholder =>
+      'This screen is currently under construction';
+
+  @override
+  String get historyTitle => 'Transaction History';
+
+  @override
+  String get historySubtitle => 'View and manage your cash flow';
+
+  @override
+  String get insightsTitle => 'Financial Insights';
+
+  @override
+  String get insightsSubtitle => 'Analyze your spending habits';
+
+  @override
+  String get profileTitle => 'User Profile';
+
+  @override
+  String get profileSubtitle => 'Manage your settings and preferences';
+
+  @override
+  String get search => 'Search...';
 }

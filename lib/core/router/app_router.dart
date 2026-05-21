@@ -7,16 +7,59 @@ import '../../features/auth/presentation/views/forgot_password_view.dart';
 import '../../features/welcome/presentation/views/welcome_questions_view.dart';
 import '../../features/dashboard/presentation/views/dashboard_view.dart';
 
+import '../../shared/widgets/main_shell_view.dart';
+import '../../features/history/presentation/views/history_view.dart';
+import '../../features/insights/presentation/views/insights_view.dart';
+import '../../features/profile/presentation/views/profile_view.dart';
+
 class AppRouter {
   AppRouter._();
 
   static final GoRouter router = GoRouter(
     initialLocation: AppRoutes.onboarding,
     routes: [
-      GoRoute(
-        path: AppRoutes.home,
-        name: AppRoutes.home,
-        builder: (context, state) => const DashboardView(),
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return MainShellView(navigationShell: navigationShell);
+        },
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.home,
+                name: AppRoutes.home,
+                builder: (context, state) => const DashboardView(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.history,
+                name: AppRoutes.history,
+                builder: (context, state) => const HistoryView(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.insights,
+                name: AppRoutes.insights,
+                builder: (context, state) => const InsightsView(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.profile,
+                name: AppRoutes.profile,
+                builder: (context, state) => const ProfileView(),
+              ),
+            ],
+          ),
+        ],
       ),
       GoRoute(
         path: AppRoutes.onboarding,

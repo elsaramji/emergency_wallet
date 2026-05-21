@@ -919,6 +919,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Simulate Low Balance (< 50 EGP)'**
   String get simulateLowBalance;
+
+  /// No description provided for @mockScreenPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'This screen is currently under construction'**
+  String get mockScreenPlaceholder;
+
+  /// No description provided for @historyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction History'**
+  String get historyTitle;
+
+  /// No description provided for @historySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View and manage your cash flow'**
+  String get historySubtitle;
+
+  /// No description provided for @insightsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Financial Insights'**
+  String get insightsTitle;
+
+  /// No description provided for @insightsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Analyze your spending habits'**
+  String get insightsSubtitle;
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'User Profile'**
+  String get profileTitle;
+
+  /// No description provided for @profileSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your settings and preferences'**
+  String get profileSubtitle;
+
+  /// No description provided for @search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search...'**
+  String get search;
 }
 
 class _AppLocalizationsDelegate

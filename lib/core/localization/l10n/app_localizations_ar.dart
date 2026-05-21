@@ -431,4 +431,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get simulateLowBalance => 'محاكاة رصيد منخفض (< 50 ج.م)';
+
+  @override
+  String get mockScreenPlaceholder => 'هذه الشاشة قيد الإنشاء حالياً';
+
+  @override
+  String get historyTitle => 'سجل المعاملات';
+
+  @override
+  String get historySubtitle => 'عرض وإدارة التدفقات النقدية';
+
+  @override
+  String get insightsTitle => 'الرؤى المالية';
+
+  @override
+  String get insightsSubtitle => 'تحليل عادات الإنفاق الخاصة بك';
+
+  @override
+  String get profileTitle => 'الملف الشخصي';
+
+  @override
+  String get profileSubtitle => 'إدارة إعداداتك وتفضيلاتك';
+
+  @override
+  String get search => 'بحث...';
 }
