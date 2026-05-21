@@ -901,6 +901,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Debts'**
   String get catDebts;
+
+  /// No description provided for @walletLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Wallet'**
+  String get walletLabel;
+
+  /// No description provided for @emergencyWalletLockedWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Wallet cash out is only available when other balances are below 50 EGP.'**
+  String get emergencyWalletLockedWarning;
+
+  /// No description provided for @simulateLowBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'Simulate Low Balance (< 50 EGP)'**
+  String get simulateLowBalance;
 }
 
 class _AppLocalizationsDelegate

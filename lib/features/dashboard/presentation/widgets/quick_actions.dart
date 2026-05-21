@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/font_aws5_icons.dart';
 import '../../../../shared/widgets/transaction_form_dialog.dart';
+import '../states/dashboard_cubit.dart';
 
 class QuickActions extends StatelessWidget {
   const QuickActions({super.key});
@@ -21,9 +23,13 @@ class QuickActions extends StatelessWidget {
               bgColor: AppColors.successLight,
               textColor: AppColors.successDark,
               onTap: () {
+                final cubit = context.read<DashboardCubit>();
                 showDialog(
                   context: context,
-                  builder: (context) => const TransactionFormDialog(isCashIn: true),
+                  builder: (dialogContext) => TransactionFormDialog(
+                    isCashIn: true,
+                    dashboardCubit: cubit,
+                  ),
                 );
               },
             ),
@@ -36,9 +42,13 @@ class QuickActions extends StatelessWidget {
               bgColor: AppColors.primaryLight,
               textColor: AppColors.primaryDark,
               onTap: () {
+                final cubit = context.read<DashboardCubit>();
                 showDialog(
                   context: context,
-                  builder: (context) => const TransactionFormDialog(isCashIn: false),
+                  builder: (dialogContext) => TransactionFormDialog(
+                    isCashIn: false,
+                    dashboardCubit: cubit,
+                  ),
                 );
               },
             ),

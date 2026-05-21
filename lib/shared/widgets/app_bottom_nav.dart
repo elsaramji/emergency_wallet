@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/extensions/context_extensions.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/font_aws5_icons.dart';
+import '../../features/dashboard/presentation/states/dashboard_cubit.dart';
 import 'transaction_form_dialog.dart';
 
 class AppBottomNav extends StatelessWidget {
@@ -73,9 +75,10 @@ class AppBottomNav extends StatelessWidget {
   }
 
   void _showTransactionDialog(BuildContext context) {
+    final cubit = context.read<DashboardCubit>();
     showDialog(
       context: context,
-      builder: (context) => Dialog(
+      builder: (dialogContext) => Dialog(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24.r),
         ),
@@ -98,11 +101,11 @@ class AppBottomNav extends StatelessWidget {
                 icon: AwsIcons.plus_circle,
                 color: AppColors.success,
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.pop(dialogContext);
                   showDialog(
                     context: context,
                     builder: (context) =>
-                        const TransactionFormDialog(isCashIn: true),
+                        TransactionFormDialog(isCashIn: true, dashboardCubit: cubit),
                   );
                 },
               ),
@@ -112,11 +115,11 @@ class AppBottomNav extends StatelessWidget {
                 icon: AwsIcons.minus_circle,
                 color: AppColors.primary,
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.pop(dialogContext);
                   showDialog(
                     context: context,
                     builder: (context) =>
-                        const TransactionFormDialog(isCashIn: false),
+                        TransactionFormDialog(isCashIn: false, dashboardCubit: cubit),
                   );
                 },
               ),

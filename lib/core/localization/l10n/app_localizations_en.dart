@@ -422,4 +422,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get catDebts => 'Debts';
+
+  @override
+  String get walletLabel => 'Wallet';
+
+  @override
+  String get emergencyWalletLockedWarning =>
+      'Emergency Wallet cash out is only available when other balances are below 50 EGP.';
+
+  @override
+  String get simulateLowBalance => 'Simulate Low Balance (< 50 EGP)';
 }
