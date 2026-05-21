@@ -136,5 +136,13 @@
   "catDebts": "Debts",
   "walletLabel": "Wallet",
   "emergencyWalletLockedWarning": "Emergency Wallet cash out is only available when other balances are below 50 EGP.",
-  "simulateLowBalance": "Simulate Low Balance (< 50 EGP)"
+  "simulateLowBalance": "Simulate Low Balance (< 50 EGP)",
+  "mockScreenPlaceholder": "This screen is currently under construction",
+  "historyTitle": "Transaction History",
+  "historySubtitle": "View and manage your cash flow",
+  "insightsTitle": "Financial Insights",
+  "insightsSubtitle": "Analyze your spending habits",
+  "profileTitle": "User Profile",
+  "profileSubtitle": "Manage your settings and preferences",
+  "search": "Search..."
 }

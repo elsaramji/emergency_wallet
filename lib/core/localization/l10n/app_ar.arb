@@ -136,5 +136,13 @@
   "catDebts": "ديون",
   "walletLabel": "المحفظة",
   "emergencyWalletLockedWarning": "السحب من محفظة الطوارئ متاح فقط عندما يكون إجمالي القنوات الأخرى أقل من 50 ج.م.",
-  "simulateLowBalance": "محاكاة رصيد منخفض (< 50 ج.م)"
+  "simulateLowBalance": "محاكاة رصيد منخفض (< 50 ج.م)",
+  "mockScreenPlaceholder": "هذه الشاشة قيد الإنشاء حالياً",
+  "historyTitle": "سجل المعاملات",
+  "historySubtitle": "عرض وإدارة التدفقات النقدية",
+  "insightsTitle": "الرؤى المالية",
+  "insightsSubtitle": "تحليل عادات الإنفاق الخاصة بك",
+  "profileTitle": "الملف الشخصي",
+  "profileSubtitle": "إدارة إعداداتك وتفضيلاتك",
+  "search": "بحث..."
 }
