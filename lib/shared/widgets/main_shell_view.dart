@@ -87,10 +87,8 @@ class _MainShellViewState extends State<MainShellView> {
                     }
                   },
                   onTap: (index) {
-                  
-                      final int targetBranch = index > 2 ? index - 1 : index;
-                      widget.navigationShell.goBranch(targetBranch);
-                    
+                    final int targetBranch = index > 2 ? index - 1 : index;
+                    widget.navigationShell.goBranch(targetBranch);
                   },
                 ),
 

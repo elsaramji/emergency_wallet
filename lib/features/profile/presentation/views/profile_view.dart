@@ -187,7 +187,7 @@ class _SettingTile extends StatelessWidget {
                 ),
               ),
             ),
-            if (trailing != null) trailing!,
+            ?trailing,
             if (trailing == null)
               Icon(
                 AwsIcons.chevron_right,
