@@ -455,4 +455,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get search => 'بحث...';
+
+  @override
+  String get historyNoActivity => 'لا يوجد نشاط';
+
+  @override
+  String get historyUpcoming => 'قادم';
+
+  @override
+  String get historyOperations => 'عملية';
 }
