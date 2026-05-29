@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/errors/failures.dart';
-import '../entities/wallet_transaction.dart';
+import '../../../../shared/domain/entities/wallet_transaction.dart';
 import '../repositories/history_repository.dart';
 
 class LogTransactionUseCase {

@@ -1,9 +1,11 @@
+import 'wallet.dart';
+
 class WalletTransaction {
   final String id;
   final double amount;
   final bool isPositive;
   final String category; // Used as the main title/label of the transaction (e.g. Food, Salary, Transport)
-  final String walletType; // Cash, Visa, Smart Wallet, Emergency
+  final WalletType walletType; // Cash, Visa, Smart Wallet, Emergency
   final DateTime dateTime;
   final String? notes;
   final bool isSalary;
