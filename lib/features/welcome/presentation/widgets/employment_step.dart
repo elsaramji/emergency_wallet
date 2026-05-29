@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/utils/font_aws5_icons.dart';
-import '../manager/welcome_cubit.dart';
-import '../manager/welcome_state.dart';
+import '../states/welcome_cubit.dart';
+import '../states/welcome_state.dart';
 
 class EmploymentStep extends StatelessWidget {
   const EmploymentStep({super.key});
