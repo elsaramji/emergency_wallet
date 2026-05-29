@@ -144,5 +144,8 @@
   "insightsSubtitle": "تحليل عادات الإنفاق الخاصة بك",
   "profileTitle": "الملف الشخصي",
   "profileSubtitle": "إدارة إعداداتك وتفضيلاتك",
-  "search": "بحث..."
+  "search": "بحث...",
+  "historyNoActivity": "لا يوجد نشاط",
+  "historyUpcoming": "قادم",
+  "historyOperations": "عملية"
 }

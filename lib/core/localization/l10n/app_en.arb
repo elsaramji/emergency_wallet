@@ -144,5 +144,8 @@
   "insightsSubtitle": "Analyze your spending habits",
   "profileTitle": "User Profile",
   "profileSubtitle": "Manage your settings and preferences",
-  "search": "Search..."
+  "search": "Search...",
+  "historyNoActivity": "No activity",
+  "historyUpcoming": "Upcoming",
+  "historyOperations": "operations"
 }

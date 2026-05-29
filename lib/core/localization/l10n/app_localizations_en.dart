@@ -457,4 +457,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get search => 'Search...';
+
+  @override
+  String get historyNoActivity => 'No activity';
+
+  @override
+  String get historyUpcoming => 'Upcoming';
+
+  @override
+  String get historyOperations => 'operations';
 }

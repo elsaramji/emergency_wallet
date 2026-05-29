@@ -967,6 +967,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search...'**
   String get search;
+
+  /// No description provided for @historyNoActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'No activity'**
+  String get historyNoActivity;
+
+  /// No description provided for @historyUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get historyUpcoming;
+
+  /// No description provided for @historyOperations.
+  ///
+  /// In en, this message translates to:
+  /// **'operations'**
+  String get historyOperations;
 }
 
 class _AppLocalizationsDelegate
