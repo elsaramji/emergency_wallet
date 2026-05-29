@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/font_aws5_icons.dart';
-import '../manager/welcome_cubit.dart';
-import '../manager/welcome_state.dart';
+import '../states/welcome_cubit.dart';
+import '../states/welcome_state.dart';
 
 class ActivationStep extends StatelessWidget {
   const ActivationStep({super.key});
