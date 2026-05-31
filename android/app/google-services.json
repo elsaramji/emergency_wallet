@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "943151114409",
+    "firebase_url": "https://emergency-wallet-485ce-default-rtdb.firebaseio.com",
+    "project_id": "emergency-wallet-485ce",
+    "storage_bucket": "emergency-wallet-485ce.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943151114409:android:b30e768df65ea9c03321b8",
+        "android_client_info": {
+          "package_name": "com.example.emergency_wallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943151114409-b33dvuqasv432vc7q2rbafrksemfnlb2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOAycMCShCpRUNR_D5I9G5TQMA9ab25U8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943151114409-b33dvuqasv432vc7q2rbafrksemfnlb2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
