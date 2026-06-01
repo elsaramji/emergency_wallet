@@ -3,14 +3,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/di/injection.dart';
 import 'core/localization/l10n/app_localizations.dart';
 import 'core/router/app_router.dart';
+import 'core/services/firebase_service.dart';
 import 'core/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await setupLocator();
+  await FirebaseService().init();
+  configureDependencies();
   await ScreenUtil.ensureScreenSize();
   runApp(const EmergencyCashApp());
 }
+
 
 class EmergencyCashApp extends StatelessWidget {
   const EmergencyCashApp({super.key});
