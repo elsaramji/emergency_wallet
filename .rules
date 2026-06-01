@@ -216,7 +216,7 @@ Here are specific rules you must follow during interactions:
 
 1. **Branch Management:** Automatically create a new Git branch for new features if the user hasn't created one. Use prefixes: `feat/` for features, `fix/` for bugs, `refactor/` for code changes. Commit changes and ask before pushing.
 2. **Testing Restrictions:** Do NOT write any tests unless the user explicitly orders you to.
-3. **Dependency Injection:** If no Dependency Injection package is selected, default to using and adding `get_it` and `injectable`.
+3. **Dependency Injection:** The project uses `get_it` and `injectable`. Always use `injectable` annotations (`@injectable`, `@lazySingleton`, `@singleton`) on service classes, repositories, data sources, and cubits. Run `flutter pub run build_runner build --delete-conflicting-outputs` to generate/update dependency configurations. Do not write manual registration code in the locator.
 4. **State Management Default:** Always use `flutter_bloc` with **Cubit** as the default state management solution. Use Cubit for simple state and Bloc for complex event-driven state. Never use any other state management unless the user explicitly requests it.
 5. **UI Design Feedback:** If elements in the requested UI design do not match the existing code or UI, point this out to the user and ask for clarification.
 6. **Core & Theme Edits:** If you need to edit `theme data`, files in `core`, or `assets`, you must first tell the user exactly what you need to change and explain why.
@@ -331,3 +331,15 @@ These rules apply to all tasks and must be strictly followed:
 - Ensure clean, scalable, and maintainable code.
 - Follow consistent naming conventions.
 - Add brief comments where necessary to explain decisions.
+
+---
+
+## 17. Firebase Initialization & Integration Rules
+
+- Firebase must be initialized in `main.dart` before starting the application via `runApp()`.
+- Always use `WidgetsFlutterBinding.ensureInitialized()` before initializing Firebase.
+- Use `DefaultFirebaseOptions.currentPlatform` from `lib/firebase_options.dart` to initialize Firebase.
+- Wrap Firebase Auth and Cloud Firestore in wrapper services located in `lib/core/services/` to abstract the SDK.
+- Register all Firebase wrapper services using `injectable` annotations (e.g., `@LazySingleton`) and regenerate dependency configurations using `build_runner`.
+- Firebase security rules must be defined in `firestore.rules` and deployed using Firebase CLI or MCP.
+

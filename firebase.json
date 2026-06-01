@@ -1,0 +1,37 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "emergency-wallet-485ce",
+          "appId": "1:943151114409:android:b30e768df65ea9c03321b8",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "emergency-wallet-485ce",
+          "configurations": {
+            "android": "1:943151114409:android:b30e768df65ea9c03321b8",
+            "ios": "1:943151114409:ios:d757d6ebafea82cc3321b8"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "database": "(default)",
+    "location": "nam5",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "auth": {
+    "providers": {
+      "emailPassword": true,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "Emergency Wallet",
+        "supportEmail": "mahmoudelsaramegy@gmail.com"
+      }
+    }
+  }
+}
