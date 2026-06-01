@@ -48,6 +48,8 @@ dependencies:
   cloud_firestore: ^6.4.1
   google_sign_in: ^7.2.0
   injectable: ^3.0.0
+  hydrated_bloc: ^11.0.0
+  path_provider: ^2.1.5
 
 dev_dependencies:
   flutter_test:
