@@ -1,23 +1,25 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+
+import '../../domain/repositories/auth_repository.dart';
 import 'auth_state.dart';
 
+@LazySingleton()
 class RegisterCubit extends Cubit<AuthState> {
-  RegisterCubit() : super(const AuthInitial());
+  final AuthRepository _authRepository;
+
+  RegisterCubit(this._authRepository) : super(const AuthInitial());
 
   Future<void> register(String name, String email, String password) async {
     emit(const AuthLoading());
-    try {
-      // Mock network delay
-      await Future.delayed(const Duration(seconds: 2));
-      
-      // Basic mock validation
-      if (name.isNotEmpty && email.isNotEmpty && password.isNotEmpty) {
-        emit(const AuthSuccess());
-      } else {
-        emit(const AuthFailure('Please fill all fields'));
-      }
-    } catch (e) {
-      emit(const AuthFailure('Failed to register. Please try again.'));
-    }
+    final result = await _authRepository.register(
+      name: name,
+      email: email,
+      password: password,
+    );
+    result.fold(
+      (failure) => emit(AuthFailure(failure.message)),
+      (user) => emit(const AuthSuccess()),
+    );
   }
 }

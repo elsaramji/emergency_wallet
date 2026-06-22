@@ -9,7 +9,7 @@ class AuthService {
 
   AuthService({FirebaseAuth? firebaseAuth, GoogleSignIn? googleSignIn})
     : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
-      _googleSignIn = googleSignIn ?? GoogleSignIn.instance;
+      _googleSignIn = googleSignIn ?? GoogleSignIn();
 
   /// Stream of user auth state changes
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
@@ -51,10 +51,14 @@ class AuthService {
   Future<UserCredential?> signInWithGoogle() async {
     try {
       // Trigger the authentication flow
-      final GoogleSignInAccount googleUser = await _googleSignIn.authenticate();
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
+      if (googleUser == null) {
+        throw Exception("Google sign in failed");
+      }
       // Obtain the auth details from the request
-      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
       // Create a new credential
       final OAuthCredential credential = GoogleAuthProvider.credential(

@@ -1,3 +1,4 @@
+import 'package:emergency_wallet/core/di/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +20,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginCubit(),
+      create: (context) => getIt<LoginCubit>(),
       child: const LoginViewBody(),
     );
   }
@@ -168,9 +169,13 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       icon: AppImages.google,
                       onPressed: state is AuthLoading
                           ? () {}
-                          : () async{
-                              await context.read<LoginCubit>().loginWithGoogle();
-                              context.pushReplacementNamed(AppRoutes.welcome);
+                          : () async {
+                              await context
+                                  .read<LoginCubit>()
+                                  .loginWithGoogle();
+                              if (state is AuthSuccess) {
+                                context.pushReplacementNamed(AppRoutes.welcome);
+                              }
                             },
                     ),
                     SizedBox(height: 32.h),
