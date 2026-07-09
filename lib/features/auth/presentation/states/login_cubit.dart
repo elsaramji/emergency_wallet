@@ -19,7 +19,7 @@ class LoginCubit extends Cubit<AuthState> {
     );
     result.fold(
       (failure) => emit(AuthFailure(failure.message)),
-      (user) => emit(const AuthSuccess()),
+      (user) => emit(AuthSuccess(isFirstTime: user.isFirstTime)),
     );
   }
 
@@ -29,6 +29,6 @@ class LoginCubit extends Cubit<AuthState> {
     result.fold((failure) {
       debugPrint(failure.message);
       emit(AuthFailure(failure.message));
-    }, (user) => emit(const AuthSuccess()));
+    }, (user) => emit(AuthSuccess(isFirstTime: user.isFirstTime)));
   }
 }

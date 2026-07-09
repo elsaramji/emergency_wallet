@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'core/blocs/app_cubit.dart';
 import 'core/di/injection.dart';
 import 'core/localization/l10n/app_localizations.dart';
 import 'core/router/app_router.dart';
@@ -16,14 +18,15 @@ void main() async {
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorageDirectory.web
-        : HydratedStorageDirectory((await getApplicationDocumentsDirectory()).path),
+        : HydratedStorageDirectory(
+            (await getApplicationDocumentsDirectory()).path,
+          ),
   );
 
   configureDependencies();
   await ScreenUtil.ensureScreenSize();
   runApp(const EmergencyCashApp());
 }
-
 
 class EmergencyCashApp extends StatelessWidget {
   const EmergencyCashApp({super.key});
@@ -35,13 +38,20 @@ class EmergencyCashApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp.router(
-          title: 'Emergency Cash',
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.lightTheme,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          routerConfig: AppRouter.router,
+        return BlocProvider(
+          create: (_) => getIt<AppCubit>(),
+          child: Builder(
+            builder: (context) {
+              return MaterialApp.router(
+                title: 'Emergency Cash',
+                debugShowCheckedModeBanner: false,
+                theme: AppTheme.lightTheme,
+                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                supportedLocales: AppLocalizations.supportedLocales,
+                routerConfig: AppRouter.router,
+              );
+            },
+          ),
         );
       },
     );

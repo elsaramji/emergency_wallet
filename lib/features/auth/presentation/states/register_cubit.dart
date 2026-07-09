@@ -19,7 +19,7 @@ class RegisterCubit extends Cubit<AuthState> {
     );
     result.fold(
       (failure) => emit(AuthFailure(failure.message)),
-      (user) => emit(const AuthSuccess()),
+      (user) => emit(AuthSuccess(isFirstTime: user.isFirstTime)),
     );
   }
 }

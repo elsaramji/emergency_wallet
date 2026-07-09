@@ -115,10 +115,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         id: user.uid,
         name: user.displayName ?? user.email?.split('@').first ?? 'User',
         email: user.email ?? '',
+        isFirstTime: false,
       );
     }
 
-    return UserModel.fromFirestore(rootDoc.data()!, profileDoc.data()!);
+    return UserModel.fromFirestore(rootDoc.data()!, profileDoc.data()!, isFirstTime: false);
   }
 
   Future<UserModel> _createOrUpdateUserData(
@@ -141,6 +142,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         id: user.uid,
         name: name,
         email: user.email ?? '',
+        isFirstTime: true,
       );
 
       final batch = _firestore.batch();

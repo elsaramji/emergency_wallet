@@ -5,9 +5,10 @@ class UserModel extends User {
     required super.id,
     required super.name,
     required super.email,
+    super.isFirstTime = false,
   });
 
-  factory UserModel.fromFirestore(Map<String, dynamic> rootData, Map<String, dynamic> profileData) {
+  factory UserModel.fromFirestore(Map<String, dynamic> rootData, Map<String, dynamic> profileData, {bool isFirstTime = false}) {
     final String firstName = profileData['firstName'] as String? ?? '';
     final String lastName = profileData['lastName'] as String? ?? '';
     final String fullName = firstName.isNotEmpty || lastName.isNotEmpty 
@@ -18,6 +19,7 @@ class UserModel extends User {
       id: rootData['uid'] as String? ?? '',
       name: profileData['favoriteName'] as String? ?? fullName,
       email: rootData['email'] as String? ?? '',
+      isFirstTime: isFirstTime,
     );
   }
 

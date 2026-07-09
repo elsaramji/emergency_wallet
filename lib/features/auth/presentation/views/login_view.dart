@@ -64,6 +64,11 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(context.local.successLogin)),
               );
+              if (state.isFirstTime) {
+                context.goNamed(AppRoutes.welcome);
+              } else {
+                context.goNamed(AppRoutes.home);
+              }
             } else if (state is AuthFailure) {
               ScaffoldMessenger.of(
                 context,
@@ -173,9 +178,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                               await context
                                   .read<LoginCubit>()
                                   .loginWithGoogle();
-                              if (state is AuthSuccess) {
-                                context.pushReplacementNamed(AppRoutes.welcome);
-                              }
                             },
                     ),
                     SizedBox(height: 32.h),

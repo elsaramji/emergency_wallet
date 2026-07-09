@@ -22,6 +22,7 @@ import '../../features/auth/data/repositories/auth_repository_impl.dart'
 import '../../features/auth/domain/repositories/auth_repository.dart' as _i787;
 import '../../features/auth/presentation/states/login_cubit.dart' as _i965;
 import '../../features/auth/presentation/states/register_cubit.dart' as _i15;
+import '../blocs/app_cubit.dart' as _i782;
 import '../services/auth_service.dart' as _i745;
 import '../services/firestore_service.dart' as _i52;
 import 'firebase_module.dart' as _i616;
@@ -34,6 +35,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final firebaseModule = _$FirebaseModule();
+    gh.lazySingleton<_i782.AppCubit>(() => _i782.AppCubit());
     gh.lazySingleton<_i59.FirebaseAuth>(() => firebaseModule.firebaseAuth);
     gh.lazySingleton<_i974.FirebaseFirestore>(() => firebaseModule.firestore);
     gh.lazySingleton<_i116.GoogleSignIn>(() => firebaseModule.googleSignIn);

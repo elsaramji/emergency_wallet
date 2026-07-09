@@ -1,4 +1,6 @@
+import 'package:emergency_wallet/core/blocs/app_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
@@ -94,6 +96,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_currentIndex == slides.length - 1) {
+                          context.read<AppCubit>().markOnboardingViewed();
                           context.goNamed(AppRoutes.login);
                         } else {
                           _pageController.nextPage(

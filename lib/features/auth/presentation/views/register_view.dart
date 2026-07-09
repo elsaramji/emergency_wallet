@@ -65,6 +65,11 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(context.local.successRegister)),
               );
+              if (state.isFirstTime) {
+                context.goNamed(AppRoutes.welcome);
+              } else {
+                context.goNamed(AppRoutes.home);
+              }
             } else if (state is AuthFailure) {
               ScaffoldMessenger.of(
                 context,

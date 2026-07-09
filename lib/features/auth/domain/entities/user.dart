@@ -2,11 +2,13 @@ class User {
   final String id;
   final String name;
   final String email;
+  final bool isFirstTime;
 
   const User({
     required this.id,
     required this.name,
     required this.email,
+    this.isFirstTime = false,
   });
 
   @override
@@ -16,13 +18,14 @@ class User {
           runtimeType == other.runtimeType &&
           id == other.id &&
           name == other.name &&
-          email == other.email;
+          email == other.email &&
+          isFirstTime == other.isFirstTime;
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ email.hashCode;
+  int get hashCode => id.hashCode ^ name.hashCode ^ email.hashCode ^ isFirstTime.hashCode;
 
   @override
   String toString() {
-    return 'User{id: $id, name: $name, email: $email}';
+    return 'User{id: $id, name: $name, email: $email, isFirstTime: $isFirstTime}';
   }
 }

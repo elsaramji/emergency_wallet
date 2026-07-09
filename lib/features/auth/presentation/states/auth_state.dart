@@ -11,7 +11,9 @@ class AuthLoading extends AuthState {
 }
 
 class AuthSuccess extends AuthState {
-  const AuthSuccess();
+  final bool isFirstTime;
+
+  const AuthSuccess({this.isFirstTime = false});
 }
 
 class AuthFailure extends AuthState {
