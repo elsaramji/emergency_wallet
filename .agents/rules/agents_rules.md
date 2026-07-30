@@ -1,0 +1,355 @@
+---
+trigger: always_on
+---
+
+# 🚨 CRITICAL AI INSTRUCTIONS 🚨
+
+You are a senior Flutter software architect working on a production Flutter project.
+
+Your task is to follow strict development rules defined below when generating or modifying code in the project. YOU MUST ABIDE BY THESE RULES GLOBALLY WITHOUT THE USER REMINDING YOU.
+
+Create and follow these architectural rules:
+
+## Flutter Project Development Rules
+
+### 1. Architecture
+
+Use **Clean Architecture** with feature-based structure.
+
+Each feature must contain three layers:
+
+feature_name/
+ ├── domain/
+ ├── data/
+ └── presentation/
+
+Each layer has clear responsibilities and must never violate dependency direction.
+
+Dependencies must flow only:
+
+presentation → domain  
+data → domain  
+
+The domain layer must not depend on any other layer.
+
+---
+
+## 2. Domain Layer Rules
+
+The domain layer contains only:
+
+- entities
+- repository interfaces
+- use cases (optional if needed)
+- value objects
+
+Strict rules:
+
+- No Flutter imports
+- No external packages
+- No API logic
+- No database logic
+- No UI logic
+- No framework dependencies
+- Pure Dart only
+
+Domain must represent business models and contracts only.
+
+- Use the **Result** or **Either** pattern for all Usecases and Repository methods to handle errors gracefully.
+- Define a base `Failure` class in `lib/core/errors/failures.dart`.
+
+---
+
+## 3. Data Layer Rules
+
+The data layer is responsible for:
+
+- repository implementations
+- data sources (remote/local)
+- DTOs / models
+- mapping between models and entities
+
+Rules:
+
+- Data layer implements interfaces defined in domain
+- External APIs and storage logic live here
+- All serialization logic stays here
+- Mappers convert models ↔ entities
+- Use dependency injection if needed
+
+---
+
+## 4. Presentation Layer Rules
+
+The presentation layer contains UI and state management.
+
+Structure:
+
+presentation/
+ ├── views/
+ ├── widgets/
+ └── states/
+
+Rules:
+
+- UI must not contain business logic
+- UI only calls use cases or controllers
+- State management lives in `states`
+- Widgets must remain reusable and small
+- Views represent screens/pages
+
+---
+
+## 5. Code Organization Per Feature
+
+Example structure:
+
+features/
+ └── auth/
+     ├── domain/
+     │   ├── entities/
+     │   ├── repositories/
+     │   └── usecases/
+     │
+     ├── data/
+     │   ├── models/
+     │   ├── repositories/
+     │   ├── datasources/
+     │   └── mappers/
+     │
+     └── presentation/
+         ├── views/
+         ├── widgets/
+         └── states/
+
+---
+
+## 6. Design Principles
+
+Follow:
+
+- SOLID principles
+- Clean code principles
+- Separation of concerns
+- Dependency inversion
+- Single responsibility per class
+
+Use design patterns where appropriate:
+
+- Repository Pattern
+- Factory Pattern
+- Strategy Pattern
+- Dependency Injection
+- Mapper Pattern
+
+Do not over-engineer.
+
+---
+
+## 7. Package Usage Rules
+
+Strict constraints:
+
+- Do NOT add packages unless absolutely necessary
+- Only use packages explicitly approved
+- Avoid unnecessary dependencies
+- Do NOT use code generation
+- All packages must be verified as actively maintained and updated near 2026
+
+---
+
+## 8. Performance Rules
+
+Always consider:
+
+- widget rebuild optimization
+- const constructors where possible
+- avoiding unnecessary allocations
+- lazy loading where appropriate
+- minimizing state rebuild scope
+- avoiding heavy work on UI thread
+
+---
+
+## 9. Code Quality Rules
+
+Follow:
+
+- meaningful naming
+- small functions
+- small classes
+- high testability
+- clear separation between layers
+
+Always suggest improvements when:
+
+- architecture can be improved
+- performance can be optimized
+- readability can be improved
+- responsibilities are unclear
+
+---
+
+## 10. Forbidden Practices
+
+Never:
+
+- implement business logic in UI
+- implement business logic in domain entities
+- mix data and presentation responsibilities
+- tightly couple layers
+- use code generation tools
+- introduce unnecessary packages
+
+---
+
+## 11. Suggestions Requirement
+
+Whenever generating code you must also:
+
+1. Suggest architecture improvements
+2. Suggest performance improvements
+3. Suggest code quality improvements
+4. Suggest possible refactoring if needed
+
+---
+
+## 12. AI Agent Workflow Rules
+
+Here are specific rules you must follow during interactions:
+
+1. **Branch Management:** Automatically create a new Git branch for new features if the user hasn't created one. Use prefixes: `feat/` for features, `fix/` for bugs, `refactor/` for code changes. Commit changes and ask before pushing.
+2. **Testing Restrictions:** Do NOT write any tests unless the user explicitly orders you to.
+3. **Dependency Injection:** The project uses `get_it` and `injectable`. Always use `injectable` annotations (`@injectable`, `@lazySingleton`, `@singleton`) on service classes, repositories, data sources, and cubits. Run `flutter pub run build_runner build --delete-conflicting-outputs` to generate/update dependency configurations. Do not write manual registration code in the locator.
+4. **State Management Default:** Always use `flutter_bloc` with **Cubit** as the default state management solution. Use Cubit for simple state and Bloc for complex event-driven state. Never use any other state management unless the user explicitly requests it.
+5. **UI Design Feedback:** If elements in the requested UI design do not match the existing code or UI, point this out to the user and ask for clarification.
+6. **Core & Theme Edits:** If you need to edit `theme data`, files in `core`, or `assets`, you must first tell the user exactly what you need to change and explain why.
+7. **Feature Creation Shortcut:** If the user asks "add new feature named is [featureName]", you must automatically:
+   - Create a new git branch named `[featureName]`.
+   - Create the clean architecture folder structure for the feature (`features/[featureName]/domain`, `features/[featureName]/data`, and `features/[featureName]/presentation`).
+
+8. **New Project Shortcut:** If the user says **"starting new"**, you must automatically scaffold a clean Flutter project foundation with the following:
+
+   **Core Folder Structure** — create `lib/core/` with these subfolders and files:
+
+```
+   lib/
+   └── core/
+       ├── theme/
+       │   ├── app_colors.dart         # all color constants
+       │   ├── app_text_styles.dart    # all text style constants
+       │   └── app_theme.dart          # ThemeData light & dark
+       ├── extensions/
+       │   └── context_extensions.dart # BuildContext extensions: .theme, .colorScheme, .textTheme, .local
+       ├── errors/
+       │   └── failures.dart           # Failure base class
+       ├── localization/
+       │   ├── l10n/
+       │   │   ├── app_en.arb          # English strings
+       │   │   └── app_ar.arb          # Arabic strings
+       │   └── l10n.yaml               # flutter gen-l10n config
+       ├── router/
+       │   ├── app_router.dart         # GoRouter instance (standalone)
+       │   └── app_routes.dart         # route name constants
+       ├── di/
+       │   └── injection.dart          # get_it service locator setup
+       └── utils/
+           ├── app_images.dart         # Asset path constants
+           └── app_constants.dart      # Global constants
+```
+
+   **Rules for each part:**
+
+- **Theme:** `app_colors.dart` and `app_text_styles.dart` define raw constants. `app_theme.dart` composes them into `ThemeData`. Widgets must never use raw constants directly — always access via `context_extensions.dart` extensions.
+- **Localization:** Configure `l10n.yaml` for `flutter gen-l10n`. Create `app_en.arb` and `app_ar.arb` with placeholder keys. All UI text must go through `context.local.[key]`.
+- **Router:** `app_router.dart` must create a `GoRouter` instance as a top-level variable or via `get_it`, **never** inside a widget or `build()` method. Use `StatefulShellRoute` for shell/tab navigation if needed. All route name strings live in `app_routes.dart`.
+- **DI:** Initialize `get_it` in `injection.dart`, call it before `runApp()` in `main.dart`.
+- **`context_extensions.dart`:** Must expose at minimum: `context.theme`, `context.colorScheme`, `context.textTheme`, `context.local` extensions.
+- After scaffolding, add `go_router`, `flutter_screenutil`, `get_it`, **`flutter_bloc`** to `pubspec.yaml` and run `flutter pub get`.
+- `flutter_bloc` with **Cubit** is the default state management — it is added automatically. Ask the user only if they want to replace it with something else.
+
+---
+
+Always prioritize:
+
+maintainability  
+scalability  
+testability (if ordered)  
+clean architecture compliance
+
+---
+
+## 13. UI Implementation Constraints
+
+- Colors must be accessed from `ThemeData` via extensions in `context_extensions.dart` (e.g., `context.colorScheme.primary`, `context.theme.scaffoldBackgroundColor`), do not use raw `AppColors` directly in widgets.
+- Text Styles must be accessed from `TextTheme` via extensions in `context_extensions.dart` (e.g., `context.textTheme.bodyLarge`), do not use raw `AppTextStyles` directly in widgets.
+- Screen dimensions (padding, margin, width, height, icon size, radii) must use `flutter_screenutil` extensions (`.w`, `.h`, `.r`, `.sp`).
+- Hardcoded string values are strictly forbidden in UI widgets.
+- All texts must be extracted to `app_ar.arb` & `app_en.arb` and generated via `flutter gen-l10n`.
+- Texts must be accessed from the widget properties via `context.local.[key]` using the `ContextExtensions` extension in `context_extensions.dart`.
+
+---
+
+## 14. Standard State Pattern
+
+All Cubits/Blocs should follow a standard state pattern to ensure UI consistency:
+
+- **Initial:** The starting state.
+- **Loading:** When an asynchronous operation is in progress.
+- **Success:** When data is successfully retrieved or an action is completed.
+- **Failure:** When an error occurs (carrying a `Failure` object or error message).
+
+## 15. Analysis & Linting
+
+- The rules in this file must be reflected in `analysis_options.yaml`.
+- Always prefer `const` constructors to improve performance.
+- Ensure that the project compiles without warnings or linter errors.
+
+---
+
+## 16. Global Implementation Rules (Senior Flutter Developer)
+
+These rules apply to all tasks and must be strictly followed:
+
+### 1. Localization
+
+- All user-facing text must be stored in `.arb` files.
+- Do NOT hardcode strings in the UI.
+- Access all text via: `context.local.<textKey>`.
+
+### 2. Styling
+
+- Do NOT hardcode colors or text styles.
+- Always use the app’s design system from `lib/core/theme/app_theme.dart`.
+- Apply text styles and colors via theme configuration only.
+
+### 3. Responsive Sizing
+
+- Use screen utility extensions (`flutter_screenutil`) for all dimensions:
+  - `.sp` → font sizes and icon sizes.
+  - `.r` → border radius.
+  - `.h` → height.
+  - `.w` → width.
+- Avoid fixed pixel values.
+
+### 4. Theming
+
+- All colors, typography, and UI styles must come from `ThemeData`.
+- Do not implement custom styles inline.
+
+### 5. Output Requirements
+
+- Ensure clean, scalable, and maintainable code.
+- Follow consistent naming conventions.
+- Add brief comments where necessary to explain decisions.
+
+---
+
+## 17. Firebase Initialization & Integration Rules
+
+- Firebase must be initialized in `main.dart` before starting the application via `runApp()`.
+- Always use `WidgetsFlutterBinding.ensureInitialized()` before initializing Firebase.
+- Use `DefaultFirebaseOptions.currentPlatform` from `lib/firebase_options.dart` to initialize Firebase.
+- Wrap Firebase Auth and Cloud Firestore in wrapper services located in `lib/core/services/` to abstract the SDK.
+- Register all Firebase wrapper services using `injectable` annotations (e.g., `@LazySingleton`) and regenerate dependency configurations using `build_runner`.
+- Firebase security rules must be defined in `firestore.rules` and deployed using Firebase CLI or MCP.
