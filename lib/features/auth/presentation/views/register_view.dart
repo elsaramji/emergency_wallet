@@ -1,3 +1,4 @@
+import 'package:emergency_wallet/core/di/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +18,7 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RegisterCubit(),
+      create: (context) => getIt<RegisterCubit>(),
       child: const RegisterViewBody(),
     );
   }
@@ -64,6 +65,11 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(context.local.successRegister)),
               );
+              if (state.isFirstTime) {
+                context.goNamed(AppRoutes.welcome);
+              } else {
+                context.goNamed(AppRoutes.home);
+              }
             } else if (state is AuthFailure) {
               ScaffoldMessenger.of(
                 context,

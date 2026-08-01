@@ -1,3 +1,4 @@
+import 'package:emergency_wallet/core/di/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +20,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginCubit(),
+      create: (context) => getIt<LoginCubit>(),
       child: const LoginViewBody(),
     );
   }
@@ -63,6 +64,11 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(context.local.successLogin)),
               );
+              if (state.isFirstTime) {
+                context.goNamed(AppRoutes.welcome);
+              } else {
+                context.goNamed(AppRoutes.home);
+              }
             } else if (state is AuthFailure) {
               ScaffoldMessenger.of(
                 context,
@@ -168,9 +174,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       icon: AppImages.google,
                       onPressed: state is AuthLoading
                           ? () {}
-                          : () async{
-                              await context.read<LoginCubit>().loginWithGoogle();
-                              context.pushReplacementNamed(AppRoutes.welcome);
+                          : () async {
+                              await context
+                                  .read<LoginCubit>()
+                                  .loginWithGoogle();
                             },
                     ),
                     SizedBox(height: 32.h),

@@ -1,4 +1,7 @@
 import 'package:go_router/go_router.dart';
+import '../blocs/app_cubit.dart';
+import '../di/injection.dart';
+import '../services/auth_service.dart';
 import 'app_routes.dart';
 import '../../features/onboarding/presentation/views/onboarding_view.dart';
 import '../../features/auth/presentation/views/login_view.dart';
@@ -16,7 +19,26 @@ class AppRouter {
   AppRouter._();
 
   static final GoRouter router = GoRouter(
-    initialLocation: AppRoutes.onboarding,
+    initialLocation: AppRoutes.home,
+    redirect: (context, state) {
+      final onboardingViewed = getIt<AppCubit>().state;
+      if (!onboardingViewed) {
+        if (state.matchedLocation != AppRoutes.onboarding) {
+          return AppRoutes.onboarding;
+        }
+        return null;
+      }
+      final isLoggedIn = getIt<AuthService>().currentUser != null;
+      if (!isLoggedIn) {
+        if (state.matchedLocation != AppRoutes.login &&
+            state.matchedLocation != AppRoutes.register &&
+            state.matchedLocation != AppRoutes.forgotPassword) {
+          return AppRoutes.login;
+        }
+        return null;
+      }
+      return null;
+    },
     routes: [
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
