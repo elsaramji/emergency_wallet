@@ -2,7 +2,14 @@
 
 **A Flutter-based emergency savings wallet that nudges users to set money aside *before* a crisis hits — not scramble for it during one.**
 
-> Status: 🚧 Active Development — UI/UX & user flow complete, Firestore data layer in progress
+> Status: 🚧 Active Development — Core authentication, onboarding, and dashboard simulator complete; Firestore integration in progress
+
+---
+
+## 🔗 Quick Links
+
+- 📖 **[Developer Wiki](https://github.com/elsaramji/emergency_wallet/wiki)** — Comprehensive documentation on Clean Architecture, database schema, design system, and developer guidelines.
+- 🌐 **[Interactive Overview & Simulator](https://elsaramji.github.io/emergency_wallet_overview-/)** — A web-based interactive project dashboard featuring the design system and an active screen simulator.
 
 ---
 
@@ -29,6 +36,8 @@ Emergency Wallet is purpose-built around one behavior: **friction on withdrawal,
 - 🌍 **Localization (l10n)** — built with multi-language support from day one
 - 🎨 **Custom UI/UX** — complete user flow designed end-to-end (see `/ui_design`) before a single database call was written, reflecting a product-first build process
 - 🔐 **Firestore Security Rules** — access rules defined explicitly (`firestore.rules`) rather than left on defaults
+- 🖥️ **Interactive Overview Dashboard** — a web-based presentation of the project's architecture, design tokens, and a virtual phone simulator
+- 📖 **Developer Wiki & Docs** — detailed guides on setup, styling tokens, localizations, and the database model
 
 ---
 
@@ -67,10 +76,12 @@ firestore.indexes.json → Firestore composite indexes
 - [x] Full UI/UX and user flow design
 - [x] Firestore security rules
 - [x] Firestore composite indexes
+- [x] Authentication & Onboarding integration
+- [x] Interactive Dashboard Overview & Screen Simulator
+- [x] Comprehensive Developer Wiki & Architectural Rules
 - [ ] Firestore data schema — final implementation (in progress)
 - [ ] Emergency lock/unlock flow — end-to-end wiring
 - [ ] Monthly bucket aggregation logic
-- [ ] Authentication integration
 - [ ] Public release build
 
 ---
