@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Emergency Wallet - Project Hub & UI Design Summary</title>
+  <title>Emergency Wallet - Professional Developer Wiki</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
   <header>
@@ -15,659 +13,671 @@
       <div class="logo-section">
         <div class="logo-icon">🆘</div>
         <div>
-          <h2 class="logo-text">Emergency Wallet</h2>
-          <span class="logo-badge">Project Hub</span>
+          <h2 class="logo-text">Emergency Wallet Wiki</h2>
         </div>
+        <span class="logo-badge">Developer Docs</span>
       </div>
-      <nav class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
-        <button class="tab-btn" onclick="switchTab('design-system')">Design System</button>
-        <button class="tab-btn" onclick="switchTab('screen-flows')">Screen Flows</button>
-      </nav>
+      <div>
+        <a href="https://github.com/elsaramji/emergency_wallet" target="_blank" class="repo-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block; vertical-align:middle;">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          Repository
+        </a>
+      </div>
     </div>
   </header>
 
-  <main>
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <h1>Emergency Wallet Overview</h1>
-      <p>A smart, behavioral personal finance app built for the MENA region. Encouraging salaried users to build
-        financial resilience by designing friction on withdrawal and ease on deposit.</p>
+  <div class="wiki-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-title">Getting Started</div>
+      <a class="sidebar-link active" onclick="showSection('vision', this)">🎯 Product Vision & Mission</a>
+      <a class="sidebar-link" onclick="showSection('getting-started', this)">🚀 Quick Start & Setup</a>
+      
+      <div class="sidebar-title">Engineering Specs</div>
+      <a class="sidebar-link" onclick="showSection('architecture', this)">🏗️ Clean Architecture</a>
+      <a class="sidebar-link" onclick="showSection('database', this)">🔥 Firestore Database Schema</a>
+      <a class="sidebar-link" onclick="showSection('design', this)">🎨 Design System & Tokens</a>
+      
+      <div class="sidebar-title">Visual References</div>
+      <a class="sidebar-link" onclick="showSection('simulator', this)">📱 Screen Flow Simulator</a>
+      
+      <div class="sidebar-title">Guidelines</div>
+      <a class="sidebar-link" onclick="showSection('guidelines', this)">🛠️ Dev Guidelines & CLIs</a>
+    </aside>
 
-      <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-val">MVP v1.0</span>
-          <span class="stat-label">Product Status</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-val">Clean Arch</span>
-          <span class="stat-label">Architecture Style</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-val">Egypt (MENA)</span>
-          <span class="stat-label">Target Market</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-val">Stripe-Inspired</span>
-          <span class="stat-label">UI Aesthetic</span>
-        </div>
-      </div>
-    </section>
+    <!-- CONTENT PANE -->
+    <main class="content-pane">
 
-    <!-- TAB 1: OVERVIEW -->
-    <div id="overview" class="tab-content active">
-      <div class="section-grid">
-        <div>
-          <!-- Vision & Mission Card -->
-          <div class="card">
-            <h3 class="card-title">
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              Project Vision & Mission
-            </h3>
-            <div style="margin-bottom: 20px;">
-              <h4 style="color: #fff; margin-bottom: 8px;">The Mission</h4>
-              <p style="color: var(--text-secondary);">
-                To help users track their money across multiple wallets and automatically enforce an <strong>emergency
-                  savings rule (20% auto-save)</strong>, protecting their financial wellbeing *before* a crisis hits —
-                not scramble for it during one.
-              </p>
-            </div>
-            <div>
-              <h4 style="color: #fff; margin-bottom: 8px;">The Core Philosophy</h4>
-              <p style="color: var(--text-secondary);">
-                Most financial apps treat all goals equally. We build deliberate friction around the Emergency Wallet:
-                <strong>withdrawing money is hard, depositing is easy</strong>. This prevents impulsive spending and
-                preserves funds for genuine emergencies.
-              </p>
-            </div>
-          </div>
-
-          <!-- Problem & Solution Card -->
-          <div class="card">
-            <h3 class="card-title">
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
-                </path>
-              </svg>
-              The Friction-Aware Framework
-            </h3>
-            <div class="feature-list">
-              <div class="feature-item">
-                <div class="feature-icon">🔒</div>
-                <div class="feature-info">
-                  <h4>Emergency Lock Logic</h4>
-                  <p>A deliberate friction layer between clicking "Withdraw" and receiving cash. Users must confirm it's
-                    a true emergency before accessing funds.</p>
-                </div>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">📅</div>
-                <div class="feature-info">
-                  <h4>Monthly Bucketed Transactions</h4>
-                  <p>Transactions are grouped month-by-month for efficient querying, clean history, and intuitive
-                    aggregations instead of one endless list.</p>
-                </div>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">💸</div>
-                <div class="feature-info">
-                  <h4>Multi-Wallet Tracking</h4>
-                  <p>Unified view of Cash, Visa, and Smart Wallets (Vodafone Cash, Fawry) representing total liquid
-                    wealth.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <!-- SECTION 1: VISION & MISSION -->
+      <section id="vision" class="wiki-section active">
+        <h1>Product Vision & Mission</h1>
+        <p>A comprehensive overview of why Emergency Wallet was built, what problems it solves, and its core philosophy.</p>
+        
+        <div class="callout">
+          <div class="callout-title">The Core Philosophy</div>
+          <p>Emergency Wallet is built around a distinct behavior design concept: <strong>"friction on withdrawal, ease on deposit."</strong> Ordinary savings apps treat all budgets equally; we implement active protective barriers around emergency savings to prevent impulsive raiding.</p>
         </div>
 
-        <!-- Sidebar Info -->
-        <div>
-          <!-- Tech Stack -->
-          <div class="card">
-            <h3 class="card-title">
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"></path>
-              </svg>
-              Tech Stack
-            </h3>
-            <div class="pill-list">
-              <span class="pill pill-success">Flutter (Dart)</span>
-              <span class="pill pill-success">Firebase Firestore</span>
-              <span class="pill pill-success">Clean Architecture</span>
-              <span class="pill pill-success">GetIt DI</span>
-              <span class="pill pill-success">GoRouter</span>
-              <span class="pill pill-success">Flutter BLoC/Cubit</span>
-              <span class="pill pill-success">Flutter l10n</span>
-            </div>
-            <div style="margin-top: 20px; font-size: 13px; color: var(--text-secondary);">
-              Built with Clean Architecture: domain layer representing models and contracts, data layer implementing
-              API/Storage, and presentation layer managing UI/state.
-            </div>
-          </div>
+        <h2>The Core Problem</h2>
+        <p>Most people fail to maintain an emergency fund not due to lack of income, but because standard financial tools lack behavioral limits. Regular wallets keep emergency reserves instantly accessible. When a non-emergency purchase arises, the funds are raided and rarely replenished.</p>
+        
+        <h2>The Solution</h2>
+        <ul>
+          <li><strong>Salary Auto-Save Target:</strong> 20% of salary is automatically routed to a locked Emergency Wallet.</li>
+          <li><strong>Withdrawal Friction:</strong> Withdrawing from the Emergency Wallet triggers an intentional "Emergency Lock" mechanism forcing users to explicitly declare a crisis.</li>
+          <li><strong>Consolidated Liquidity:</strong> Displays a single unified balance across Cash, Visa cards, and Smart Wallets.</li>
+        </ul>
 
-          <!-- Roadmap -->
-          <div class="card">
-            <h3 class="card-title">
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
-                </path>
-              </svg>
-              Roadmap Progress
-            </h3>
-            <div style="font-size: 14px; display: flex; flex-direction: column; gap: 8px;">
-              <div style="display: flex; align-items: center; gap: 8px; color: var(--brand-green);">
-                <span>✓</span> UI/UX Flow & Design System Complete
-              </div>
-              <div style="display: flex; align-items: center; gap: 8px; color: var(--brand-green);">
-                <span>✓</span> Firestore Security Rules Drafted
-              </div>
-              <div style="display: flex; align-items: center; gap: 8px; color: var(--brand-green);">
-                <span>✓</span> Firestore Indexes Configured
-              </div>
-              <div style="display: flex; align-items: center; gap: 8px; color: var(--brand-orange);">
-                <span>⏳</span> Firestore Data Schema Wiring (In Progress)
-              </div>
-              <div style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">
-                <span>○</span> Emergency Lock/Unlock integration
-              </div>
-              <div style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">
-                <span>○</span> Month aggregation logic
-              </div>
-            </div>
-          </div>
+        <h2>Success Criteria</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Objective</th>
+              <th>Target Metric</th>
+              <th>Measurement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Market Validation</td>
+              <td>≥ 1,000 active users</td>
+              <td>Within 60 days of release</td>
+            </tr>
+            <tr>
+              <td>Feature Engagement</td>
+              <td>≥ 70% of salaried users</td>
+              <td>Enable the Auto-Save Emergency Wallet rules</td>
+            </tr>
+            <tr>
+              <td>User Retention</td>
+              <td>≥ 40%</td>
+              <td>30-day cohort retention rate</td>
+            </tr>
+            <tr>
+              <td>Real-world Utility</td>
+              <td>≥ 1 Cashout event</td>
+              <td>Logged within 30 days</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- SECTION 2: QUICK START -->
+      <section id="getting-started" class="wiki-section">
+        <h1>Quick Start & Setup</h1>
+        <p>Get the project up and running on your local machine for active development.</p>
+
+        <h2>Prerequisites</h2>
+        <p>Ensure you have the following installed on your machine:</p>
+        <ul>
+          <li><strong>Flutter SDK:</strong> Version stable (Dart 3.x)</li>
+          <li><strong>Git</strong> (for source control)</li>
+          <li><strong>Firebase CLI:</strong> Needed to manage and deploy database security rules</li>
+        </ul>
+
+        <h2>Installation Instructions</h2>
+        <p>Run these commands in your preferred terminal:</p>
+        <pre><code># Clone the repository
+git clone https://github.com/elsaramji/emergency_wallet.git
+
+# Navigate to project directory
+cd emergency_wallet
+
+# Retrieve Flutter packages
+flutter pub get
+
+# Launch on a connected device
+flutter run</code></pre>
+
+        <div class="callout warning">
+          <div class="callout-title">Firebase Configuration Required</div>
+          <p>Running the application with live sync requires a Firebase project configured. Run <code>flutterfire configure</code> to update local configurations, and ensure Cloud Firestore is enabled in your Firebase console.</p>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <!-- TAB 2: DESIGN SYSTEM -->
-    <div id="design-system" class="tab-content">
-      <div class="section-grid">
-        <div>
-          <!-- Visual Language and Principles -->
-          <div class="card">
-            <h3 class="card-title">
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M9.53 16.122a3 3 0 00-2.22 1.124l-3.155 3.155a1.5 1.5 0 11-2.122-2.122l3.156-3.156a3 3 0 001.124-2.22V11.75a2.25 2.25 0 012.25-2.25h1.5a2.25 2.25 0 012.25 2.25v.75m-6 3.75h6M12 9v2.25m4-3h.008v.008H16V7.5zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM12 3v2.25m4-3h.008v.008H16V3z">
-                </path>
-              </svg>
-              Design Principles
-            </h3>
-            <p style="color: var(--text-secondary); margin-bottom: 24px;">
-              The UI design takes a premium Stripe-inspired aesthetic, using modern typography, sleek gradients, and
-              subtle shadows. The layout balances structural order with clean microcopy.
-            </p>
-            <div class="feature-list">
-              <div class="feature-item">
-                <div class="feature-icon">✨</div>
-                <div class="feature-info">
-                  <h4>Core Design Mantra</h4>
-                  <p>"The user should know their financial position within 3 seconds of opening the app."</p>
-                </div>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">🌍</div>
-                <div class="feature-info">
-                  <h4>Bi-Directional UX Parity</h4>
-                  <p>English (LTR) and Arabic (RTL) are built as first-class citizens. Mirroring animations, layout
-                    alignments, and gesture zones natively.</p>
-                </div>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">🏡</div>
-                <div class="feature-info">
-                  <h4>MENA Cultural Design Rules</h4>
-                  <p>Egypt MVP focuses on the "Cash Wallet" as the highest priority card, reflecting cash-first habits.
-                    Positive events use green (#00C48C) as a symbol of growth/blessing, while orange represents caution.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <!-- SECTION 3: CLEAN ARCHITECTURE -->
+      <section id="architecture" class="wiki-section">
+        <h1>Clean Architecture</h1>
+        <p>The codebase is designed using Feature-based Clean Architecture, separating responsibilities into three distinct layers.</p>
 
-          <!-- Color Tokens -->
-          <div class="card">
-            <h3 class="card-title">
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M4.098 19.902a3.75 3.75 0 015.304 0l6.401-6.402M4.098 19.902l9.493-9.493m-9.493 9.493a3.75 3.75 0 010-5.304L13.59 5.1m0 0l2.062-2.062a2.25 2.25 0 113.182 3.182L16.77 8.283m-3.18-3.18l3.18 3.18">
-                </path>
-              </svg>
-              Design System Tokens
-            </h3>
-
-            <div class="color-tokens">
-              <!-- Swatch 1 -->
-              <div class="color-swatch">
-                <div class="swatch-fill" style="background-color: var(--brand-purple);"></div>
-                <div class="swatch-details">
-                  <div class="swatch-name">Brand Purple</div>
-                  <div class="swatch-code">#533afd</div>
-                  <div class="swatch-desc">Primary brand identifier, call-to-actions, and interactive states.</div>
-                </div>
-              </div>
-              <!-- Swatch 2 -->
-              <div class="color-swatch">
-                <div class="swatch-fill" style="background-color: var(--brand-green);"></div>
-                <div class="swatch-details">
-                  <div class="swatch-name">Success Green</div>
-                  <div class="swatch-code">#00C48C</div>
-                  <div class="swatch-desc">Associated with financial growth, cash flow, and successful deposits.</div>
-                </div>
-              </div>
-              <!-- Swatch 3 -->
-              <div class="color-swatch">
-                <div class="swatch-fill" style="background-color: var(--brand-orange);"></div>
-                <div class="swatch-details">
-                  <div class="swatch-name">Emergency Amber</div>
-                  <div class="swatch-code">#FF6B35</div>
-                  <div class="swatch-desc">Signals the Emergency Wallet status, lock notifications, and cashout events.
-                  </div>
-                </div>
-              </div>
-              <!-- Swatch 4 -->
-              <div class="color-swatch">
-                <div class="swatch-fill" style="background-color: var(--deep-navy);"></div>
-                <div class="swatch-details">
-                  <div class="swatch-name">Deep Navy</div>
-                  <div class="swatch-code">#061b31</div>
-                  <div class="swatch-desc">Main headings and text elements for strong readability and trust.</div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="callout success">
+          <div class="callout-title">Dependency Flow Rule</div>
+          <p>Dependencies must flow strictly inward: <strong>Presentation → Domain</strong> and <strong>Data → Domain</strong>. The Domain layer must remain pure Dart, with absolutely no references to UI frameworks, Flutter packages, or remote database modules.</p>
         </div>
 
-        <!-- Sidebar Tokens -->
-        <div>
-          <!-- Typography -->
-          <div class="card">
-            <h3 class="card-title">
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125">
-                </path>
-              </svg>
-              Typography
-            </h3>
-            <div style="display: flex; flex-direction: column; gap: 16px;">
-              <div>
-                <h4 style="font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700; color: #fff;">Outfit /
-                  Cairo</h4>
-                <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Used for all headlines,
-                  balances, numbers, and key labels. Offers modern fintech aesthetics and high-impact Arabic tracking.
-                </p>
-              </div>
-              <div style="border-top: 1px solid var(--bg-dark-border); padding-top: 12px;">
-                <h4 style="font-family: 'Inter', sans-serif; font-weight: 500; color: #fff;">Inter</h4>
-                <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Used for body copy,
-                  microcopy, form fields, and hints. High legibility and crisp layout scaling.</p>
-              </div>
+        <h2>Project Folder Structure</h2>
+        <div class="folder-tree">
+lib/
+ ├── core/                     <span class="comment"># Global utilities, DI, router, app themes, localization</span>
+ └── features/                 <span class="comment"># Feature directories (e.g., auth, dashboard, insights)</span>
+      └── [feature_name]/
+           ├── domain/         <span class="comment"># Entities, Repository Contracts, Use Cases (Pure Dart)</span>
+           ├── data/           <span class="comment"># Repos implementations, Data Sources, Models, Mappers</span>
+           └── presentation/   <span class="comment"># Cubit/States, Views, Widgets (Flutter UI)</span>
+        </div>
+
+        <h2>Layer Responsibilities</h2>
+        
+        <h3>1. Domain Layer</h3>
+        <ul>
+          <li><strong>Entities:</strong> Core business models (e.g., <code>UserEntity</code>, <code>TransactionEntity</code>).</li>
+          <li><strong>Repository Interfaces:</strong> Abstract contracts defining data operations.</li>
+          <li><strong>Use Cases:</strong> Application-specific business rules.</li>
+          <li><strong>Errors:</strong> Enforces the <code>Either/Result</code> pattern using a base <code>Failure</code> class defined in <code>core/errors/failures.dart</code> to avoid throwing raw exceptions to the UI.</li>
+        </ul>
+
+        <h3>2. Data Layer</h3>
+        <ul>
+          <li><strong>Data Sources:</strong> Handles API requests, Firestore queries (RemoteDataSource), or local device storage (LocalDataSource).</li>
+          <li><strong>DTOs / Models:</strong> Implements JSON serialization/deserialization (e.g., <code>TransactionModel.fromJson()</code>).</li>
+          <li><strong>Mappers:</strong> Helper extensions translating DTOs to Domain Entities (e.g., <code>model.toEntity()</code>).</li>
+        </ul>
+
+        <h3>3. Presentation Layer</h3>
+        <ul>
+          <li><strong>Views:</strong> Core screens (e.g., <code>DashboardView</code>).</li>
+          <li><strong>Widgets:</strong> Small, reusable UI elements.</li>
+          <li><strong>State Management:</strong> Governed exclusively by <strong>BLoC Cubits</strong>.</li>
+          <li><strong>State Pattern:</strong> Follows a standard lifecycle: <code>Initial</code> → <code>Loading</code> → <code>Success</code> or <code>Failure</code> (carrying a Failure object).</li>
+        </ul>
+
+        <h2>Dependency Injection & Routing</h2>
+        <ul>
+          <li><strong>DI Service Locator:</strong> Powered by <code>get_it</code> and <code>injectable</code>. Service classes, datasources, and repositories are marked with <code>@injectable</code>, <code>@lazySingleton</code>, or <code>@singleton</code>. Run build_runner to regenerate injection configs.</li>
+          <li><strong>Routing:</strong> Managed via a single standalone <code>GoRouter</code> instance registered globally. Route path constants are declared in <code>core/router/app_routes.dart</code>.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 4: FIRESTORE DATABASE SCHEMA -->
+      <section id="database" class="wiki-section">
+        <h1>Firestore Database Schema</h1>
+        <p>The database schema is built around data integrity, real-time sync, and monthly aggregation constraints.</p>
+
+        <h2>Collection Tree</h2>
+        <div class="folder-tree">
+Firestore Root
+└── users/
+     └── {uid}/                              <span class="comment"># User document</span>
+          ├── profile/                       <span class="comment"># Subcollection: User profile info</span>
+          │    └── data                      <span class="comment"># Single document</span>
+          ├── strategy/                      <span class="comment"># Subcollection: Salary, auto-save status</span>
+          │    └── data                      <span class="comment"># Single document</span>
+          ├── money/                         <span class="comment"># Subcollection: Multi-wallet balances</span>
+          │    └── data                      <span class="comment"># Single document</span>
+          ├── transactions/                  <span class="comment"># Subcollection: Flat list for recent activity</span>
+          │    ├── {transactionId}
+          │    └── ...
+          └── transactionHistory/            <span class="comment"># Subcollection: Aggregated monthly buckets</span>
+               └── {YYYY-MM}/                <span class="comment"># e.g., "2026-08"</span>
+                    └── entries/             <span class="comment"># Subcollection: Transactions of that month</span>
+        </div>
+
+        <h2>Design Patterns</h2>
+        
+        <h3>Dual-Write Batch Writes</h3>
+        <p>To avoid balance mismatch, a transaction log and the user's running balance are written in a single atomic batch write. The write either succeeds completely or fails completely, preventing corrupted records.</p>
+        
+        <h3>Monthly Bucketing</h3>
+        <p>Queries for transactions are divided month-by-month in <code>transactionHistory/{YYYY-MM}</code>. This prevents the database from reading thousands of flat records when loading historical logs, dramatically saving Firestore reads and improving speed.</p>
+
+        <h2>Emergency Wallet Lock Rule</h2>
+        <div class="callout warning">
+          <div class="callout-title">Lock Constraint</div>
+          <p>Inside <code>users/{uid}/money/data</code>, the field <code>emergencyWalletLocked</code> is set to <code>true</code> whenever the computed <code>totalBalance <= 50 EGP</code>. While locked, Cloud Security Rules block any outgoing transaction targeting the Emergency Wallet.</p>
+        </div>
+
+        <h2>Schema Details</h2>
+        <h3><code>users/{uid}/money/data</code> (Balances)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>cashAmount</code></td>
+              <td><code>number</code></td>
+              <td>Physical Cash balance (Primary priority)</td>
+            </tr>
+            <tr>
+              <td><code>visaAmount</code></td>
+              <td><code>number</code></td>
+              <td>Bank card liquidity</td>
+            </tr>
+            <tr>
+              <td><code>phoneWalletAmount</code></td>
+              <td><code>number</code></td>
+              <td>Mobile cash wallets (Vodafone Cash, Fawry)</td>
+            </tr>
+            <tr>
+              <td><code>emergencyWalletAmount</code></td>
+              <td><code>number</code></td>
+              <td>Protected emergency savings</td>
+            </tr>
+            <tr>
+              <td><code>emergencyWalletLocked</code></td>
+              <td><code>boolean</code></td>
+              <td>Blocks withdrawals when true</td>
+            </tr>
+            <tr>
+              <td><code>totalBalance</code></td>
+              <td><code>number</code></td>
+              <td>Calculated sum of all channels</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- SECTION 5: DESIGN SYSTEM -->
+      <section id="design" class="wiki-section">
+        <h1>Design System & Tokens</h1>
+        <p>The design system is optimized for readability, trust, and localization within the Egyptian & MENA fintech space.</p>
+
+        <h2>Visual Guidelines</h2>
+        <ul>
+          <li><strong>Clarity:</strong> High-impact typography, large numerals, and clean status badges.</li>
+          <li><strong>Simplicity:</strong> Minimal cognitive load, showcasing totals first and details progressively.</li>
+          <li><strong>Typography:</strong> Headlines use <code>Outfit</code> (English) and <code>Cairo</code> (Arabic). Body elements use <code>Inter</code>.</li>
+        </ul>
+
+        <h2>Theme Color Tokens</h2>
+        <div class="color-tokens">
+          <div class="color-swatch">
+            <div class="swatch-fill" style="background-color: #533afd;"></div>
+            <div class="swatch-details">
+              <div class="swatch-name">Brand Purple</div>
+              <div class="swatch-code">#533afd</div>
             </div>
           </div>
-
-          <!-- Elevation & Shadows -->
-          <div class="card">
-            <h3 class="card-title">
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l5.25 3.062M12 12.75v9">
-                </path>
-              </svg>
-              Stripe-Style Shadows
-            </h3>
-            <div class="shadow-list">
-              <div class="shadow-item">
-                <span class="shadow-name">SM Shadow</span>
-                <span class="shadow-code">0 2px 5px rgba(6, 27, 49, 0.05)</span>
-              </div>
-              <div class="shadow-item">
-                <span class="shadow-name">MD Shadow</span>
-                <span class="shadow-code">0 13px 27px -5px rgba(6, 27, 49, 0.05)</span>
-              </div>
-              <div class="shadow-item">
-                <span class="shadow-name">LG Shadow</span>
-                <span class="shadow-code">0 30px 60px -12px rgba(6, 27, 49, 0.08)</span>
-              </div>
-              <div class="shadow-item">
-                <span class="shadow-name">Primary Glow</span>
-                <span class="shadow-code">0 10px 25px -5px rgba(83, 58, 253, 0.4)</span>
-              </div>
+          <div class="color-swatch">
+            <div class="swatch-fill" style="background-color: #00C48C;"></div>
+            <div class="swatch-details">
+              <div class="swatch-name">Success Green</div>
+              <div class="swatch-code">#00C48C</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="swatch-fill" style="background-color: #FF6B35;"></div>
+            <div class="swatch-details">
+              <div class="swatch-name">Emergency Amber</div>
+              <div class="swatch-code">#FF6B35</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="swatch-fill" style="background-color: #061b31;"></div>
+            <div class="swatch-details">
+              <div class="swatch-name">Deep Navy</div>
+              <div class="swatch-code">#061b31</div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- TAB 3: SCREEN FLOWS -->
-    <div id="screen-flows" class="tab-content">
-      <div class="flow-container">
-        <!-- Interactive Screen Menu -->
-        <div class="flow-steps">
-          <div class="flow-step-card active" onclick="loadScreen('splash', this)">
-            <div class="flow-step-left">
-              <div class="flow-step-num">1</div>
-              <div>
-                <div class="flow-step-title">Splash Screen</div>
-                <div class="flow-step-desc">Clean launch state displaying the brand identity.</div>
+        <h2>Stripe-Inspired Shadows</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Shadow Style</th>
+              <th>CSS Value</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>SM Shadow</code></td>
+              <td><code>0 2px 5px rgba(6, 27, 49, 0.05)</code></td>
+              <td>Input fields, small button cards</td>
+            </tr>
+            <tr>
+              <td><code>MD Shadow</code></td>
+              <td><code>0 13px 27px -5px rgba(6, 27, 49, 0.05)</code></td>
+              <td>Standard card elevations</td>
+            </tr>
+            <tr>
+              <td><code>LG Shadow</code></td>
+              <td><code>0 30px 60px -12px rgba(6, 27, 49, 0.08)</code></td>
+              <td>Modals, bottom sheets, overlay views</td>
+            </tr>
+            <tr>
+              <td><code>Primary Glow</code></td>
+              <td><code>0 10px 25px -5px rgba(83, 58, 253, 0.4)</code></td>
+              <td>Primary call-to-action buttons</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>MENA Localization Rules</h2>
+        <ul>
+          <li><strong>Arabic Mirroring:</strong> Layouts, swipe directions, and page slide animations automatically reverse in RTL mode.</li>
+          <li><strong>Numbers rule LTR:</strong> Numbers are universally read from left-to-right in the Middle East, so currency and phone numbers remain LTR in both LTR/RTL viewports.</li>
+          <li><strong>Cash First:</strong> Egyptians operate cash-first. The Cash Wallet card takes the top visual priority on the Dashboard.</li>
+          <li><strong>Warm Copy Tone:</strong> Egyptian-Arabic translations use warm, colloquial finance terms, completely avoiding formal modern standard Arabic (Fusha) to build trust.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 6: SIMULATOR -->
+      <section id="simulator" class="wiki-section">
+        <h1>Screen Flow Simulator</h1>
+        <p>Experience the user flow of the mobile app. Click the steps on the left to see the viewport on the right update.</p>
+        
+        <div class="simulator-layout">
+          <div class="sim-steps">
+            <div class="sim-step-card active" onclick="loadSimScreen('splash', this)">
+              <div style="display:flex; align-items:center;">
+                <div class="sim-step-num">1</div>
+                <div class="sim-step-title">Splash Screen</div>
               </div>
+              <span>➔</span>
             </div>
-            <span>➔</span>
+            
+            <div class="sim-step-card" onclick="loadSimScreen('onboarding', this)">
+              <div style="display:flex; align-items:center;">
+                <div class="sim-step-num">2</div>
+                <div class="sim-step-title">Onboarding Slides</div>
+              </div>
+              <span>➔</span>
+            </div>
+
+            <div class="sim-step-card" onclick="loadSimScreen('auth', this)">
+              <div style="display:flex; align-items:center;">
+                <div class="sim-step-num">3</div>
+                <div class="sim-step-title">Authentication Screen</div>
+              </div>
+              <span>➔</span>
+            </div>
+
+            <div class="sim-step-card" onclick="loadSimScreen('dashboard', this)">
+              <div style="display:flex; align-items:center;">
+                <div class="sim-step-num">4</div>
+                <div class="sim-step-title">Dashboard View</div>
+              </div>
+              <span>➔</span>
+            </div>
+
+            <div class="sim-step-card" onclick="loadSimScreen('history', this)">
+              <div style="display:flex; align-items:center;">
+                <div class="sim-step-num">5</div>
+                <div class="sim-step-title">History Logs</div>
+              </div>
+              <span>➔</span>
+            </div>
+
+            <div class="sim-step-card" onclick="loadSimScreen('insights', this)">
+              <div style="display:flex; align-items:center;">
+                <div class="sim-step-num">6</div>
+                <div class="sim-step-title">Monthly Insights</div>
+              </div>
+              <span>➔</span>
+            </div>
           </div>
 
-          <div class="flow-step-card" onclick="loadScreen('onboarding', this)">
-            <div class="flow-step-left">
-              <div class="flow-step-num">2</div>
-              <div>
-                <div class="flow-step-title">Onboarding Flow</div>
-                <div class="flow-step-desc">Introduces auto-save rules and captures salary statuses.</div>
+          <div class="phone-sim-wrapper">
+            <div class="phone-sim">
+              <div class="phone-sim-notch"></div>
+              <div class="phone-sim-screen" id="sim-screen-viewport">
+                <!-- Splash Screen contents load by default -->
+                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; background: linear-gradient(135deg, #533afd 0%, #061b31 100%); color: white; padding: 20px; text-align: center;">
+                  <div style="font-size: 48px; margin-bottom: 12px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));">🆘</div>
+                  <h3 style="color: white; font-size: 24px; font-weight: 800; margin-bottom: 6px; font-family: 'Outfit', sans-serif;">Emergency Cash</h3>
+                  <p style="color: rgba(255, 255, 255, 0.7); font-size: 12px; font-weight: 300;">Automatic resilience, before crisis strikes.</p>
+                  <div style="margin-top: 50px; width: 30px; height: 30px; border: 3px solid rgba(255,255,255,0.1); border-top-color: white; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+                </div>
               </div>
             </div>
-            <span>➔</span>
-          </div>
-
-          <div class="flow-step-card" onclick="loadScreen('auth', this)">
-            <div class="flow-step-left">
-              <div class="flow-step-num">3</div>
-              <div>
-                <div class="flow-step-title">Authentication</div>
-                <div class="flow-step-desc">Allows users to create accounts or log in.</div>
-              </div>
-            </div>
-            <span>➔</span>
-          </div>
-
-          <div class="flow-step-card" onclick="loadScreen('dashboard', this)">
-            <div class="flow-step-left">
-              <div class="flow-step-num">4</div>
-              <div>
-                <div class="flow-step-title">Dashboard Overview</div>
-                <div class="flow-step-desc">Unified multi-wallet status and emergency locked total.</div>
-              </div>
-            </div>
-            <span>➔</span>
-          </div>
-
-          <div class="flow-step-card" onclick="loadScreen('history', this)">
-            <div class="flow-step-left">
-              <div class="flow-step-num">5</div>
-              <div>
-                <div class="flow-step-title">History & Calendar</div>
-                <div class="flow-step-desc">Displays transactions organized by monthly buckets.</div>
-              </div>
-            </div>
-            <span>➔</span>
-          </div>
-
-          <div class="flow-step-card" onclick="loadScreen('insights', this)">
-            <div class="flow-step-left">
-              <div class="flow-step-num">6</div>
-              <div>
-                <div class="flow-step-title">Insights & Analytics</div>
-                <div class="flow-step-desc">Visualizes savings achievement and expenditure analysis.</div>
-              </div>
-            </div>
-            <span>➔</span>
           </div>
         </div>
+      </section>
 
-        <!-- Phone Simulator Column -->
-        <div class="phone-sim-wrapper">
-          <div class="phone-sim">
-            <div class="phone-sim-notch"></div>
+      <!-- SECTION 7: GUIDELINES -->
+      <section id="guidelines" class="wiki-section">
+        <h1>Developer Guidelines & CLI</h1>
+        <p>Rules and commands that developers must strictly adhere to when modifying the Flutter codebase.</p>
 
-            <div class="phone-sim-screen" id="sim-screen-viewport">
-              <!-- Default Content (Splash) -->
-              <div
-                style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; background: linear-gradient(135deg, #533afd 0%, #061b31 100%); color: white; padding: 20px; text-align: center;">
-                <div style="font-size: 54px; margin-bottom: 12px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));">🆘
-                </div>
-                <h3
-                  style="color: white; font-size: 26px; font-weight: 800; margin-bottom: 6px; font-family: 'Outfit', sans-serif;">
-                  Emergency Cash</h3>
-                <p style="color: rgba(255, 255, 255, 0.7); font-size: 13px; font-weight: 300;">Automatic resilience,
-                  before crisis strikes.</p>
-                <div
-                  style="margin-top: 60px; width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.1); border-top-color: white; border-radius: 50%; animation: spin 1s linear infinite;">
-                </div>
-              </div>
-            </div>
+        <h2>General Rules</h2>
+        <ul>
+          <li><strong>Responsive Sizes:</strong> Always use <code>flutter_screenutil</code> extensions for dimensions (e.g. <code>.h</code>, <code>.w</code>, <code>.sp</code>, <code>.r</code>). Avoid raw pixel values.</li>
+          <li><strong>Localization:</strong> Never hardcode user-facing strings. Add translation keys inside <code>lib/core/localization/l10n/app_en.arb</code> and <code>app_ar.arb</code>, and compile the code to access them via <code>context.local.keyName</code>.</li>
+          <li><strong>Themes:</strong> Access all colors and text styles from the context theme (e.g. <code>context.colorScheme.primary</code>, <code>context.textTheme.bodyLarge</code>). Direct references to raw Color variables in view files is strictly prohibited.</li>
+        </ul>
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+        <h2>Useful Developer Commands</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Command</th>
+              <th>Task</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>flutter pub get</code></td>
+              <td>Install / update dependencies</td>
+            </tr>
+            <tr>
+              <td><code>flutter pub run build_runner build --delete-conflicting-outputs</code></td>
+              <td>Generate DI locator & model configurations</td>
+            </tr>
+            <tr>
+              <td><code>flutter gen-l10n</code></td>
+              <td>Regenerate localization translation files</td>
+            </tr>
+            <tr>
+              <td><code>flutter analyze</code></td>
+              <td>Scan code for linter errors</td>
+            </tr>
+            <tr>
+              <td><code>flutter test</code></td>
+              <td>Run local unit and widget tests</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </main>
+  </div>
 
   <footer>
-    <p>Emergency Wallet UI Summary Hub • Designed by Mahmoud Ahmed Badawy • Created in 2026</p>
+    <p>Emergency Wallet Wiki Portal • Designed for Fintech Developers • Created in 2026</p>
   </footer>
 
-  <style>
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
-
   <script>
-    function switchTab(tabId) {
-      // Toggle button states
-      const buttons = document.querySelectorAll('.tab-btn');
-      buttons.forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.getAttribute('onclick').includes(tabId)) {
-          btn.classList.add('active');
-        }
-      });
+    // Tab switching inside the wiki layout
+    function showSection(sectionId, linkElement) {
+      const links = document.querySelectorAll('.sidebar-link');
+      links.forEach(link => link.classList.remove('active'));
+      linkElement.classList.add('active');
 
-      // Toggle tab contents
-      const contents = document.querySelectorAll('.tab-content');
-      contents.forEach(content => {
-        content.classList.remove('active');
-      });
-      document.getElementById(tabId).classList.add('active');
+      const sections = document.querySelectorAll('.wiki-section');
+      sections.forEach(sec => sec.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
     }
 
-    // Live Phone Simulator Data
-    const screensData = {
+    // Interactive Screen Data definitions
+    const simScreenContent = {
       splash: `
         <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; background: linear-gradient(135deg, #533afd 0%, #061b31 100%); color: white; padding: 20px; text-align: center;">
-          <div style="font-size: 54px; margin-bottom: 12px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));">🆘</div>
-          <h3 style="color: white; font-size: 26px; font-weight: 800; margin-bottom: 6px; font-family: 'Outfit', sans-serif;">Emergency Cash</h3>
-          <p style="color: rgba(255, 255, 255, 0.7); font-size: 13px; font-weight: 300;">Automatic resilience, before crisis strikes.</p>
-          <div style="margin-top: 60px; width: 30px; height: 30px; border: 3px solid rgba(255,255,255,0.1); border-top-color: white; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+          <div style="font-size: 48px; margin-bottom: 12px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));">🆘</div>
+          <h3 style="color: white; font-size: 24px; font-weight: 800; margin-bottom: 6px; font-family: 'Outfit', sans-serif;">Emergency Cash</h3>
+          <p style="color: rgba(255, 255, 255, 0.7); font-size: 12px; font-weight: 300;">Automatic resilience, before crisis strikes.</p>
+          <div style="margin-top: 50px; width: 30px; height: 30px; border: 3px solid rgba(255,255,255,0.1); border-top-color: white; border-radius: 50%; animation: spin 1s linear infinite;"></div>
         </div>
       `,
       onboarding: `
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
           <span style="font-weight: 600; color: #061b31;">Step 2 of 4</span>
           <span style="color: #533afd; font-weight: 600;">Skip</span>
         </div>
-        <div style="display: flex; gap: 4px; margin-bottom: 24px;">
+        <div style="display: flex; gap: 4px; margin-bottom: 18px;">
           <div style="height: 4px; flex: 1; background: #533afd; border-radius: 2px;"></div>
           <div style="height: 4px; flex: 1; background: #533afd; border-radius: 2px;"></div>
           <div style="height: 4px; flex: 1; background: #e2e8f0; border-radius: 2px;"></div>
           <div style="height: 4px; flex: 1; background: #e2e8f0; border-radius: 2px;"></div>
         </div>
-        <div style="text-align: center; margin-bottom: 24px;">
-          <div style="font-size: 40px; margin-bottom: 12px;">🛡️</div>
-          <h3 style="margin-bottom: 8px;">Emergency Auto-Save</h3>
-          <p style="font-size: 12px; color: #718096;">Do you have a stable monthly salary? Salaried users save 20% automatically each month.</p>
+        <div style="text-align: center; margin-bottom: 18px;">
+          <div style="font-size: 32px; margin-bottom: 10px;">🛡️</div>
+          <h3 style="margin-bottom: 6px; color: #061b31; font-size: 16px;">Emergency Auto-Save</h3>
+          <p style="font-size: 11px; color: #718096; line-height: 1.4;">Do you have a stable monthly salary? Salaried users save 20% automatically each month.</p>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 10px;">
-          <div style="border: 2px solid #533afd; background: #ecebfe; padding: 12px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="border: 2px solid #533afd; background: #ecebfe; padding: 10px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
             <div>
-              <div style="font-weight: 600; color: #061b31;">Yes, I am salaried</div>
-              <div style="font-size: 11px; color: #718096;">Unlocks automatic emergency savings</div>
+              <div style="font-weight: 600; color: #061b31; font-size:11px;">Yes, I am salaried</div>
+              <div style="font-size: 9px; color: #718096;">Unlocks automatic emergency savings</div>
             </div>
-            <div style="width: 18px; height: 18px; border-radius: 50%; background: #533afd; display: flex; justify-content: center; align-items: center;"><div style="width: 8px; height: 8px; background: white; border-radius: 50%;"></div></div>
+            <div style="width: 14px; height: 14px; border-radius: 50%; background: #533afd; display: flex; justify-content: center; align-items: center;"><div style="width: 6px; height: 6px; background: white; border-radius: 50%;"></div></div>
           </div>
-          <div style="border: 1px solid #e2e8f0; background: white; padding: 12px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="border: 1px solid #e2e8f0; background: white; padding: 10px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
             <div>
-              <div style="font-weight: 600; color: #061b31;">No, I work irregular hours</div>
-              <div style="font-size: 11px; color: #718096;">Manual deposit tools only</div>
+              <div style="font-weight: 600; color: #061b31; font-size: 11px;">No, I work irregular hours</div>
+              <div style="font-size: 9px; color: #718096;">Manual deposit tools only</div>
             </div>
-            <div style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #cbd5e0; background: white;"></div>
+            <div style="width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #cbd5e0; background: white;"></div>
           </div>
         </div>
-        <button class="sim-button" style="margin-top: 30px;">Continue</button>
+        <button class="sim-btn-primary" style="margin-top: 24px;">Continue</button>
       `,
       auth: `
-        <div style="margin-bottom: 24px; margin-top: 10px;">
-          <h3 style="margin-bottom: 4px;">Create Account</h3>
-          <p style="font-size: 12px; color: #718096;">Protect and track your money today.</p>
+        <div style="margin-bottom: 18px; margin-top: 10px;">
+          <h3 style="margin-bottom: 4px; color: #061b31; font-size: 18px;">Create Account</h3>
+          <p style="font-size: 11px; color: #718096;">Protect and track your money today.</p>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
           <div>
-            <label style="display:block; font-size: 10px; font-weight: 600; color: #061b31; margin-bottom: 4px;">Full Name</label>
-            <input type="text" value="Mahmoud Ahmed" disabled style="width: 100%; padding: 8px; border-radius: 8px; border: 1.5px solid #e2e8f0; background: white; font-size: 11px;" />
+            <label style="display:block; font-size: 9px; font-weight: 600; color: #061b31; margin-bottom: 2px;">Full Name</label>
+            <input type="text" value="Mahmoud Ahmed" disabled style="width: 100%; padding: 6px 10px; border-radius: 6px; border: 1.5px solid #e2e8f0; background: white; font-size: 10px;" />
           </div>
           <div>
-            <label style="display:block; font-size: 10px; font-weight: 600; color: #061b31; margin-bottom: 4px;">Phone Number</label>
-            <input type="text" value="010 1234 5678" disabled style="width: 100%; padding: 8px; border-radius: 8px; border: 1.5px solid #e2e8f0; background: white; font-size: 11px;" />
+            <label style="display:block; font-size: 9px; font-weight: 600; color: #061b31; margin-bottom: 2px;">Phone Number</label>
+            <input type="text" value="010 1234 5678" disabled style="width: 100%; padding: 6px 10px; border-radius: 6px; border: 1.5px solid #e2e8f0; background: white; font-size: 10px;" />
           </div>
           <div>
-            <label style="display:block; font-size: 10px; font-weight: 600; color: #061b31; margin-bottom: 4px;">Password</label>
-            <input type="password" value="••••••••" disabled style="width: 100%; padding: 8px; border-radius: 8px; border: 1.5px solid #e2e8f0; background: white; font-size: 11px;" />
+            <label style="display:block; font-size: 9px; font-weight: 600; color: #061b31; margin-bottom: 2px;">Password</label>
+            <input type="password" value="••••••••" disabled style="width: 100%; padding: 6px 10px; border-radius: 6px; border: 1.5px solid #e2e8f0; background: white; font-size: 10px;" />
           </div>
         </div>
-        <button class="sim-button" style="margin-top: 24px;">Create Account</button>
-        <div style="text-align: center; font-size: 11px; margin-top: 16px; color: #718096;">
+        <button class="sim-btn-primary" style="margin-top: 20px;">Create Account</button>
+        <div style="text-align: center; font-size: 10px; margin-top: 14px; color: #718096;">
           Already have an account? <span style="color: #533afd; font-weight: 600;">Log In</span>
         </div>
       `,
       dashboard: `
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
           <div>
-            <div style="font-size: 11px; color: #a0aec0;">Welcome back,</div>
-            <div style="font-size: 16px; font-weight: 700; color: #061b31;">Mahmoud 👋</div>
+            <div style="font-size: 10px; color: #a0aec0;">Welcome back,</div>
+            <div style="font-size: 15px; font-weight: 700; color: #061b31;">Mahmoud 👋</div>
           </div>
-          <div style="background: white; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 6px; cursor: pointer; color: #718096;">
-            👁️
-          </div>
+          <div style="background: white; border: 1.5px solid #e2e8f0; border-radius: 6px; padding: 4px; color: #718096;">👁️</div>
         </div>
         
-        <div style="background: white; border-radius: 16px; padding: 16px; border: 1.5px solid #e2e8f0; margin-bottom: 16px; text-align: center;">
-          <div style="font-size: 11px; color: #a0aec0; text-transform: uppercase;">Total Available Cash</div>
-          <div style="font-size: 28px; font-weight: 800; color: #061b31; margin-top: 4px; font-family: 'Outfit';">18,400 <span style="font-size: 14px; color: #718096;">EGP</span></div>
+        <div style="background: white; border-radius: 12px; padding: 12px; border: 1.5px solid #e2e8f0; margin-bottom: 14px; text-align: center;">
+          <div style="font-size: 10px; color: #a0aec0; text-transform: uppercase; letter-spacing:0.02em;">Total Available Cash</div>
+          <div style="font-size: 24px; font-weight: 800; color: #061b31; margin-top: 2px; font-family: 'Outfit';">18,400 <span style="font-size: 12px; color: #718096;">EGP</span></div>
         </div>
 
-        <div style="font-size: 12px; font-weight: 700; color: #061b31; margin-bottom: 10px;">MY WALLETS</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-          <div style="background: white; border: 1.5px solid #e2e8f0; padding: 10px; border-radius: 12px;">
-            <div style="font-size: 9px; color: #a0aec0; font-weight: 600;">💵 CASH</div>
-            <div style="font-size: 13px; font-weight: 700; color: #061b31; margin-top: 4px;">4,000 EGP</div>
+        <div style="font-size: 10px; font-weight: 700; color: #061b31; margin-bottom: 8px;">MY WALLETS</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <div style="background: white; border: 1.5px solid #e2e8f0; padding: 8px; border-radius: 10px;">
+            <div style="font-size: 8px; color: #a0aec0; font-weight: 600;">💵 CASH</div>
+            <div style="font-size: 11px; font-weight: 700; color: #061b31; margin-top: 2px;">4,000 EGP</div>
           </div>
-          <div style="background: white; border: 1.5px solid #e2e8f0; padding: 10px; border-radius: 12px;">
-            <div style="font-size: 9px; color: #a0aec0; font-weight: 600;">💳 VISA CARD</div>
-            <div style="font-size: 13px; font-weight: 700; color: #061b31; margin-top: 4px;">10,000 EGP</div>
+          <div style="background: white; border: 1.5px solid #e2e8f0; padding: 8px; border-radius: 10px;">
+            <div style="font-size: 8px; color: #a0aec0; font-weight: 600;">💳 VISA CARD</div>
+            <div style="font-size: 11px; font-weight: 700; color: #061b31; margin-top: 2px;">10,000 EGP</div>
           </div>
-          <div style="background: white; border: 1.5px solid #e2e8f0; padding: 10px; border-radius: 12px;">
-            <div style="font-size: 9px; color: #a0aec0; font-weight: 600;">📱 SMART WALLET</div>
-            <div style="font-size: 13px; font-weight: 700; color: #061b31; margin-top: 4px;">2,400 EGP</div>
+          <div style="background: white; border: 1.5px solid #e2e8f0; padding: 8px; border-radius: 10px;">
+            <div style="font-size: 8px; color: #a0aec0; font-weight: 600;">📱 SMART WALLET</div>
+            <div style="font-size: 11px; font-weight: 700; color: #061b31; margin-top: 2px;">2,400 EGP</div>
           </div>
-          <div style="background: #FFF0EB; border: 1.5px solid #FF6B35; padding: 10px; border-radius: 12px; position: relative;">
-            <div style="font-size: 9px; color: #FF6B35; font-weight: 600;">🚨 EMERGENCY (20%)</div>
-            <div style="font-size: 13px; font-weight: 700; color: #cc4a1a; margin-top: 4px;">2,000 EGP</div>
-            <span style="position: absolute; right: 8px; bottom: 8px; font-size: 11px;">🔒</span>
+          <div style="background: #FFF0EB; border: 1.5px solid #FF6B35; padding: 8px; border-radius: 10px; position: relative;">
+            <div style="font-size: 8px; color: #FF6B35; font-weight: 600;">🚨 EMERGENCY (20%)</div>
+            <div style="font-size: 11px; font-weight: 700; color: #cc4a1a; margin-top: 2px;">2,000 EGP</div>
+            <span style="position: absolute; right: 6px; bottom: 6px; font-size: 9px;">🔒</span>
           </div>
         </div>
       `,
       history: `
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-          <h3 style="margin: 0; font-size: 16px;">Activity</h3>
-          <div style="font-size: 11px; background: white; padding: 4px 10px; border-radius: 20px; border: 1.5px solid #e2e8f0; font-weight: 600;">July 2026 ▾</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <h3 style="margin: 0; font-size: 14px; color:#061b31;">Activity</h3>
+          <div style="font-size: 10px; background: white; padding: 2px 8px; border-radius: 12px; border: 1.5px solid #e2e8f0; font-weight: 600; color:#061b31;">July 2026 ▾</div>
         </div>
-        <div style="display: flex; gap: 6px; margin-bottom: 16px;">
-          <span style="font-size: 10px; background: #533afd; color: white; padding: 2px 8px; border-radius: 10px;">All</span>
-          <span style="font-size: 10px; background: white; border: 1px solid #e2e8f0; color: #718096; padding: 2px 8px; border-radius: 10px;">Income</span>
-          <span style="font-size: 10px; background: white; border: 1px solid #e2e8f0; color: #718096; padding: 2px 8px; border-radius: 10px;">Spending</span>
+        <div style="display: flex; gap: 4px; margin-bottom: 12px;">
+          <span style="font-size: 9px; background: #533afd; color: white; padding: 2px 6px; border-radius: 6px;">All</span>
+          <span style="font-size: 9px; background: white; border: 1px solid #e2e8f0; color: #718096; padding: 2px 6px; border-radius: 6px;">Income</span>
+          <span style="font-size: 9px; background: white; border: 1px solid #e2e8f0; color: #718096; padding: 2px 6px; border-radius: 6px;">Spending</span>
         </div>
         
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <div style="background: white; border: 1.5px solid #e2e8f0; padding: 10px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div style="background: white; border: 1.5px solid #e2e8f0; padding: 8px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
             <div>
-              <div style="font-weight: 600; color: #061b31;">Salary Payment</div>
-              <div style="font-size: 10px; color: #a0aec0;">July 01, 10:00 AM</div>
+              <div style="font-weight: 600; color: #061b31; font-size:10px;">Salary Payment</div>
+              <div style="font-size: 8px; color: #a0aec0;">July 01, 10:00 AM</div>
             </div>
             <div style="text-align: right;">
-              <div style="font-weight: 700; color: #00C48C;">+20,000 EGP</div>
-              <div style="font-size: 9px; color: #FF6B35;">Saved 20% (4k)</div>
+              <div style="font-weight: 700; color: #00C48C; font-size:11px;">+20,000 EGP</div>
+              <div style="font-size: 8px; color: #FF6B35;">Saved 20%</div>
             </div>
           </div>
           
-          <div style="background: white; border: 1.5px solid #e2e8f0; padding: 10px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="background: white; border: 1.5px solid #e2e8f0; padding: 8px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
             <div>
-              <div style="font-weight: 600; color: #061b31;">Metro Supermarket</div>
-              <div style="font-size: 10px; color: #a0aec0;">July 05, 08:30 PM</div>
+              <div style="font-weight: 600; color: #061b31; font-size:10px;">Metro Supermarket</div>
+              <div style="font-size: 8px; color: #a0aec0;">July 05, 08:30 PM</div>
             </div>
-            <div style="font-weight: 700; color: #e53e3e;">-1,200 EGP</div>
+            <div style="font-weight: 700; color: #e53e3e; font-size:11px;">-1,200 EGP</div>
           </div>
 
-          <div style="background: white; border: 1.5px solid #e2e8f0; padding: 10px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="background: white; border: 1.5px solid #e2e8f0; padding: 8px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
             <div>
-              <div style="font-weight: 600; color: #061b31;">El-Ezaby Pharmacy</div>
-              <div style="font-size: 10px; color: #a0aec0;">July 12, 02:15 PM</div>
+              <div style="font-weight: 600; color: #061b31; font-size:10px;">El-Ezaby Pharmacy</div>
+              <div style="font-size: 8px; color: #a0aec0;">July 12, 02:15 PM</div>
             </div>
             <div style="text-align: right;">
-              <div style="font-weight: 700; color: #e53e3e;">-800 EGP</div>
-              <span style="font-size: 9px; background: #FFF0EB; color: #FF6B35; padding: 1px 4px; border-radius: 4px;">Emergency</span>
+              <div style="font-weight: 700; color: #e53e3e; font-size:11px;">-800 EGP</div>
+              <span style="font-size: 8px; background: #FFF0EB; color: #FF6B35; padding: 1px 3px; border-radius: 2px;">Emergency</span>
             </div>
           </div>
         </div>
       `,
       insights: `
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-          <h3 style="margin: 0; font-size: 16px;">Insights</h3>
-          <div style="font-size: 11px; background: white; padding: 4px 10px; border-radius: 20px; border: 1.5px solid #e2e8f0; font-weight: 600;">July 2026 ▾</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <h3 style="margin: 0; font-size: 14px; color:#061b31;">Insights</h3>
+          <div style="font-size: 10px; background: white; padding: 2px 8px; border-radius: 12px; border: 1.5px solid #e2e8f0; font-weight: 600; color:#061b31;">July 2026 ▾</div>
         </div>
         
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;">
-          <div style="background: #E0FAF3; padding: 10px; border-radius: 10px; text-align: center;">
-            <div style="font-size: 9px; color: #00916A;">Total Saved</div>
-            <div style="font-size: 14px; font-weight: 700; color: #00916A;">4,000 EGP</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px;">
+          <div style="background: #E0FAF3; padding: 8px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 8px; color: #00916A;">Total Saved</div>
+            <div style="font-size: 12px; font-weight: 700; color: #00916A;">4,000 EGP</div>
           </div>
-          <div style="background: #FFF0EB; padding: 10px; border-radius: 10px; text-align: center;">
-            <div style="font-size: 9px; color: #cc4a1a;">Crisis Expenses</div>
-            <div style="font-size: 14px; font-weight: 700; color: #cc4a1a;">800 EGP</div>
+          <div style="background: #FFF0EB; padding: 8px; border-radius: 8px; text-align: center;">
+            <div style="font-size: 8px; color: #cc4a1a;">Crisis Expenses</div>
+            <div style="font-size: 12px; font-weight: 700; color: #cc4a1a;">800 EGP</div>
           </div>
         </div>
 
-        <div style="background: white; border: 1.5px solid #e2e8f0; padding: 12px; border-radius: 12px;">
-          <div style="font-size: 11px; font-weight: 600; color: #061b31; margin-bottom: 10px;">SAVINGS ACHIEVEMENT</div>
+        <div style="background: white; border: 1.5px solid #e2e8f0; padding: 10px; border-radius: 10px;">
+          <div style="font-size: 9px; font-weight: 600; color: #061b31; margin-bottom: 8px;">SAVINGS ACHIEVEMENT</div>
           
-          <div style="margin-bottom: 8px;">
-            <div style="display: flex; justify-content: space-between; font-size: 10px; color: #718096; margin-bottom: 4px;">
+          <div style="margin-bottom: 6px;">
+            <div style="display: flex; justify-content: space-between; font-size: 9px; color: #718096; margin-bottom: 2px;">
               <span>Emergency Target</span>
               <span>100% Achieved 🎉</span>
             </div>
-            <div style="height: 6px; background: #e2e8f0; border-radius: 3px; overflow: hidden;">
+            <div style="height: 4px; background: #e2e8f0; border-radius: 2px; overflow: hidden;">
               <div style="height: 100%; width: 100%; background: #00C48C;"></div>
             </div>
           </div>
           
           <div>
-            <div style="display: flex; justify-content: space-between; font-size: 10px; color: #718096; margin-bottom: 4px;">
+            <div style="display: flex; justify-content: space-between; font-size: 9px; color: #718096; margin-bottom: 2px;">
               <span>Discretionary Limit</span>
               <span>60% Remaining</span>
             </div>
-            <div style="height: 6px; background: #e2e8f0; border-radius: 3px; overflow: hidden;">
+            <div style="height: 4px; background: #e2e8f0; border-radius: 2px; overflow: hidden;">
               <div style="height: 100%; width: 40%; background: #533afd;"></div>
             </div>
           </div>
@@ -675,21 +685,18 @@
       `
     };
 
-    function loadScreen(screenId, cardElement) {
-      // Toggle card active state
-      const cards = document.querySelectorAll('.flow-step-card');
+    function loadSimScreen(screenId, cardElement) {
+      const cards = document.querySelectorAll('.sim-step-card');
       cards.forEach(card => card.classList.remove('active'));
       cardElement.classList.add('active');
 
-      // Load screen content with fade animation
       const viewport = document.getElementById('sim-screen-viewport');
       viewport.style.opacity = 0;
       setTimeout(() => {
-        viewport.innerHTML = screensData[screenId];
+        viewport.innerHTML = simScreenContent[screenId];
         viewport.style.opacity = 1;
       }, 150);
     }
   </script>
 </body>
-
 </html>
