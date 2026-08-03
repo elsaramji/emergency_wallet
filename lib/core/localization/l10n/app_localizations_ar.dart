@@ -464,4 +464,24 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get historyOperations => 'عملية';
+
+  @override
+  String get languageSelectionTitle => 'اختر لغتك المفضلة';
+
+  @override
+  String get languageSelectionSubtitle =>
+      'اختر لغتك المفضلة لتخصيص واجهة واستخدام محفظتك الذكية.';
+
+  @override
+  String get languageEnglish => 'English';
+
+  @override
+  String get languageArabic => 'العربية';
+
+  @override
+  String get languageEnglishDesc => 'الإنجليزية مدعومة بالكامل';
+
+  @override
+  String get languageArabicDesc =>
+      'استخدام اللغة العربية في جميع أنحاء التطبيق';
 }

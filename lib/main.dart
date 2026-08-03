@@ -40,12 +40,13 @@ class EmergencyCashApp extends StatelessWidget {
       builder: (context, child) {
         return BlocProvider(
           create: (_) => getIt<AppCubit>(),
-          child: Builder(
-            builder: (context) {
+          child: BlocBuilder<AppCubit, AppState>(
+            builder: (context, state) {
               return MaterialApp.router(
                 title: 'Emergency Cash',
                 debugShowCheckedModeBanner: false,
                 theme: AppTheme.lightTheme,
+                locale: state.locale != null ? Locale(state.locale!) : null,
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
                 routerConfig: AppRouter.router,

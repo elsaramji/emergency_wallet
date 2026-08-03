@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Cash - Onboarding Language Selection</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .progress-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            margin-top: 10px;
+        }
+        .progress-dot {
+            height: 4px;
+            flex: 1;
+            background-color: var(--color-border);
+            border-radius: 2px;
+            transition: all var(--transition-smooth);
+        }
+        .progress-dot.active {
+            background-color: var(--color-primary);
+        }
+        
+        .illustration-wrapper {
+            font-size: 56px;
+            margin-bottom: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            position: relative;
+        }
+
+        .globe-animation {
+            animation: rotateGlobe 12s linear infinite;
+        }
+
+        @keyframes rotateGlobe {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .radio-card {
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            background: var(--color-surface);
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            position: relative;
+        }
+        
+        .radio-card:hover {
+            border-color: var(--color-primary-light);
+            background-color: rgba(83, 58, 253, 0.02);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .radio-card.selected {
+            border-color: var(--color-primary);
+            background-color: rgba(83, 58, 253, 0.05);
+            box-shadow: 0 4px 15px rgba(83, 58, 253, 0.1);
+        }
+        
+        .radio-indicator {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid var(--color-border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+        
+        .radio-card.selected .radio-indicator {
+            border-color: var(--color-primary);
+            background-color: var(--color-primary);
+        }
+        
+        .radio-card.selected .radio-indicator::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .lang-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            background: var(--color-background);
+            color: var(--color-heading);
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-fast);
+        }
+
+        .radio-card.selected .lang-avatar {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+        
+        .card-content {
+            flex: 1;
+        }
+
+        .card-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--color-heading);
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .card-content p {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* RTL Specifics */
+        .rtl {
+            direction: rtl;
+            text-align: right;
+        }
+        .rtl .radio-card {
+            flex-direction: row-reverse;
+        }
+        .rtl .status-icons {
+            flex-direction: row-reverse;
+        }
+    </style>
+</head>
+<body>
+    <div class="iphone-mockup" id="phone-frame">
+        <div class="glass-bg">
+            <div class="glass-blob blob-1"></div>
+            <div class="glass-blob blob-2"></div>
+        </div>
+        
+        <div class="status-bar">
+            <span id="status-time">9:41</span>
+            <div class="status-icons" style="display: flex; align-items: center; gap: 5px;">
+                <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M11.6667 0H14.5833C15.3888 0 16.0417 0.652876 16.0417 1.45833V8.75C16.0417 9.55546 15.3888 10.2083 14.5833 10.2083H11.6667C10.8612 10.2083 10.2083 9.55546 10.2083 8.75V1.45833C10.2083 0.652876 10.8612 0 11.6667 0Z"/><path d="M5.83333 2.91667H8.75C9.55546 2.91667 10.2083 3.56954 10.2083 4.375V8.75C10.2083 9.55546 9.55546 10.2083 8.75 10.2083H5.83333C5.02788 10.2083 4.375 9.55546 4.375 8.75V4.375C4.375 3.56954 5.02788 2.91667 5.83333 2.91667Z"/><path d="M0 5.83333H2.91667C3.72212 5.83333 4.375 6.48621 4.375 7.29167V8.75C4.375 9.55546 3.72212 10.2083 2.91667 10.2083H0C0 9.40284 0 8.75 0 8.75V5.83333Z"/></svg>
+                <span style="margin-left:2px"></span>
+                <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="21" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M24 4V8C24 8.55228 23.5523 9 23 9H22V3H23C23.5523 3 24 3.44772 24 4Z" fill="currentColor"/><rect x="3" y="3" width="14" height="6" rx="1.5" fill="currentColor"/></svg>
+            </div>
+        </div>
+        
+        <div class="screen-content">
+            <div class="progress-header fade-up">
+                <div class="progress-dot active" style="flex: 1.5; background-color: var(--color-primary);"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+            </div>
+            
+            <div class="fade-up delay-1" id="text-header">
+                <div class="illustration-wrapper">
+                    <span class="globe-animation" style="font-size: 64px;">🌐</span>
+                </div>
+                <h1 class="title-lg" id="ui-title">Choose Language</h1>
+                <p class="subtitle" id="ui-subtitle" style="margin-bottom: 32px;">Select your preferred language to customize your wallet experience.</p>
+            </div>
+            
+            <div class="fade-up delay-2">
+                <!-- English Option -->
+                <div class="radio-card selected" onclick="selectLanguage('en')" id="card-en">
+                    <div class="lang-avatar">A</div>
+                    <div class="card-content">
+                        <h3>English</h3>
+                        <p id="desc-en">Use English throughout the application</p>
+                    </div>
+                    <div class="radio-indicator"></div>
+                </div>
+                
+                <!-- Arabic Option -->
+                <div class="radio-card" onclick="selectLanguage('ar')" id="card-ar">
+                    <div class="lang-avatar">ع</div>
+                    <div class="card-content">
+                        <h3>العربية</h3>
+                        <p id="desc-ar">استخدام اللغة العربية في جميع أنحاء التطبيق</p>
+                    </div>
+                    <div class="radio-indicator"></div>
+                </div>
+            </div>
+            
+            <div style="margin-top: auto; padding-top: 30px; padding-bottom: 10px;" class="fade-up delay-4">
+                <button type="button" class="btn btn-primary" id="btn-continue" onclick="onContinue()">Continue</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentLang = 'en';
+
+        const content = {
+            en: {
+                title: "Choose Language",
+                subtitle: "Select your preferred language to customize your experience.",
+                descEn: "Use English throughout the application",
+                descAr: "Arabic language is supported",
+                btnContinue: "Continue"
+            },
+            ar: {
+                title: "اختر لغتك المفضلة",
+                subtitle: "اختر لغتك المفضلة لتخصيص واجهة واستخدام محفظتك الذكية.",
+                descEn: "الإنجليزية مدعومة بالكامل",
+                descAr: "استخدام اللغة العربية في جميع أنحاء التطبيق",
+                btnContinue: "متابعة"
+            }
+        };
+
+        function selectLanguage(lang) {
+            currentLang = lang;
+            
+            // Remove selection class
+            document.querySelectorAll('.radio-card').forEach(card => card.classList.remove('selected'));
+            
+            // Update UI components
+            const phoneFrame = document.getElementById('phone-frame');
+            const title = document.getElementById('ui-title');
+            const subtitle = document.getElementById('ui-subtitle');
+            const descEn = document.getElementById('desc-en');
+            const descAr = document.getElementById('desc-ar');
+            const btnContinue = document.getElementById('btn-continue');
+            
+            if (lang === 'ar') {
+                document.getElementById('card-ar').classList.add('selected');
+                phoneFrame.classList.add('rtl');
+                
+                title.innerText = content.ar.title;
+                subtitle.innerText = content.ar.subtitle;
+                descEn.innerText = content.ar.descEn;
+                descAr.innerText = content.ar.descAr;
+                btnContinue.innerText = content.ar.btnContinue;
+            } else {
+                document.getElementById('card-en').classList.add('selected');
+                phoneFrame.classList.remove('rtl');
+                
+                title.innerText = content.en.title;
+                subtitle.innerText = content.en.subtitle;
+                descEn.innerText = content.en.descEn;
+                descAr.innerText = content.en.descAr;
+                btnContinue.innerText = content.en.btnContinue;
+            }
+        }
+
+        function onContinue() {
+            localStorage.setItem('selected_locale', currentLang);
+            alert(`Saved preference: ${currentLang === 'ar' ? 'العربية' : 'English'}. Navigating to next step...`);
+        }
+    </script>
+</body>
+</html>

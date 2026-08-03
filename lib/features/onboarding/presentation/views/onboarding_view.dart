@@ -9,6 +9,7 @@ import '../../../../core/router/app_routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/font_aws5_icons.dart';
 import '../widgets/onboarding_slide.dart';
+import '../widgets/onboarding_language_slide.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
@@ -52,18 +53,22 @@ class _OnboardingViewState extends State<OnboardingView> {
             Expanded(
               child: PageView.builder(
                 controller: _pageController,
-                itemCount: slides.length,
+                itemCount: slides.length + 1,
                 onPageChanged: (index) {
                   setState(() {
                     _currentIndex = index;
                   });
                 },
                 itemBuilder: (context, index) {
+                  if (index == 0) {
+                    return const OnboardingLanguageSlide();
+                  }
+                  final slideIndex = index - 1;
                   return OnboardingSlide(
-                    icon: slides[index]['icon'] as IconData,
-                    iconColor: slides[index]['color'] as Color,
-                    title: slides[index]['title'] as String,
-                    description: slides[index]['description'] as String,
+                    icon: slides[slideIndex]['icon'] as IconData,
+                    iconColor: slides[slideIndex]['color'] as Color,
+                    title: slides[slideIndex]['title'] as String,
+                    description: slides[slideIndex]['description'] as String,
                   );
                 },
               ),
@@ -75,7 +80,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(
-                      slides.length,
+                      slides.length + 1,
                       (index) => AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
                         margin: EdgeInsets.symmetric(horizontal: 4.w),
@@ -95,7 +100,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        if (_currentIndex == slides.length - 1) {
+                        if (_currentIndex == slides.length) {
                           context.read<AppCubit>().markOnboardingViewed();
                           context.goNamed(AppRoutes.login);
                         } else {
@@ -106,7 +111,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                         }
                       },
                       child: Text(
-                        _currentIndex == slides.length - 1
+                        _currentIndex == slides.length
                             ? context.local.getStarted
                             : context.local.next,
                       ),

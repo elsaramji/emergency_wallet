@@ -21,7 +21,7 @@ class AppRouter {
   static final GoRouter router = GoRouter(
     initialLocation: AppRoutes.home,
     redirect: (context, state) {
-      final onboardingViewed = getIt<AppCubit>().state;
+      final onboardingViewed = getIt<AppCubit>().state.onboardingViewed;
       if (!onboardingViewed) {
         if (state.matchedLocation != AppRoutes.onboarding) {
           return AppRoutes.onboarding;

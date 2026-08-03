@@ -985,6 +985,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'operations'**
   String get historyOperations;
+
+  /// No description provided for @languageSelectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your language'**
+  String get languageSelectionTitle;
+
+  /// No description provided for @languageSelectionSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your preferred language to customize your experience.'**
+  String get languageSelectionSubtitle;
+
+  /// No description provided for @languageEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get languageEnglish;
+
+  /// No description provided for @languageArabic.
+  ///
+  /// In en, this message translates to:
+  /// **'العربية'**
+  String get languageArabic;
+
+  /// No description provided for @languageEnglishDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use English throughout the application'**
+  String get languageEnglishDesc;
+
+  /// No description provided for @languageArabicDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic language is supported'**
+  String get languageArabicDesc;
 }
 
 class _AppLocalizationsDelegate

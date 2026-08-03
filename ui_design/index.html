@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emergency Wallet – Choose Language</title>
+  <style>
+    :root {
+      --primary-color: #533afd; /* brand purple */
+      --navy: #061b31; /* deep navy */
+      --gradient-start: #061b31;
+      --gradient-end: #533afd;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      text-align: center;
+      background: rgba(255,255,255,0.08);
+      padding: 3rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+      backdrop-filter: blur(8px);
+    }
+    h1 {
+      margin-bottom: 2rem;
+      font-weight: 300;
+      font-size: 2.5rem;
+    }
+    .lang-btn {
+      background: var(--primary-color);
+      border: none;
+      color: #fff;
+      padding: 0.8rem 2rem;
+      margin: 0.5rem;
+      border-radius: 0.75rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .lang-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Emergency Wallet</h1>
+    <button class="lang-btn" id="btn-en">Start now</button>
+    <button class="lang-btn" id="btn-ar">ابداء الان</button>
+  </div>
+  <script>
+    const setLocale = (locale) => {
+      localStorage.setItem('locale', locale);
+      const msg = locale === 'ar' ? 'تم اختيار اللغة العربية' : 'English language selected';
+      alert(msg);
+    };
+    document.getElementById('btn-en').addEventListener('click', () => setLocale('en'));
+    document.getElementById('btn-ar').addEventListener('click', () => setLocale('ar'));
+  </script>
+</body>
+</html>
