@@ -147,5 +147,11 @@
   "search": "Search...",
   "historyNoActivity": "No activity",
   "historyUpcoming": "Upcoming",
-  "historyOperations": "operations"
+  "historyOperations": "operations",
+  "languageSelectionTitle": "Choose your language",
+  "languageSelectionSubtitle": "Select your preferred language to customize your experience.",
+  "languageEnglish": "English",
+  "languageArabic": "العربية",
+  "languageEnglishDesc": "Use English throughout the application",
+  "languageArabicDesc": "Arabic language is supported"
 }

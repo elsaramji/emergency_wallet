@@ -147,5 +147,11 @@
   "search": "بحث...",
   "historyNoActivity": "لا يوجد نشاط",
   "historyUpcoming": "قادم",
-  "historyOperations": "عملية"
+  "historyOperations": "عملية",
+  "languageSelectionTitle": "اختر لغتك المفضلة",
+  "languageSelectionSubtitle": "اختر لغتك المفضلة لتخصيص واجهة واستخدام محفظتك الذكية.",
+  "languageEnglish": "English",
+  "languageArabic": "العربية",
+  "languageEnglishDesc": "الإنجليزية مدعومة بالكامل",
+  "languageArabicDesc": "استخدام اللغة العربية في جميع أنحاء التطبيق"
 }

@@ -466,4 +466,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get historyOperations => 'operations';
+
+  @override
+  String get languageSelectionTitle => 'Choose your language';
+
+  @override
+  String get languageSelectionSubtitle =>
+      'Select your preferred language to customize your experience.';
+
+  @override
+  String get languageEnglish => 'English';
+
+  @override
+  String get languageArabic => 'العربية';
+
+  @override
+  String get languageEnglishDesc => 'Use English throughout the application';
+
+  @override
+  String get languageArabicDesc => 'Arabic language is supported';
 }
