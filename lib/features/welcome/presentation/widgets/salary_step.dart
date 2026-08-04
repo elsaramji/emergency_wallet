@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/utils/font_aws5_icons.dart';
 import '../states/welcome_cubit.dart';
 import '../states/welcome_state.dart';
 
@@ -20,6 +19,7 @@ class SalaryStep extends StatelessWidget {
               context.local.welcomeTitleSalary,
               style: context.textTheme.displaySmall?.copyWith(
                 fontSize: 24.sp,
+                fontWeight: FontWeight.w300,
               ),
               textAlign: TextAlign.start,
             ),
@@ -99,17 +99,32 @@ class _SalaryOption extends StatelessWidget {
     final theme = context.theme;
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(16.r),
+      borderRadius: BorderRadius.circular(20.r),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
         decoration: BoxDecoration(
           border: Border.all(
-            color: isSelected ? theme.primaryColor : theme.dividerColor,
-            width: isSelected ? 2.w : 1.w,
+            color: isSelected ? theme.primaryColor : theme.dividerColor.withOpacity(0.08),
+            width: isSelected ? 2.w : 1.5.w,
           ),
-          borderRadius: BorderRadius.circular(16.r),
-          color: isSelected ? theme.primaryColor.withOpacity(0.08) : Colors.transparent,
+          borderRadius: BorderRadius.circular(20.r),
+          color: isSelected ? theme.primaryColor.withOpacity(0.04) : Colors.transparent,
+          boxShadow: [
+            if (isSelected)
+              BoxShadow(
+                color: theme.primaryColor.withOpacity(0.08),
+                blurRadius: 16.r,
+                spreadRadius: 1.r,
+                offset: const Offset(0, 4),
+              )
+            else
+              BoxShadow(
+                color: Colors.black.withOpacity(0.01),
+                blurRadius: 10.r,
+                offset: const Offset(0, 4),
+              ),
+          ],
         ),
         child: Row(
           children: [
@@ -119,13 +134,35 @@ class _SalaryOption extends StatelessWidget {
                 style: context.textTheme.labelLarge?.copyWith(
                   color: isSelected ? theme.primaryColor : context.colorScheme.onSurface,
                   fontSize: 16.sp,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                 ),
               ),
             ),
-            Icon(
-              isSelected ? AwsIcons.check_circle : AwsIcons.circle,
-              color: isSelected ? theme.primaryColor : theme.dividerColor,
-              size: 24.sp,
+            SizedBox(width: 12.w),
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              width: 24.w,
+              height: 24.h,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: isSelected ? theme.primaryColor : theme.dividerColor.withOpacity(0.3),
+                  width: 2.w,
+                ),
+                color: isSelected ? theme.primaryColor : Colors.transparent,
+              ),
+              child: isSelected
+                  ? Center(
+                      child: Container(
+                        width: 10.w,
+                        height: 10.h,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  : null,
             ),
           ],
         ),

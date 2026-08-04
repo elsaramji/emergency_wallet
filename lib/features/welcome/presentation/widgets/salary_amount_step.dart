@@ -13,7 +13,9 @@ class SalaryAmountStep extends StatefulWidget {
 }
 
 class _SalaryAmountStepState extends State<SalaryAmountStep> {
-  late TextEditingController _controller;
+  late final TextEditingController _controller;
+  late final FocusNode _focusNode;
+  bool _isFocused = false;
 
   @override
   void initState() {
@@ -21,16 +23,27 @@ class _SalaryAmountStepState extends State<SalaryAmountStep> {
     final cubit = context.read<WelcomeCubit>();
     final initialValue = cubit.state.salaryAmount?.toString() ?? '';
     _controller = TextEditingController(text: initialValue);
+    _focusNode = FocusNode();
+    _focusNode.addListener(_onFocusChange);
+  }
+
+  void _onFocusChange() {
+    setState(() {
+      _isFocused = _focusNode.hasFocus;
+    });
   }
 
   @override
   void dispose() {
+    _focusNode.removeListener(_onFocusChange);
+    _focusNode.dispose();
     _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme;
     return BlocBuilder<WelcomeCubit, WelcomeState>(
       builder: (context, state) {
         return Column(
@@ -40,6 +53,7 @@ class _SalaryAmountStepState extends State<SalaryAmountStep> {
               context.local.welcomeTitleSalaryAmount,
               style: context.textTheme.displaySmall?.copyWith(
                 fontSize: 24.sp,
+                fontWeight: FontWeight.w300,
               ),
               textAlign: TextAlign.start,
             ),
@@ -53,57 +67,89 @@ class _SalaryAmountStepState extends State<SalaryAmountStep> {
               textAlign: TextAlign.start,
             ),
             SizedBox(height: 40.h),
-            Container(
-              decoration: BoxDecoration(
-                color: context.theme.primaryColor.withOpacity(0.05),
-                borderRadius: BorderRadius.circular(20.r),
-                border: Border.all(
-                  color: context.theme.primaryColor.withOpacity(0.1),
-                  width: 1.w,
-                ),
-              ),
-              padding: EdgeInsets.all(24.r),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    context.local.salaryAmountLabel,
-                    style: context.textTheme.labelMedium?.copyWith(
-                      color: context.theme.primaryColor,
-                      fontWeight: FontWeight.w600,
-                    ),
+            GestureDetector(
+              onTap: () => _focusNode.requestFocus(),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeInOut,
+                decoration: BoxDecoration(
+                  color: theme.primaryColor.withOpacity(0.04),
+                  borderRadius: BorderRadius.circular(20.r),
+                  border: Border.all(
+                    color: _isFocused
+                        ? theme.primaryColor
+                        : theme.primaryColor.withOpacity(0.12),
+                    width: _isFocused ? 2.w : 1.5.w,
                   ),
-                  SizedBox(height: 12.h),
-                  TextField(
-                    controller: _controller,
-                    keyboardType: TextInputType.number,
-                    style: context.textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 32.sp,
-                      color: context.colorScheme.onSurface,
-                    ),
-                    decoration: InputDecoration(
-                      hintText: context.local.salaryAmountHint,
-                      border: InputBorder.none,
-                      suffixText: context.local.currencyEGP,
-                      suffixStyle: context.textTheme.titleMedium?.copyWith(
-                        color: context.theme.hintColor,
-                        fontWeight: FontWeight.w500,
+                  boxShadow: [
+                    if (_isFocused)
+                      BoxShadow(
+                        color: theme.primaryColor.withOpacity(0.12),
+                        blurRadius: 16.r,
+                        spreadRadius: 1.r,
+                        offset: const Offset(0, 4),
+                      )
+                    else
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.01),
+                        blurRadius: 10.r,
+                        offset: const Offset(0, 4),
                       ),
-                      hintStyle: context.textTheme.headlineMedium?.copyWith(
-                        color: context.theme.hintColor.withOpacity(0.3),
+                  ],
+                ),
+                padding: EdgeInsets.all(24.r),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      context.local.salaryAmountLabel,
+                      style: context.textTheme.labelMedium?.copyWith(
+                        color: theme.primaryColor,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(height: 12.h),
+                    TextField(
+                      focusNode: _focusNode,
+                      controller: _controller,
+                      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                      style: context.textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 32.sp,
+                        color: context.colorScheme.onSurface,
                       ),
+                      decoration: InputDecoration(
+                        hintText: context.local.salaryAmountHint,
+                        filled: false,
+                        border: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        focusedErrorBorder: InputBorder.none,
+                        isDense: true,
+                        contentPadding: EdgeInsets.symmetric(vertical: 4.h),
+                        suffixText: context.local.currencyEGP,
+                        suffixStyle: context.textTheme.titleMedium?.copyWith(
+                          color: context.theme.hintColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        hintStyle: context.textTheme.headlineMedium?.copyWith(
+                          color: context.theme.hintColor.withOpacity(0.3),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 32.sp,
+                        ),
+                      ),
+                      onChanged: (value) {
+                        final amount = double.tryParse(value);
+                        if (amount != null) {
+                          context.read<WelcomeCubit>().setSalaryAmount(amount);
+                        } else if (value.isEmpty) {
+                          context.read<WelcomeCubit>().setSalaryAmount(0);
+                        }
+                      },
                     ),
-                    onChanged: (value) {
-                      final amount = double.tryParse(value);
-                      if (amount != null) {
-                        context.read<WelcomeCubit>().setSalaryAmount(amount);
-                      }
-                    },
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             const Spacer(),

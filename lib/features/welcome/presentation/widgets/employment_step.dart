@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/utils/font_aws5_icons.dart';
 import '../states/welcome_cubit.dart';
 import '../states/welcome_state.dart';
 
@@ -20,6 +19,7 @@ class EmploymentStep extends StatelessWidget {
               context.local.welcomeTitleEmployment,
               style: context.textTheme.displaySmall?.copyWith(
                 fontSize: 24.sp,
+                fontWeight: FontWeight.w300,
               ),
               textAlign: TextAlign.start,
             ),
@@ -36,7 +36,7 @@ class EmploymentStep extends StatelessWidget {
             _EmploymentOption(
               title: context.local.employmentEmployee,
               description: context.local.employmentEmployeeDesc,
-              icon: AwsIcons.briefcase,
+              icon: '💼',
               isSelected: state.employmentType == EmploymentType.employee,
               onTap: () => context.read<WelcomeCubit>().selectEmploymentType(EmploymentType.employee),
             ),
@@ -44,7 +44,7 @@ class EmploymentStep extends StatelessWidget {
             _EmploymentOption(
               title: context.local.employmentFreelancer,
               description: context.local.employmentFreelancerDesc,
-              icon: AwsIcons.laptop,
+              icon: '💻',
               isSelected: state.employmentType == EmploymentType.freelancer,
               onTap: () => context.read<WelcomeCubit>().selectEmploymentType(EmploymentType.freelancer),
             ),
@@ -52,7 +52,7 @@ class EmploymentStep extends StatelessWidget {
             _EmploymentOption(
               title: context.local.employmentStudent,
               description: context.local.employmentStudentDesc,
-              icon: AwsIcons.graduation_cap,
+              icon: '🎓',
               isSelected: state.employmentType == EmploymentType.student,
               onTap: () => context.read<WelcomeCubit>().selectEmploymentType(EmploymentType.student),
             ),
@@ -79,7 +79,7 @@ class EmploymentStep extends StatelessWidget {
 class _EmploymentOption extends StatelessWidget {
   final String title;
   final String description;
-  final IconData icon;
+  final String icon;
   final bool isSelected;
   final VoidCallback onTap;
 
@@ -96,24 +96,50 @@ class _EmploymentOption extends StatelessWidget {
     final theme = context.theme;
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(16.r),
+      borderRadius: BorderRadius.circular(20.r),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: EdgeInsets.all(20.r),
         decoration: BoxDecoration(
           border: Border.all(
-            color: isSelected ? theme.primaryColor : theme.dividerColor,
-            width: isSelected ? 2.w : 1.w,
+            color: isSelected ? theme.primaryColor : theme.dividerColor.withOpacity(0.08),
+            width: isSelected ? 2.w : 1.5.w,
           ),
-          borderRadius: BorderRadius.circular(16.r),
-          color: isSelected ? theme.primaryColor.withOpacity(0.08) : Colors.transparent,
+          borderRadius: BorderRadius.circular(20.r),
+          color: isSelected ? theme.primaryColor.withOpacity(0.04) : Colors.transparent,
+          boxShadow: [
+            if (isSelected)
+              BoxShadow(
+                color: theme.primaryColor.withOpacity(0.08),
+                blurRadius: 16.r,
+                spreadRadius: 1.r,
+                offset: const Offset(0, 4),
+              )
+            else
+              BoxShadow(
+                color: Colors.black.withOpacity(0.01),
+                blurRadius: 10.r,
+                offset: const Offset(0, 4),
+              ),
+          ],
         ),
         child: Row(
           children: [
-            Icon(
-              icon,
-              color: isSelected ? theme.primaryColor : theme.hintColor,
-              size: 24.sp,
+            Container(
+              width: 48.w,
+              height: 48.h,
+              decoration: BoxDecoration(
+                color: isSelected
+                    ? theme.primaryColor.withOpacity(0.1)
+                    : theme.dividerColor.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              child: Center(
+                child: Text(
+                  icon,
+                  style: TextStyle(fontSize: 24.sp),
+                ),
+              ),
             ),
             SizedBox(width: 16.w),
             Expanded(
@@ -125,6 +151,7 @@ class _EmploymentOption extends StatelessWidget {
                     style: context.textTheme.labelLarge?.copyWith(
                       color: isSelected ? theme.primaryColor : context.colorScheme.onSurface,
                       fontSize: 16.sp,
+                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                     ),
                   ),
                   SizedBox(height: 4.h),
@@ -138,12 +165,32 @@ class _EmploymentOption extends StatelessWidget {
                 ],
               ),
             ),
-            if (isSelected)
-              Icon(
-                AwsIcons.check_circle,
-                color: theme.primaryColor,
-                size: 20.sp,
+            SizedBox(width: 12.w),
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              width: 24.w,
+              height: 24.h,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: isSelected ? theme.primaryColor : theme.dividerColor.withOpacity(0.3),
+                  width: 2.w,
+                ),
+                color: isSelected ? theme.primaryColor : Colors.transparent,
               ),
+              child: isSelected
+                  ? Center(
+                      child: Container(
+                        width: 10.w,
+                        height: 10.h,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  : null,
+            ),
           ],
         ),
       ),
