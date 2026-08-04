@@ -24,6 +24,10 @@ class WelcomeCubit extends Cubit<WelcomeState> {
     emit(state.copyWith(salaryAmount: amount));
   }
 
+  void setSavingsPercentage(double percentage) {
+    emit(state.copyWith(savingsPercentage: percentage));
+  }
+
   void setCashBalance(double balance) {
     emit(state.copyWith(cashBalance: balance));
   }
