@@ -10,6 +10,7 @@ class WelcomeState {
   final double? cashBalance;
   final double? visaBalance;
   final double? smartWalletBalance;
+  final double savingsPercentage;
 
   final bool isCompleted;
 
@@ -22,6 +23,7 @@ class WelcomeState {
     this.cashBalance,
     this.visaBalance,
     this.smartWalletBalance,
+    this.savingsPercentage = 20.0,
     this.isCompleted = false,
   });
 
@@ -34,6 +36,7 @@ class WelcomeState {
     double? cashBalance,
     double? visaBalance,
     double? smartWalletBalance,
+    double? savingsPercentage,
     bool? isCompleted,
   }) {
     return WelcomeState(
@@ -45,6 +48,7 @@ class WelcomeState {
       cashBalance: cashBalance ?? this.cashBalance,
       visaBalance: visaBalance ?? this.visaBalance,
       smartWalletBalance: smartWalletBalance ?? this.smartWalletBalance,
+      savingsPercentage: savingsPercentage ?? this.savingsPercentage,
       isCompleted: isCompleted ?? this.isCompleted,
     );
   }

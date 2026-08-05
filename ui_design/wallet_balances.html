@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Cash - Wallet Balances Mockup</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .progress-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            margin-top: 10px;
+        }
+        .progress-dot {
+            height: 4px;
+            flex: 1;
+            background-color: var(--color-border);
+            border-radius: 2px;
+            transition: all var(--transition-smooth);
+        }
+        .progress-dot.active {
+            background-color: var(--color-primary);
+        }
+
+        /* Redesigned Balance Card */
+        .balance-card {
+            background: var(--color-surface);
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .balance-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+            border-color: var(--color-border);
+        }
+
+        /* Left-side Icon Container */
+        .icon-container {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            transition: all var(--transition-smooth);
+            font-size: 28px;
+        }
+
+        /* Specific Tints for each Wallet Type */
+        .card-cash .icon-container {
+            background-color: rgba(0, 196, 140, 0.08);
+            color: var(--color-success);
+        }
+        .card-visa .icon-container {
+            background-color: rgba(10, 110, 255, 0.08);
+            color: #0a6eff;
+        }
+        .card-smart .icon-container {
+            background-color: rgba(155, 92, 255, 0.08);
+            color: #9b5cff;
+        }
+
+        /* Interactive Focus Styling */
+        .balance-card.focused {
+            transform: translateY(-3px);
+        }
+        .card-cash.focused {
+            border-color: var(--color-success);
+            box-shadow: 0 10px 25px -5px rgba(0, 196, 140, 0.15), 0 8px 10px -6px rgba(0, 196, 140, 0.1);
+        }
+        .card-visa.focused {
+            border-color: #0a6eff;
+            box-shadow: 0 10px 25px -5px rgba(10, 110, 255, 0.15), 0 8px 10px -6px rgba(10, 110, 255, 0.1);
+        }
+        .card-smart.focused {
+            border-color: #9b5cff;
+            box-shadow: 0 10px 25px -5px rgba(155, 92, 255, 0.15), 0 8px 10px -6px rgba(155, 92, 255, 0.1);
+        }
+
+        /* Content layout inside the card */
+        .card-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .card-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: baseline;
+            position: relative;
+        }
+
+        .balance-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-family: 'Outfit', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--color-heading);
+            padding: 0;
+            margin: 0;
+        }
+
+        .balance-input::-webkit-outer-spin-button,
+        .balance-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .balance-input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .balance-input::placeholder {
+            color: var(--color-text-muted);
+            opacity: 0.4;
+        }
+
+        .currency-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            margin-left: 8px;
+            user-select: none;
+        }
+
+        /* Bounce animation on hover */
+        .balance-card:hover .icon-container {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="iphone-mockup">
+        <!-- Background glass elements -->
+        <div class="glass-bg">
+            <div class="glass-blob blob-1"></div>
+            <div class="glass-blob blob-2" style="background: rgba(10, 110, 255, 0.1);"></div>
+        </div>
+        
+        <div class="status-bar">
+            <span>9:41</span>
+            <div class="status-icons">
+                <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M11.6667 0H14.5833C15.3888 0 16.0417 0.652876 16.0417 1.45833V8.75C16.0417 9.55546 15.3888 10.2083 14.5833 10.2083H11.6667C10.8612 10.2083 10.2083 9.55546 10.2083 8.75V1.45833C10.2083 0.652876 10.8612 0 11.6667 0Z"/><path d="M5.83333 2.91667H8.75C9.55546 2.91667 10.2083 3.56954 10.2083 4.375V8.75C10.2083 9.55546 9.55546 10.2083 8.75 10.2083H5.83333C5.02788 10.2083 4.375 9.55546 4.375 8.75V4.375C4.375 3.56954 5.02788 2.91667 5.83333 2.91667Z"/><path d="M0 5.83333H2.91667C3.72212 5.83333 4.375 6.48621 4.375 7.29167V8.75C4.375 9.55546 3.72212 10.2083 2.91667 10.2083H0C0 9.40284 0 8.75 0 8.75V5.83333Z"/></svg>
+                <span style="margin-left:5px"></span>
+                <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="21" height="10" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M24 4V8C24 8.55228 23.5523 9 23 9H22V3H23C23.5523 3 24 3.44772 24 4Z" fill="currentColor"/><rect x="3" y="3" width="14" height="6" rx="1.5" fill="currentColor"/></svg>
+            </div>
+        </div>
+        
+        <div class="screen-content">
+            <div class="progress-header fade-up">
+                <div class="progress-dot active"></div>
+                <div class="progress-dot active"></div>
+                <div class="progress-dot active"></div>
+                <div class="progress-dot"></div>
+            </div>
+            
+            <div class="fade-up delay-1">
+                <h1 class="title-lg" style="font-weight: 300;">Starting Balances</h1>
+                <p class="subtitle" style="margin-bottom: 32px;">Enter your current balances to start tracking your finances accurately.</p>
+            </div>
+            
+            <div class="fade-up delay-2" style="flex: 1;">
+                <!-- Cash Balance Input Card -->
+                <div class="balance-card card-cash" onclick="focusInput('cash-input')">
+                    <div class="icon-container">💵</div>
+                    <div class="card-info">
+                        <span class="card-label">Cash Balance</span>
+                        <div class="input-wrapper">
+                            <input type="number" id="cash-input" class="balance-input" placeholder="0.00" onfocus="handleFocus(this)" onblur="handleBlur(this)">
+                            <span class="currency-label">EGP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visa Balance Input Card -->
+                <div class="balance-card card-visa" onclick="focusInput('visa-input')">
+                    <div class="icon-container">💳</div>
+                    <div class="card-info">
+                        <span class="card-label">Visa Balance</span>
+                        <div class="input-wrapper">
+                            <input type="number" id="visa-input" class="balance-input" placeholder="0.00" onfocus="handleFocus(this)" onblur="handleBlur(this)">
+                            <span class="currency-label">EGP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart Wallet Balance Input Card -->
+                <div class="balance-card card-smart" onclick="focusInput('smart-input')">
+                    <div class="icon-container">📱</div>
+                    <div class="card-info">
+                        <span class="card-label">Smart Wallet</span>
+                        <div class="input-wrapper">
+                            <input type="number" id="smart-input" class="balance-input" placeholder="0.00" onfocus="handleFocus(this)" onblur="handleBlur(this)">
+                            <span class="currency-label">EGP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: auto; padding-top: 30px; padding-bottom: 10px;" class="fade-up delay-4">
+                <button type="button" class="btn btn-primary">Start Tracking</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function focusInput(inputId) {
+            document.getElementById(inputId).focus();
+        }
+
+        function handleFocus(inputElement) {
+            // Find parent card and add focused class
+            const card = inputElement.closest('.balance-card');
+            if (card) {
+                card.classList.add('focused');
+            }
+        }
+
+        function handleBlur(inputElement) {
+            // Find parent card and remove focused class
+            const card = inputElement.closest('.balance-card');
+            if (card) {
+                card.classList.remove('focused');
+            }
+        }
+    </script>
+</body>
+</html>

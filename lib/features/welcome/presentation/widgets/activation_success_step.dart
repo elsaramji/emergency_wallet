@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/extensions/context_extensions.dart';
-import '../../../../core/utils/font_aws5_icons.dart';
 import '../states/welcome_cubit.dart';
 
 class ActivationSuccessStep extends StatefulWidget {
@@ -71,10 +70,11 @@ class _ActivationSuccessStepState extends State<ActivationSuccessStep>
                 ),
               ],
             ),
-            child: Icon(
-              AwsIcons.check,
-              color: Colors.white,
-              size: 50.sp,
+            child: Center(
+              child: Text(
+                '🎉',
+                style: TextStyle(fontSize: 50.sp),
+              ),
             ),
           ),
         ),
