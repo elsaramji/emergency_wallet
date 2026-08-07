@@ -1,256 +1,160 @@
-# **📄Emergency Cash (PRD)**
+# Product Requirements Document: Emergency Cash
 
-## **Emergency Cash — MVP v1.0**
-
-**Document Version:** 1.0 **Status:** Draft **Prepared by:** Saramji — Junior Product Owner  
----
-
-## **1\. Product Overview**
-
-### **1.1 Brief Description**
-
-**Emergency Cash** is a personal finance mobile application designed to help users track their money across multiple wallet types (Cash, Visa, Smart Wallet), and automatically enforce an **emergency savings rule** to ensure financial resilience during unexpected life events.  
-The app is **not** a bank. It is a **smart money awareness tool** with a built-in behavioral savings mechanism.
-
-### **1.2 Target Users**
-
-| Segment | Description |
-| ----- | ----- |
-| **Primary** | Salaried employees (stable monthly income) aged 22–45 |
-| **Secondary** | Freelancers or irregular-income users (limited feature access) |
-| **Geography** | MENA region — Egypt focus for MVP |
-
-### **1.3 Core Problem Being Solved**
-
-**"Most people don't fail to earn money — they fail to protect it when it matters most."**  
-Users currently have **no single place** to:
-
-* See their total liquid money across all wallet types  
-* Enforce a savings habit automatically  
-* Access emergency funds with clear, rule-based logic
-
-Existing apps (like Mint or MoneyFellows) either lack multi-wallet tracking, don't have an emergency layer, or are too complex for daily use.  
----
-
-## **2\. Goals & Objectives**
-
-### **2.1 Business Goals**
-
-* Achieve **1,000 active users** within 60 days post-launch (MVP validation metric)  
-* Validate that users **consistently log transactions** (retention \> 3 sessions/week)  
-* Confirm that the **Emergency Wallet feature** is the primary reason users stay (via in-app survey)
-
-### **2.2 User Goals**
-
-* Know **exactly how much money they have** across all wallets at any moment  
-* Have a **"do not touch" emergency fund** that builds automatically  
-* Understand **where their money is going** through categorized spending
-
-### **2.3 MVP Success Criteria**
-
-| Metric | Target |
-| ----- | ----- |
-| Daily Active Log Rate | ≥ 60% of registered users log at least 1 transaction/day |
-| Emergency Wallet Activation | ≥ 70% of salaried users activate emergency wallet |
-| 30-Day Retention | ≥ 40% |
-| Emergency Cashout Usage | At least 1 real cashout event logged within 30 days |
+**Product Name:** Emergency Cash  
+**Status:** Active MVP (Phase 1.0 Completed)  
+**Version:** 1.1  
+**Target Platform:** Mobile-First (iOS & Android)  
 
 ---
 
-## **3\. Core Features (MVP Only)**
+## 1. Product Overview
+
+### 1.1 Brief Description
+**Emergency Cash** is a personal finance companion app designed to build financial resilience. It lets users track cash flow across three common wallet types (Cash, Visa, and Smart Wallets) and automatically enforces an **automated savings rule** on stable salary income. The app does not handle real custody of funds. Instead, it serves as a smart financial guardrail and tracking tool, keeping emergency savings isolated and locked behind logical barriers to prevent impulse spending.
+
+### 1.2 Target Audience
+* **Primary (Salaried Employees):** Stable monthly income earners who struggle to build a consistent savings buffer. They require an automated, hands-off mechanism to secure their savings before they spend it.
+* **Secondary (Freelancers & Gig Workers):** Irregular income earners who need a multi-wallet tracking system to view their total liquidity, even if the automatic saving rules are locked or configured differently.
+
+### 1.3 Core Philosophy & Design Principles
+1. **Friction by Design:** Impulse buying thrives on convenience. By placing the emergency fund behind verification checks (restricting access unless other active balances are depleted), we introduce deliberate friction that shields users from their own spending habits.
+2. **Untouchable Status:** The Emergency Wallet balance is excluded from all "Total Balance" summaries on the dashboard to build a mental model that this money is not part of disposable income.
+3. **Simplicity Over Complexity:** Focus on high-frequency manual logs rather than heavy automated bank sync integrations. The tracking must feel as fast and simple as a notebook.
 
 ---
 
-### **Feature 1: User Registration & Financial Profile Setup**
+## 2. Onboarding & Dynamic Profile Setup
 
-**Description:** During onboarding, the system introduces the app's core value propositions through slides and then collects the minimum required data to configure the user's financial behavior — specifically whether they have a **stable salary**, which determines Emergency Wallet eligibility.
-**Onboarding Slides:**
-* **Slide 1: Track Your Money** - View all your Cash, Visa, and Smart Wallet balances in one place.
-* **Slide 2: Emergency Auto-Save** - Automatically save 20% of your salary to an Emergency Wallet when you get paid.
-* **Slide 3: Financial Resilience** - Build a strong financial safety net for unexpected life events.
-**User Stories:**
+### 2.1 First-Launch Language Selection
+To cater to the regional focus (primarily Egypt and the MENA region), the first screen a user sees on cold launch is a **Language Selection Slide** offering:
+* **English (LTR)**
+* **Arabic (RTL)**
 
-* *As a new user, I want to register quickly with minimal steps, so that I can start using the app without friction.*  
-* *As a new user, I want to declare whether I have a stable monthly salary, so that the app can decide if I qualify for the Emergency Wallet feature.*  
-* *As a salaried user, I want to input my monthly salary amount, so that the system can automatically calculate my emergency savings target (20%).*
-* *As a user, I want to input my current balances in my different wallets (Cash, Visa, Smart Wallet) during setup, so that my total balance is accurate from day one.*
+This choice dynamically updates the interface layout and typography before onboarding slide presentation.
 
-**Acceptance Criteria:**
+### 2.2 Onboarding Slide Deck
+Following language selection, a swipeable three-slide onboarding flow outlines the key pillars of the application:
+1. **Track Your Money:** View all Cash, Visa, and Smart Wallet balances in a single unified place.
+2. **Emergency Auto-Save:** Automatically save a customizable percentage of your stable salary directly to a locked Emergency Wallet.
+3. **Financial Resilience:** Build a dedicated, secure financial buffer for unexpected life events.
 
-* Registration requires: Name, Email , Password , Google Social Authentication, Forgot Password flow
-* Onboarding step asks: "What is your primary employment status?" (Employee, Freelancer, Student)
-* Onboarding step asks: "Do you have a stable monthly salary? Yes / No"
-* If YES → Ask for Monthly Salary Amount → Emergency Wallet activation screen (Activate Now / Maybe Later)
-* If NO → Emergency Wallet is disabled with explanation
-* Final Onboarding Step (All Users): "Set up your starting balances" (Cash, Visa, Smart Wallet)
+Once viewed, this state is saved locally via `AppCubit` so returning users bypass this flow directly to login.
 
----
+### 2.3 Interactive Welcome survey (Stepper)
+Upon successful registration, the user is guided through an interactive setup stepper to configure their financial profile. The stepper adapts dynamically:
 
-### **Feature 2: Multi-Wallet Balance Management**
+```
+[Start Setup] -> Choose Employment Status
+                         |
+             Do you have a stable monthly salary?
+              /                             \
+          [Yes]                             [No]
+           /                                   \
+1. Input Salary Amount                   1. Read info about disabled auto-save
+2. Configure Savings Rate                2. Proceed directly to starting balances
+   (Select or set custom percentage)     3. Complete setup
+3. Opt-in/Activate Emergency Wallet
+4. Success Activation
+5. Set Starting Balances
+```
 
-**Description:** Users can manually set and update their current balance across three wallet types: **Cash**, **Visa (Bank Card)**, and **Smart Wallet (Mobile Wallet e.g. Vodafone Cash, Fawry)**. This gives a unified view of total liquidity.  
-**User Stories:**
+#### Salaried Path (6 steps)
+1. **Employment Type:** Choose primary occupation (Employee, Freelancer, Student).
+2. **Stable Salary:** Select "Yes, I do" (declaring stable monthly income).
+3. **Salary Input:** Input monthly salary in EGP.
+4. **Savings Configuration & Activation:** Choose the emergency savings rate. The user can select from predefined values (10%, 15%, 20% [Default/Recommended], 25%) or enter a custom saving value (e.g., 5% to 50%). Details opt-in and auto-deduction behavior.
+5. **Success Activation:** Visual lock screen confirmation ("Emergency Wallet Ready").
+6. **Starting Balances:** Enters initial balances for Cash, Visa, and Smart Wallet.
 
-* *As a user, I want to see my total available money across all wallets in one screen, so that I know my real financial position at a glance.*  
-* *As a user, I want to set an initial balance for each wallet type during setup, so that the app reflects my actual current state.*  
-* *As a user, I want to see my Emergency Wallet balance separately, so that I'm always aware of how much protected savings I have.*
-
-**Acceptance Criteria:**
-
-* 4 wallet cards displayed: Cash / Visa / Smart Wallet / Emergency Wallet  
-* Each wallet shows current balance  
-* Total balance \= Cash \+ Visa \+ Smart Wallet (Emergency Wallet excluded from total by design)  
-* Emergency Wallet balance is read-only (cannot be manually edited)
-
----
-
-### **Feature 3: Cash-In (Income Logging)**
-
-**Description:** Users log any incoming money by specifying the destination wallet. The system auto-captures timestamp and location metadata. Notes are optional.  
-**User Stories:**
-
-* *As a user, I want to log any money I receive and assign it to the correct wallet, so that my balances stay accurate.*  
-* *As a user, I want the system to automatically record when and where I logged a transaction, so that I have context without extra effort.*  
-* *As a user, I want to optionally add a note to a cash-in entry, so that I can remember the source of the income later.*
-
-**Acceptance Criteria:**
-
-* Required fields: Amount \+ Wallet (Cash / Visa / Smart Wallet)  
-* Auto-captured: Timestamp, GPS Location (with permission)  
-* Optional field: Notes (free text, max 100 chars)  
-* Selected wallet balance updates immediately after logging  
-* **If wallet \= Cash AND user has stable salary AND it's salary day logic → trigger Emergency Wallet auto-deduction of 20%** *(see Feature 5\)*
+#### Non-Salaried Path (4 steps)
+1. **Employment Type:** Choose primary occupation (Freelancer or Student).
+2. **Stable Salary:** Select "No, my income varies".
+3. **Activation Feedback:** Educational step detailing why the automated savings engine is disabled, along with guidance that they can manually toggle this later in their profile settings.
+4. **Starting Balances:** Enters starting balances for Cash, Visa, and Smart Wallet.
 
 ---
 
-### **Feature 4: Cash-Out (Expense Logging)**
+## 3. Core Features
 
-**Description:** Users log any outgoing money by specifying the source wallet and selecting a spending category. Emergency Wallet cashout follows a separate, restricted flow.  
-**User Stories:**
+### 3.1 User Authentication & Security
+To protect user financial data, authentication is mandatory before accessing dashboard functions:
+* **Registration & Credentials:** Users can register using full name, email, and password. Validation enforces secure password constraints (at least 6 characters) and email formatting.
+* **Social Authentication:** Integrates Google Social Authentication for quick, low-friction access.
+* **Forgot Password Flow:** A self-service recovery page where users enter their registered email to receive a password reset link.
+* **Session Persistence:** Authenticated sessions are securely persisted. Users are not prompted to log in on subsequent launches unless they explicitly log out.
 
-* *As a user, I want to log an expense and assign it to a spending category, so that I can track where my money goes.*  
-* *As a user, I want to select which wallet the money is coming from, so that my individual wallet balances stay accurate.*  
-* *As a user, I want to optionally add a note to an expense, so that I can remember what the spending was for.*  
-* *As a user trying to use my Emergency Wallet, I want the app to verify that my other wallets are empty or near zero, so that the emergency fund is only accessed when truly needed.*
+### 3.2 Multi-Wallet Dashboard
+The home screen serves as the user's primary workspace, tracking four distinct wallet categories:
+1. **Cash:** Physical cash in hand.
+2. **Visa:** Bank card accounts.
+3. **Smart Wallet:** Mobile wallets (e.g., Vodafone Cash, Fawry).
+4. **Emergency Wallet:** Locked savings (read-only balance, managed via transactions).
 
-**Acceptance Criteria:**
+* **Dashboard Features:**
+  * **Balance Privacy Toggle:** An eye icon in the header allows users to hide/reveal all wallet balances on the screen instantly, preventing prying eyes in public spaces.
+  * **Total Balance Calculation:** Formulated as `Total Balance = Cash + Visa + Smart Wallet`. The Emergency Wallet balance is deliberately excluded from this sum.
 
-* Required fields: Amount \+ Source Wallet \+ Category  
-* Categories (MVP set): Basics, Food & Breakfast, Supermarket, Transportation, Entertainment, Health, Bills, Other  
-* Auto-captured: Timestamp, GPS Location  
-* Optional: Notes  
-* **Emergency Wallet cashout rule:** System checks Cash \+ Visa \+ Smart Wallet total → if total \> defined threshold (configurable, default: 50 EGP), cashout from Emergency Wallet is **blocked with explanation**  
-* Emergency cashout requires user confirmation dialog: *"This will withdraw from your emergency savings. Are you sure?"*
+### 3.3 Selectable & Customizable Auto-Save Engine
+* **The Logic:** When a salaried user logs an incoming cash-in transaction and flags it as salary (via the "This is my salary" checkbox), the auto-save engine applies the user's configured savings rate.
+* **Selectable Savings Rate:**
+  * **Predefined Options:** Users can easily select a standard savings rate (10%, 15%, 20% [Default/Recommended], or 25%).
+  * **Custom Value Option:** Users can set a custom saving value (e.g., any value from 5% to 50%) to suit their specific budget bounds.
+* **Management:** The savings percentage can be adjusted at any time in the **Profile Settings** under "Emergency Rule."
+* **Flow:** The system deducts the selected saving value from the logged amount, adding the remainder to the target wallet, and moves the saved amount directly into the Emergency Wallet, showing a confirmation notification.
 
----
+### 3.4 Unified Transaction Logging
+Transactions are logged via a single, interactive modal bottom sheet rather than separate pages:
+* **Inputs:** Amount (EGP), destination/source Wallet, and optional notes (up to 100 characters).
+* **Category Chips:** Dynamic lists of category options based on transaction type:
+  * **Cash-In (Income):** Salary, Deposit, Debts, Fees, KPIs, Others.
+  * **Cash-Out (Expenses):** Food, Transport, Shopping, Health, Entertainment, Credits, Debts, Fees, Others.
 
-### **Feature 5: Emergency Wallet — Auto-Save Engine**
+### 3.5 Emergency Wallet Access & "Crisis Rule"
+* **The Constraint:** Users cannot freely withdraw funds from the Emergency Wallet. A validation rule checks if the user is in a genuine cash crunch.
+* **The Rule:** Cash-outs from the Emergency Wallet are blocked if the combined total of the user's active wallets (Cash + Visa + Smart Wallet) is **equal to or greater than 50 EGP**.
+* **UI Feedback:** Tapping the Emergency Wallet chip when active balances are above 50 EGP displays a warning message: *"Emergency Wallet cash out is only available when other balances are below 50 EGP."*
+* **Developer Simulator:** A developer tool toggle—**"Simulate Low Balance (< 50 EGP)"**—is built directly into the transaction form dialog. This overrides the real wallet state with mock low balances (e.g., 15 EGP Cash, 15 EGP Visa, 10 EGP Smart Wallet) to facilitate testing of the Emergency Wallet cashout flow.
 
-**Description:** The core differentiating feature. When a salaried user logs a Cash-In that represents their salary (or any income), the system **automatically deducts 20%** and moves it to the Emergency Wallet — enforcing the savings rule without requiring willpower.  
-**User Stories:**
+### 3.6 Calendar-Based History View
+Provides an aggregate monthly overview of user transactions organized in a grid layout:
+* **Year Selector:** Header buttons to navigate between calendar years.
+* **Month Grid:** A 12-month calendar grid showing month cards categorized as:
+  * **Active:** Shows the number of recorded logs (e.g., "5 operations"). Selectable by the user.
+  * **Inactive:** Displays "No activity". Disabled.
+  * **Upcoming:** Future months relative to the current calendar time (mocked to May 2026). Disabled.
+* **Transaction Bottom Sheet:** Selecting an active month opens a sliding sheet listing all transactions for that month sorted by date (newest first). Each entry displays the transaction type, category badge, amount, source wallet, and notes.
 
-* *As a salaried user, I want 20% of my salary to be automatically saved to my Emergency Wallet when I log my income, so that I don't have to remember to save manually.*  
-* *As a user, I want to see a clear notification when money is moved to my Emergency Wallet, so that I'm aware of what happened.*  
-* *As a user without a stable salary, I want to understand why the Emergency Wallet is unavailable to me, so that I'm not confused.*
-
-**Acceptance Criteria:**
-
-* Auto-deduction triggers when user logs a Cash-In and manually marks it as "Salary" (checkbox or toggle on Cash-In screen)  
-* 20% is calculated and subtracted from the logged wallet → added to Emergency Wallet  
-* Push notification sent: *"✅ 20% saved to Emergency Wallet — \[Amount\] EGP protected."*  
-* Emergency Wallet balance is **never included** in "Available Total" display  
-* Users with no stable salary see Emergency Wallet as locked with message: *"Activate by setting up your salary profile"*
-
----
-
-### **Feature 6: Transaction History**
-
-**Description:** A chronological log of all Cash-In and Cash-Out transactions, filterable by wallet type and date range.  
-**User Stories:**
-
-* *As a user, I want to view all my past transactions in one place, so that I can review my financial activity.*  
-* *As a user, I want to filter transactions by wallet or date, so that I can find specific entries quickly.*
-
-**Acceptance Criteria:**
-
-* Full transaction list sorted by date (newest first)  
-* Each entry shows: Type (In/Out), Amount, Wallet, Category (if out), Date/Time, Location (if captured)  
-* Filter options: By Wallet Type / By Date Range  
-
----
-
-### **Feature 7: History (Calendar View)**
-
-**Description:** A calendar-based view to easily find and access transaction history by month.  
-**User Stories:**
-
-* *As a user, I want to see a calendar showing all months in the year, so that I can easily navigate my history.*  
-* *As a user, I want active months (months with operations) to be visually distinct from inactive months.*  
-* *As a user, I want to tap on an active month and see a sheet displaying all operations for that month.*
-
-**Acceptance Criteria:**
-
-* Calendar displays months of the year.  
-* Active months indicate collected operations.  
-* Inactive months are disabled or hidden.  
-* Selecting a month opens a bottom sheet or new view with all transactions for that month.
+### 3.7 Financial Insights
+Provides immediate feedback on monthly cash flow and saving performance:
+* **Locked Emergency Status Card:** Highlighting the current total saved and auto-save active state.
+* **Categorized Spending Breakdown:** Shows expense weight percentages via visual progress bars.
+* **MoM KPI Comparison:** Illustrates savings rate changes relative to the prior month (e.g. *"Savings Rate: You saved 12% more than last month"*).
 
 ---
 
-### **Feature 8: Insights & Analytics**
+## 4. Technical Architecture & Handoff Notes
 
-**Description:** Visual charts and calculations to help the user understand their cash flow, savings, and spending habits for the current and previous months.  
-**User Stories:**
+### 4.1 System Architecture
+The application is built using a highly modular, decoupled structure:
+* **Clean Architecture Layers:** Strictly isolated into `domain` (contracts & entities), `data` (mappers, schemas, and remote source integrations), and `presentation` (widgets and states).
+* **State Management:** Powered by `flutter_bloc` using Cubits (e.g., `WelcomeCubit`, `DashboardCubit`, `HistoryCubit`, and `AppCubit`).
+* **Dependency Injection:** Configured via `get_it` and annotation-driven class registration (`injectable`), initializing services during app launch before `runApp()`.
+* **Responsive Layout:** Responsive dimensions use `.w`, `.h`, `.r`, and `.sp` extensions from `flutter_screenutil`.
+* **Bilingual Localization:** Fully localized via `.arb` asset catalogs, with localized strings accessed through the context extension `context.local.[key]`.
 
-* *As a user, I want to see a chart for the current month showing cash-in and cash-outs categorized, so I can understand my spending.*  
-* *As a user, I want to see my total saved amount calculated as [Cash In - Cash Out], so I know how much I'm retaining.*  
-* *As a user, I want to see my total spent amount based on [Cash Outs].*  
-* *As a user, I want the ability to navigate to previous months to view past chart info.*  
-* *As a user, I want the system to correctly display my saving amount even if it is negative (minus).*
+### 4.2 Data Storage & Firebase Integration
+* **Authentication:** Integrates email/password credentials alongside Google Social Authentication.
+* **Firestore Schema:** Designed around a twin-structure storage pattern:
+  * A flat `transactions` subcollection under the user document for fast recent reads and real-time logs.
+  * A month-bucketed `transactionHistory` collection (e.g., `/users/{uid}/transactionHistory/2026-05/entries`) for performant calendar grids and aggregated monthly analytics without querying all historical logs.
+  * Writes to both collections are bundled in a atomic batch operation to ensure consistency.
 
-**Acceptance Criteria:**
-
-* Display categorized charts for cash-in and cash-out.  
-* Show calculated Saving Amount = Cash In - Cash Out (can be negative).  
-* Show calculated Spend Amount = Total Cash Outs.  
-* Include navigation to view historical insights from previous months.
-
----
-
-## **4\. Out of Scope (MVP)**
-
-| Feature | Reason Excluded |
-| ----- | ----- |
-| Budget Planning / Forecasting | Second phase — needs more user data first |
-| Bank/Wallet API Integration (Open Banking) | Regulatory complexity \+ high cost |
-| Shared wallets / Family accounts | Different product scope |
-| Bill reminders / recurring payments | Phase 2 feature |
-| Export to PDF/Excel | Nice-to-have, not core |
-| AI spending insights | Requires data history first |
-| Dark mode / Themes | UI concern, not MVP |
-| Multi-currency support | MENA MVP is single currency |
-| Social / Gamification features | Phase 2 engagement layer |
+For detailed schema designs, refer to the [Go To Project Wiki](https://github.com/elsaramji/emergency_wallet/wiki)
 
 ---
 
-## **5\. Key Risks & Assumptions**
-
-| Risk | Mitigation |
-| ----- | ----- |
-| Users don't log transactions consistently | Onboarding habit-setting \+ push notification reminders |
-| 20% rule feels "too strict" for some users | Make the % editable in settings (Phase 1.1) |
-| Location permission denied by users | Make location optional, not blocking |
-| Users misunderstand Emergency Wallet lock | Clear UX copy \+ tooltip explanation |
-
----
-
-## **6\. MVP Tech Notes (For Engineering Handoff)**
-
-*(This section is for dev alignment — not design spec)*
-
-* **Platform:** Mobile-first (Flutter recommended for cross-platform MVP speed)  
-* **Auth:** Phone number \+ OTP (simple, no email friction)  
-* **Storage:** Local-first with optional cloud sync (reduces backend complexity at MVP)  
-* **Location:** Device GPS — request permission on first transaction log  
-* **Notifications:** Firebase Cloud Messaging (FCM)  
-* **No external financial API integrations in MVP**
+## 5. Excluded / Out-of-Scope (MVP Phase)
+To optimize delivery speed, the following items are excluded from the MVP scope:
+1. **Open Banking / Automated Financial APIs:** No sync connections to physical bank accounts or digital services (e.g., InstaPay); all logs are entered manually.
+2. **Advanced Budget Planning:** Goal tracking or category-specific spending caps.
+3. **Data Portability:** Export options to CSV or PDF formats.
