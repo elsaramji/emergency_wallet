@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../core/di/injection.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../states/welcome_cubit.dart';
 import '../states/welcome_state.dart';
@@ -20,14 +21,23 @@ class WelcomeQuestionsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => WelcomeCubit(),
+      create: (context) => getIt<WelcomeCubit>(),
       child: Scaffold(
         backgroundColor: context.theme.scaffoldBackgroundColor,
         body: SafeArea(
           child: BlocListener<WelcomeCubit, WelcomeState>(
-            listenWhen: (previous, current) => current.isCompleted,
+            listenWhen: (previous, current) => current.status != previous.status,
             listener: (context, state) {
-              context.go(AppRoutes.home);
+              if (state.status == WelcomeStatus.success) {
+                context.go(AppRoutes.home);
+              } else if (state.status == WelcomeStatus.failure) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.errorMessage ?? context.local.errorSomethingWentWrong),
+                    backgroundColor: context.theme.colorScheme.error,
+                  ),
+                );
+              }
             },
             child: const _WelcomeQuestionsBody(),
           ),

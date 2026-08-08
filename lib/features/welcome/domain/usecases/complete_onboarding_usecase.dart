@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../auth/domain/repositories/auth_repository.dart';
 import '../../../profile/domain/entities/user_profile.dart';
@@ -24,6 +25,7 @@ class CompleteOnboardingParams {
   });
 }
 
+@injectable
 class CompleteOnboardingUseCase {
   final AuthRepository _authRepository;
   final ProfileRepository _profileRepository;

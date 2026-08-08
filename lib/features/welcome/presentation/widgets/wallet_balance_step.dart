@@ -78,11 +78,22 @@ class WalletBalanceStep extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             ElevatedButton(
-              onPressed: () => context.read<WelcomeCubit>().completeSurvey(),
+              onPressed: state.status == WelcomeStatus.loading
+                  ? null
+                  : () => context.read<WelcomeCubit>().completeSurvey(),
               style: context.theme.elevatedButtonTheme.style?.copyWith(
                 minimumSize: WidgetStateProperty.all(Size.fromHeight(56.h)),
               ),
-              child: Text(context.local.startTracking),
+              child: state.status == WelcomeStatus.loading
+                  ? SizedBox(
+                      height: 24.h,
+                      width: 24.w,
+                      child: const CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 2,
+                      ),
+                    )
+                  : Text(context.local.startTracking),
             ),
             SizedBox(height: 24.h),
           ],

@@ -1,8 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+import '../../domain/usecases/complete_onboarding_usecase.dart';
 import 'welcome_state.dart';
 
+@injectable
 class WelcomeCubit extends Cubit<WelcomeState> {
-  WelcomeCubit() : super(const WelcomeState());
+  final CompleteOnboardingUseCase _completeOnboardingUseCase;
+
+  WelcomeCubit(this._completeOnboardingUseCase) : super(const WelcomeState());
 
   void selectEmploymentType(EmploymentType type) {
     emit(state.copyWith(employmentType: type));
@@ -42,14 +47,6 @@ class WelcomeCubit extends Cubit<WelcomeState> {
 
   void nextStep() {
     int nextStep = state.currentStep + 1;
-    
-    // Jump logic based on salary status
-    if (state.currentStep == 1 && state.hasStableSalary == false) {
-      // From Salary Question (No) -> Activation Disabled (Step 2 in Non-Salaried flow)
-      // Actually, let's keep the step numbers relative to the flow.
-      // But for the AnimatedSwitcher, we need unique indices.
-    }
-
     emit(state.copyWith(currentStep: nextStep));
   }
 
@@ -59,7 +56,31 @@ class WelcomeCubit extends Cubit<WelcomeState> {
     }
   }
 
-  void completeSurvey() {
-    emit(state.copyWith(isCompleted: true));
+  Future<void> completeSurvey() async {
+    emit(state.copyWith(status: WelcomeStatus.loading));
+
+    final params = CompleteOnboardingParams(
+      employmentStatus: state.employmentType?.name ?? 'employee',
+      hasStableSalary: state.hasStableSalary ?? false,
+      monthlySalary: state.salaryAmount,
+      emergencyWalletActivated:
+          state.emergencyWalletStatus == EmergencyWalletStatus.accepted,
+      initialCashBalance: state.cashBalance ?? 0.0,
+      initialVisaBalance: state.visaBalance ?? 0.0,
+      initialSmartWalletBalance: state.smartWalletBalance ?? 0.0,
+    );
+
+    final result = await _completeOnboardingUseCase(params);
+    result.fold(
+      (failure) => emit(state.copyWith(
+        status: WelcomeStatus.failure,
+        errorMessage: failure.message,
+      )),
+      (profile) => emit(state.copyWith(
+        status: WelcomeStatus.success,
+        isCompleted: true,
+      )),
+    );
   }
 }
+

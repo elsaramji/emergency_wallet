@@ -1,5 +1,6 @@
 enum EmploymentType { student, freelancer, employee }
 enum EmergencyWalletStatus { pending, accepted, declined }
+enum WelcomeStatus { initial, loading, success, failure }
 
 class WelcomeState {
   final int currentStep;
@@ -11,6 +12,8 @@ class WelcomeState {
   final double? visaBalance;
   final double? smartWalletBalance;
   final double savingsPercentage;
+  final WelcomeStatus status;
+  final String? errorMessage;
 
   final bool isCompleted;
 
@@ -24,6 +27,8 @@ class WelcomeState {
     this.visaBalance,
     this.smartWalletBalance,
     this.savingsPercentage = 20.0,
+    this.status = WelcomeStatus.initial,
+    this.errorMessage,
     this.isCompleted = false,
   });
 
@@ -37,6 +42,8 @@ class WelcomeState {
     double? visaBalance,
     double? smartWalletBalance,
     double? savingsPercentage,
+    WelcomeStatus? status,
+    String? errorMessage,
     bool? isCompleted,
   }) {
     return WelcomeState(
@@ -49,6 +56,8 @@ class WelcomeState {
       visaBalance: visaBalance ?? this.visaBalance,
       smartWalletBalance: smartWalletBalance ?? this.smartWalletBalance,
       savingsPercentage: savingsPercentage ?? this.savingsPercentage,
+      status: status ?? this.status,
+      errorMessage: errorMessage ?? this.errorMessage,
       isCompleted: isCompleted ?? this.isCompleted,
     );
   }
